@@ -40,7 +40,7 @@ def action_to_action_array(action: int) -> list[int]:
 class PPO:
     '''Model implementing the PPO training algorithm'''
 
-    class Model:
+    class NetworkController:
         '''Actor and critic models'''
 
         def __init__(self, network: type[Network], input_dims: int, output_dims: int) -> None:
@@ -74,8 +74,8 @@ class PPO:
 
         def __init__(self, game_type: type[Game], network: type[Network]) -> None:
 
-            self.ACTION_SPACE_DIMS = game_type.get_action_shape()
-            self.OBSERVATION_SPACE_DIMS = game_type.get_input_shape()
+            self.action_shape = game_type.get_action_shape()
+            self.observation_space = game_type.get_input_shape()
             self.total_time_steps = 100000
             self.observations_per_batch = 500
             self.updates_per_iteration = 10
@@ -85,8 +85,8 @@ class PPO:
             self.clip = 0.2
             self.repeat_action_num = 4
 
-            self.model = PPO.Model(
-                network, self.OBSERVATION_SPACE_DIMS, self.ACTION_SPACE_DIMS)
+            self.network_controller = PPO.NetworkController(
+                network, self.observation_space, self.action_shape)
 
         def create_trajectories(self) -> Trajectories:
             '''
@@ -114,7 +114,7 @@ class PPO:
                     observation_count += 1
                     observation = game.get_model_input()
                     if action_repetitions == 0:
-                        prob, action = self.model.get_prob_action(observation)
+                        prob, action = self.network_controller.get_prob_action(observation)
                         prev_prob = prob
                         prev_action = action
                     done, reward = game.step(
@@ -151,7 +151,7 @@ class PPO:
         def compute_value_advantage_estimates(self, trajectories: Trajectories) -> tuple[np.ndarray, np.ndarray]:
             '''For a given set of trajectories calculate the set of advantage estimates'''
             # compute the value function for the set of trajectories using the critic
-            values: np.ndarray = self.model.get_values(
+            values: np.ndarray = self.network_controller.get_values(
                 trajectories.observations)
             # compute the log estimates using the actor
             # log_probs = self.model.get_log_probs(observations, actions)
@@ -215,15 +215,15 @@ class PPO:
             advantages = tf.reshape(
                 advantage_estimates, (len(advantage_estimates),))
             current_probs = tf.reshape(trajectories.probabilities,
-                                       (len(trajectories.probabilities), self.ACTION_SPACE_DIMS*self.ACTION_SPACE_DIMS))
+                                       (len(trajectories.probabilities), self.action_shape*self.action_shape))
 
             with tf.GradientTape() as critic_tape, tf.GradientTape() as actor_tape:
-                actor_tape.watch(self.model.actor.model.trainable_variables)
-                critic_tape.watch(self.model.critic.model.trainable_variables)
-                probabilities = self.model.actor(
+                actor_tape.watch(self.network_controller.actor.model.trainable_variables)
+                critic_tape.watch(self.network_controller.critic.model.trainable_variables)
+                probabilities = self.network_controller.actor(
                     trajectories.observations, training=True, multi_dim=True)
-                actor_tape.watch(self.model.actor.model.trainable_variables)
-                values = self.model.critic(
+                actor_tape.watch(self.network_controller.actor.model.trainable_variables)
+                values = self.network_controller.critic(
                     trajectories.observations, training=True, multi_dim=True)
                 values = tf.reshape(values, (len(values),))
                 critic_loss = 0.5 * \
@@ -232,13 +232,13 @@ class PPO:
                     probabilities, trajectories.probabilities, trajectories.actions, advantage_estimates, critic_loss)
 
             actor_gradients = actor_tape.gradient(
-                actor_loss, self.model.actor.model.trainable_variables)
+                actor_loss, self.network_controller.actor.model.trainable_variables)
             critic_gradients = critic_tape.gradient(
-                critic_loss, self.model.critic.model.trainable_variables)
-            self.model.actor_optimiser.apply_gradients(
-                zip(actor_gradients, self.model.actor.model.trainable_variables))
-            self.model.critic_optimiser.apply_gradients(
-                zip(critic_gradients, self.model.critic.model.trainable_variables))
+                critic_loss, self.network_controller.critic.model.trainable_variables)
+            self.network_controller.actor_optimiser.apply_gradients(
+                zip(actor_gradients, self.network_controller.actor.model.trainable_variables))
+            self.network_controller.critic_optimiser.apply_gradients(
+                zip(critic_gradients, self.network_controller.critic.model.trainable_variables))
             return actor_loss, critic_loss
 
         def save(self, save_location: str):
@@ -251,8 +251,8 @@ class PPO:
             }
             with open(f'{save_location}/configs.json','w', encoding='utf8') as file:
                 file.write(json.dumps(configs))
-            self.model.actor.model.save(f'{save_location}/actor')
-            self.model.critic.model.save(f'{save_location}/critic')
+            self.network_controller.actor.model.save(f'{save_location}/actor')
+            self.network_controller.critic.model.save(f'{save_location}/critic')
 
         def train(self, save_location: str):
             '''Train the model by running games'''
