@@ -42,12 +42,12 @@ class Game(ABC):
         and return the reward change whether the game has finished'''
 
     @abstractmethod
-    def get_model_input(self) -> np.array:
+    def get_model_input(self) -> np.ndarray:
         '''Generate a numpy array with the input to the model'''
 
     @classmethod
     @abstractmethod
-    def get_input_shape(cls) -> list[float]:
+    def get_input_shape(cls) -> int:
         '''Returns the shape of the model input matrix'''
 
     @classmethod
