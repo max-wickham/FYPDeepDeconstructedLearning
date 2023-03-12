@@ -24,11 +24,11 @@ from src.interfaces.game import Game
 
 class Trajectories(NamedTuple):
     '''Trajectory stored from one frame of the game'''
-    observations: np.ndarray
-    actions: np.ndarray
-    rewards: np.ndarray
-    probabilities: np.ndarray
-    discount_cumulative_rewards: np.ndarray
+    observations: npt.NDArray
+    actions: npt.NDArray
+    rewards: npt.NDArray
+    probabilities: npt.NDArray
+    discount_cumulative_rewards: npt.NDArray
 
 
 def action_to_action_array(action: int) -> list[int]:
@@ -57,7 +57,7 @@ class PPO:
             self.actor_optimiser = Adam(lr=self.learning_rate)
             self.critic_optimiser = Adam(lr=self.learning_rate)
 
-        def get_prob_action(self, observation: npt.NDArray[np.float64]) -> tuple[npt.NDArray[np.float64], int]:
+        def get_prob_action(self, observation: npt.NDArray[float]) -> tuple[npt.NDArray[float], int]:
             '''Returns the probability of
             each action combination and an action sampled from this distribution'''
             prob = self.actor(observation)
@@ -66,7 +66,7 @@ class PPO:
             action = dist.sample(1)
             return prob, int(action.numpy()[0])
 
-        def get_values(self, observations: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
+        def get_values(self, observations: npt.NDArray[float]) -> npt.NDArray[float]:
             '''Run the critic on a set of observations'''
             values = self.critic(observations, multi_dim=True).numpy()
             values = np.reshape(values, (len(values,)))
@@ -79,8 +79,9 @@ class PPO:
 
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
-            self.total_time_steps = 10000000
-            self.observations_per_batch = 1000
+            # self.total_time_steps = 10000000
+            self.total_time_steps = 1000000
+            self.observations_per_batch = 5000
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
@@ -152,7 +153,7 @@ class PPO:
             )
 
         def compute_value_advantage_estimates(self, trajectories: Trajectories
-            ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
+            ) -> tuple[npt.NDArray[float], npt.NDArray[float]]:
             '''For a given set of trajectories calculate the set of advantage estimates'''
             # compute the value function for the set of trajectories using the critic
             values: np.ndarray = self.model.get_values(
@@ -229,8 +230,8 @@ class PPO:
 
         def save(self, save_location: str):
             '''Save the trained models'''
-            if not os.path.exists(f'./{save_location}'):
-                os.mkdir(f'./{save_location}')
+            if not os.path.exists(f'{save_location}'):
+                os.mkdir(f'{save_location}')
             configs = {
                 'game_type': str(type(self.game_type)),
                 'network_type': str(type(self.network_type))
