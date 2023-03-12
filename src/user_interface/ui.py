@@ -56,7 +56,7 @@ class GameUI:
             #     self.screen.blit(self.player_img, (int(rectangle[2][0]  - rectangle[0]), 600 - int(rectangle[2][1] + rectangle[1] + 10)))
             # else:
             pygame.draw.rect(self.screen, rectangle[3], pygame.Rect(left, top, rectangle[0], rectangle[1]))
-a
+
         pygame.display.flip()
 
 
