@@ -59,20 +59,20 @@ class GameState:
     def to_draw_information(self) -> DrawInformation:
         rectangles = (
             [
-                (self.PLAYER_WIDTH, self.PLAYER_HEIGHT, (self.player_pos, int(self.PLAYER_HEIGHT / 2) ),(0,255,255))
+                (self.PLAYER_WIDTH, self.PLAYER_HEIGHT, (self.player_pos, int(self.PLAYER_HEIGHT / 2) ),(0,255,255), 'player')
             ]+
             [
-                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, (255,255,255)) for bullet in self.player_bullets
+                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, (255,255,255), 'bullet') for bullet in self.player_bullets
             ] +
             [
-                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, (255,0,0)) for bullet in self.enemy_bullets
+                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, (255,0,0), 'bullet') for bullet in self.enemy_bullets
             ] +
             [
-                (self.ENEMY_WIDTH, self.ENEMY_HEIGHT, enemy.pos, (0,255,0)) for enemy in self.enemies
+                (self.ENEMY_WIDTH, self.ENEMY_HEIGHT, enemy.pos, (0,255,0), 'enemy') for enemy in self.enemies
             ] +
             [
                 (self.SHIELD_WIDTH, self.SHIELD_HEIGHT,
-                    (shield.pos, self.SHIELD_HEIGHT_POS), (100,100,0)) for shield in self.shields
+                    (shield.pos, self.SHIELD_HEIGHT_POS), (100,100,0), 'shield') for shield in self.shields
             ]
 
         )
