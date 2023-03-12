@@ -26,7 +26,7 @@ class DrawInformation:
     Width = int
     Height = int
 
-    rectangles : list[tuple[Height,Width,Coordinate,Colour]]
+    rectangles : list[tuple[Height,Width,Coordinate,Colour,str]]
 
 
 class Game(ABC):

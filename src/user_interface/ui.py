@@ -28,6 +28,8 @@ class GameUI:
         self.direction = 0
         self.shoot = 0
         self.model = model
+        self.player_img = pygame.image.load('./src/assets/space/player.png')
+        self.player_img.convert()
 
     def run(self):
         last_frame_time = time.time()
@@ -50,7 +52,11 @@ class GameUI:
         for rectangle in draw_information.rectangles:
             left = int(rectangle[2][0] - rectangle[0] / 2)
             top = 600 - int(rectangle[2][1] + rectangle[1] / 2)
+            # if rectangle[4] == 'player':
+            #     self.screen.blit(self.player_img, (int(rectangle[2][0]  - rectangle[0]), 600 - int(rectangle[2][1] + rectangle[1] + 10)))
+            # else:
             pygame.draw.rect(self.screen, rectangle[3], pygame.Rect(left, top, rectangle[0], rectangle[1]))
+a
         pygame.display.flip()
 
 
