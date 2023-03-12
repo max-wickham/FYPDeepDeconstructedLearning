@@ -1,17 +1,18 @@
 '''
 PPO Algorithm
-Based on reference implementation https://github.com/ericyangyu/PPO-for-Beginners/
-Tutorial https://medium.com/@eyyu/coding-ppo-from-scratch-with-pytorch-part-3-4-82081ea58146
 Algorithm Pseudo Code https://spinningup.openai.com/en/latest/algorithms/ppo.html
 '''
 import os
-from typing import NamedTuple
+from typing import NamedTuple, Any
 import json
 
 import numpy as np
+import numpy.typing as npt
 from tensorflow import keras
 from tensorflow.keras.optimizers import Adam
 import tensorflow as tf
+import tensor_annotations.tensorflow as ttf
+from tensor_annotations import axes
 import tensorflow.keras.losses as kls
 import tensorflow_probability as tfp
 
@@ -54,7 +55,7 @@ class PPO:
             self.actor_optimiser = Adam(lr=self.learning_rate)
             self.critic_optimiser = Adam(lr=self.learning_rate)
 
-        def get_prob_action(self, observation: np.ndarray) -> tuple[np.ndarray, int]:
+        def get_prob_action(self, observation: npt.NDArray[np.float64]) -> tuple[npt.NDArray[np.float64], int]:
             '''Returns the probability of
             each action combination and an action sampled from this distribution'''
             prob = self.actor(observation)
@@ -63,7 +64,7 @@ class PPO:
             action = dist.sample(1)
             return prob, int(action.numpy()[0])
 
-        def get_values(self, observations: np.ndarray) -> np.ndarray:
+        def get_values(self, observations: npt.NDArray[np.float64]) -> npt.NDArray[np.float64]:
             '''Run the critic on a set of observations'''
             values = self.critic(observations, multi_dim=True).numpy()
             values = np.reshape(values, (len(values,)))
@@ -74,10 +75,10 @@ class PPO:
 
         def __init__(self, game_type: type[Game], network: type[Network]) -> None:
 
-            self.action_shape = game_type.get_action_shape()
-            self.observation_space = game_type.get_input_shape()
-            self.total_time_steps = 100000
-            self.observations_per_batch = 500
+            self.action_dims = game_type.get_action_shape()
+            self.observation_dims = game_type.get_input_shape()
+            self.total_time_steps = 10000000
+            self.observations_per_batch = 1000
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
@@ -85,8 +86,8 @@ class PPO:
             self.clip = 0.2
             self.repeat_action_num = 4
 
-            self.network_controller = PPO.NetworkController(
-                network, self.observation_space, self.action_shape)
+            self.model = PPO.Model(
+                network, self.observation_dims, self.action_dims)
 
         def create_trajectories(self) -> Trajectories:
             '''
@@ -148,7 +149,8 @@ class PPO:
                 np.array(discount_cumulative_rewards)
             )
 
-        def compute_value_advantage_estimates(self, trajectories: Trajectories) -> tuple[np.ndarray, np.ndarray]:
+        def compute_value_advantage_estimates(self, trajectories: Trajectories
+            ) -> tuple[npt.NDArray[np.float64], npt.NDArray[np.float64]]:
             '''For a given set of trajectories calculate the set of advantage estimates'''
             # compute the value function for the set of trajectories using the critic
             values: np.ndarray = self.network_controller.get_values(
@@ -161,44 +163,26 @@ class PPO:
             # TODO normalize advantages ?
             return values, advantages
 
-        def actor_loss(self, new_probs: np.ndarray,
-                       current_probs: np.ndarray,
-                       actions: np.ndarray,
-                       advantages: np.ndarray,
-                       critic_loss: np.ndarray):
+        def actor_loss(self, new_probs: npt.NDArray,
+                       current_probs: npt.NDArray,
+                       actions: npt.NDArray,
+                       advantages: npt.NDArray,
+                       critic_loss: npt.NDArray):
             '''Calculate the actor loss'''
             entropy = tf.reduce_mean(tf.math.negative(
                 tf.math.multiply(new_probs, tf.math.log(new_probs))))
             surrogate_1 = []
             surrogate_2 = []
 
-            advantages = tf.convert_to_tensor(advantages, dtype=tf.float32)
+            advantages_tensor = tf.convert_to_tensor(advantages, dtype=tf.float32)
             new_probs_indexed = tf.convert_to_tensor(
                 np.array([prob[action] for prob, action in zip(new_probs, actions)]), dtype=tf.float32)
             current_probs_indexed = tf.convert_to_tensor(
                 np.array([prob[action] for prob, action in zip(current_probs, actions)]), dtype=tf.float32)
             ratios = tf.math.divide(new_probs_indexed, current_probs_indexed)
-            surrogate_1 = tf.math.multiply(ratios, advantages)
+            surrogate_1 = tf.math.multiply(ratios, advantages_tensor)
             surrogate_2 = tf.math.multiply(tf.clip_by_value(
                 ratios, 1.0 - self.clip, 1.0 + self.clip), advantages)
-
-            # surrogate_1 = []
-            # surrogate_2 = []
-            # for pb, t, op, a in zip(new_probs, advantages, current_probs, actions):
-            #     t = tf.constant(t, dtype=tf.float32)
-            #     # op =  tf.constant(op)
-            #     # print(f"t{t}")
-            #     # ratio = tf.math.exp(tf.math.log(pb + 1e-10) - tf.math.log(op + 1e-10))
-
-            #     ratio = tf.math.divide(pb[a], op[a])
-            #     # print(f"ratio{ratio}")
-            #     s1 = tf.math.multiply(ratio, t)
-            #     # print(f"s1{s1}")
-            #     s2 = tf.math.multiply(tf.clip_by_value(
-            #         ratio, 1.0 - self.clip, 1.0 + self.clip), t)
-            #     # print(f"s2{s2}")
-            #     surrogate_1.append(s1)
-            #     surrogate_2.append(s2)
             sr1 = tf.stack(surrogate_1)
             sr2 = tf.stack(surrogate_2)
             loss = tf.math.negative(tf.reduce_mean(
@@ -215,7 +199,7 @@ class PPO:
             advantages = tf.reshape(
                 advantage_estimates, (len(advantage_estimates),))
             current_probs = tf.reshape(trajectories.probabilities,
-                                       (len(trajectories.probabilities), self.action_shape*self.action_shape))
+                                       (len(trajectories.probabilities), self.action_dims*self.action_dims))
 
             with tf.GradientTape() as critic_tape, tf.GradientTape() as actor_tape:
                 actor_tape.watch(self.network_controller.actor.model.trainable_variables)

@@ -1,6 +1,8 @@
 '''Neural Network Interface'''
 from abc import ABC, abstractmethod
 
+import tensor_annotations.tensorflow as ttf
+from tensor_annotations import axes
 import numpy as np
 
 
@@ -18,5 +20,5 @@ class Network(ABC):
         self.model_file = model_file
 
     @abstractmethod
-    def __call__(self, input_data: np.ndarray, training=False, multi_dim=False) -> np.ndarray:
+    def __call__(self, input_data: np.ndarray, training=False, multi_dim=False) -> ttf.Tensor1[ttf.float32, axes.Height]:
         '''Run the model on a set of input data'''

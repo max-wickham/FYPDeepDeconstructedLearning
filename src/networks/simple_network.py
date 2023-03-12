@@ -1,5 +1,7 @@
 '''Implementation of a simple neural network for testing'''
 import tensorflow as tf
+import tensor_annotations.tensorflow as ttf
+from tensor_annotations import axes
 from tensorflow import keras
 import numpy as np
 
@@ -24,7 +26,7 @@ class SimpleNetwork(Network):
         #     learning_rate=learning_rate, momentum=0.9, epsilon=0.01)
         # self.model.compile(loss="mse", optimizer=self.optimiser)
 
-    def __call__(self, input_data: np.ndarray, training=False, multi_dim=False) -> np.ndarray:
+    def __call__(self, input_data: np.ndarray, training=False, multi_dim=False) -> ttf.Tensor1[ttf.float32, axes.Height]:
         return self.model.call(
             tf.convert_to_tensor(
                 np.array(input_data).reshape(-1).reshape(
