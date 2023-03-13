@@ -80,8 +80,8 @@ class PPO:
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
             # self.total_time_steps = 10000000
-            self.total_time_steps = 1000000
-            self.observations_per_batch = 5000
+            self.total_time_steps = 10000000
+            self.observations_per_batch = 10000
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
