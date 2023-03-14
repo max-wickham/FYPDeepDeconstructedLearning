@@ -89,7 +89,7 @@ class PPO:
             self.clip = 0.2
             self.repeat_action_num = 4
 
-            self.model = PPO.Model(
+            self.network_controller = PPO.NetworkController(
                 network, self.observation_dims, self.action_dims)
 
         def create_trajectories(self) -> Trajectories:
