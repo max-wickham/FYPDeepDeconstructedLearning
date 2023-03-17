@@ -80,14 +80,14 @@ class PPO:
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
             # self.total_time_steps = 10000000
-            self.total_time_steps = 10000000
-            self.observations_per_batch = 10000
+            self.total_time_steps = 30000000
+            self.observations_per_batch = 5000
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
             self.gamma = 0.95
             self.clip = 0.2
-            self.repeat_action_num = 4
+            self.repeat_action_num = 6
 
             self.network_controller = PPO.NetworkController(
                 network, self.observation_dims, self.action_dims)
@@ -115,9 +115,9 @@ class PPO:
                 prev_prob = None
                 action_repetitions = 0
                 while not done and observation_count < self.observations_per_batch:
-                    observation_count += 1
                     observation = game.get_model_input()
                     if action_repetitions == 0:
+                        observation_count += 1
                         prob, action = self.network_controller.get_prob_action(observation)
                         prev_prob = prob
                         prev_action = action

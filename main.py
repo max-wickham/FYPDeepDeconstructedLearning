@@ -15,5 +15,5 @@ if __name__ == '__main__':
     ppo = PPO()
     print('Training PPO')
     print('######################')
-    ppo.train(SpaceInvaders, SimpleNetwork, save_location = f'{os.environ["PBS_O_WORKDIR"]}/ppo_3')
+    ppo.train(SpaceInvaders, SimpleNetwork, save_location = f'{os.environ["PBS_O_WORKDIR"]}/ppo_4')
     # ppo.train(SpaceInvaders, SimpleNetwork, save_location = 'ppo_3')
