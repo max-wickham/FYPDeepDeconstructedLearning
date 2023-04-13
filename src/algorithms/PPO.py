@@ -36,11 +36,11 @@ from src.interfaces.game import Game
 @dataclasses.dataclass
 class Trajectories:
     '''Trajectory stored from one frame of the game'''
-    observations: npt.NDArray = field(default_factory=list)
-    actions: npt.NDArray = field(default_factory=list)
-    rewards: npt.NDArray = field(default_factory=list)
-    probabilities: npt.NDArray = field(default_factory=list)
-    discount_cumulative_rewards: npt.NDArray = field(default_factory=list)
+    observations: npt.NDArray
+    actions: npt.NDArray
+    rewards: npt.NDArray
+    probabilities: npt.NDArray
+    discount_cumulative_rewards: npt.NDArray
 
     def get_observations(self):
         return self.observations
@@ -199,17 +199,18 @@ class PPO:
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
             # self.total_time_steps = 10000000
-            # self.total_time_steps = 30000000
-            # self.observations_per_batch = 10000
-            self.total_time_steps = 10000
-            self.observations_per_batch = 500
+            self.total_time_steps = 60000000
+            self.observations_per_batch = 20000
+            self.num_workers = 10
+            # self.total_time_steps = 10000
+            # self.observations_per_batch = 500
 
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
             self.gamma = 0.95
             self.clip = 0.2
-            self.repeat_action_num = 6
+            self.repeat_action_num = 3
 
             self.network_controller = PPO.NetworkController(
                 network, self.observation_dims, self.action_dims)
@@ -320,11 +321,11 @@ class PPO:
             # TODO normalize advantages ?
             return values, advantages
 
-        def actor_loss(self, new_probs: npt.NDArray,
+        def actor_loss(self, new_probs: ttf.Tensor1,
                        current_probs: npt.NDArray,
                        actions: npt.NDArray,
                        advantages: npt.NDArray,
-                       critic_loss: npt.NDArray):
+                       critic_loss: ttf.Tensor1):
             '''Calculate the actor loss'''
             entropy = tf.reduce_mean(tf.math.negative(
                 tf.math.multiply(new_probs, tf.math.log(new_probs))))
@@ -410,10 +411,9 @@ class PPO:
             manager.start()
 
             self.workers = []
-            num_processes = 4
-            for _ in range(num_processes):
+            for _ in range(self.num_workers):
                 process = Process(target=create_trajectories_process, args=[
-                    int(self.observations_per_batch / num_processes),
+                    int(self.observations_per_batch / self.num_workers),
                     self.task_queue,
                     self.response_queue,
                     self.stop_queue,
@@ -448,12 +448,9 @@ class PPO:
                     values, advantages = self.compute_value_advantage_estimates(
                         trajectories)
 
-                    #TODO compute a set of advantages and trajectories in parrallel
-
-
-                    for _ in range(self.updates_per_iteration):
-                        actor_loss, critic_loss = self.update_policy(
-                            trajectories, advantages)
+                for _ in range(self.updates_per_iteration):
+                    actor_loss, critic_loss = self.update_policy(
+                        trajectories, advantages)
 
                     self.save()
             except Exception:
@@ -472,8 +469,7 @@ class PPO:
                 np.array(input_vector).reshape(-1).reshape(
                     1, len(input_vector)
                 ))
-        self.actor : keras.Model
-        prob = self.actor(input_vector)
+        prob : ttf.Tensor1 = self.actor(input_vector) # type: ignore
         prob = prob.numpy()[0]
         dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
         action = dist.sample(1)
@@ -484,6 +480,7 @@ class PPO:
         trainer = PPO.Trainer(game, network, save_location)
         trainer.train()
 
+    actor : keras.Model
+
     def __init__(self) -> None:
-        # actor for use when loading a model
-        self.actor = None
+        ...
