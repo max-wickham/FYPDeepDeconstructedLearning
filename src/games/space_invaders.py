@@ -187,7 +187,6 @@ class SpaceInvaders(Game):
                 distance_to_player = min(
                     (distance_to_player, abs(self.GAME_WIDTH - distance_to_player)))
                 if distance_to_player < (self._game_state.PLAYER_WIDTH / 2):
-                    print('damage')
                     self._game_state.player_health -= self.BULLET_DAMAGE
 
             self._game_state.enemy_bullets[index] = (

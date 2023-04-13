@@ -15,7 +15,7 @@ import importlib
 
 import numpy as np
 import numpy.typing as npt
-# from tensorflow import keras
+# Importing tensorflow modules this way makes type hinting work because reasons
 import tensorflow as tf
 keras = tf.keras;
 Adam = tf.keras.optimizers.Adam
@@ -42,12 +42,11 @@ class Trajectories:
     discount_cumulative_rewards: npt.NDArray = np.array([])
 
     def get_observations(self):
-        print(self.observations)
         return self.observations
 
 def create_trajectories_process(
     num_observations : int,
-    input_put : multiprocessing.Queue,
+    input_queue : multiprocessing.Queue,
     output_queue : multiprocessing.Queue,
     game_type : Type[Game],
     observation_dims : int,
@@ -56,78 +55,76 @@ def create_trajectories_process(
     load_location : str
     ):
 
-    # importlib.reload(tf)
-    # keras = tf.keras;
-    # Adam = tf.keras.optimizers.Adam
-    # kls = tf.keras.losses
-    print('Starting Process')
-    observation_count = 0
-    actions = []
-    observations = []
-    rewards = []
-    probs = []
-    discount_cumulative_rewards = []
-    print('Creating Model')
-    network_controller = PPO.NetworkController(network_type, observation_dims, action_dims, load = True)
-    print('Loading Model')
-    network_controller.load(load_location)
-    print('Loaded Model')
-    while observation_count < num_observations:
-        print('New Game')
-        game = game_type()
-        done = False
-        new_actions = []
-        new_observations = []
-        new_rewards = []
-        new_probs = []
-        prev_action = 0
-        prev_prob = None
-        action_repetitions = 0
-        while not done and observation_count < num_observations:
-            observation = game.get_model_input()
-            print(observation)
-            observation = tf.reshape(observation,shape=(1,len(observation)))
-            if action_repetitions == 0:
-                observation_count += 1
-                # TODO create network controller from model file
-                print('Getting Action')
-                print(observation)
-                prob, action = network_controller.get_prob_action(observation)
-                print('Got action')
-                prev_prob = prob
-                prev_action = action
-            done, reward = game.step(
-                action_to_action_array(prev_action))
-            if done or action_repetitions == 0:
-                new_observations.append(observation)
-                new_actions.append(prev_action)
-                new_rewards.append(reward)
-                new_probs.append(prev_prob)
-            action_repetitions = (action_repetitions + 1) % 4
+    while True:
+        if input_queue.empty():
+            continue
+        input_queue.get()
 
-        new_discount_cumulative_rewards = []
-        discount_cumulative_reward = 0
-        for reward in reversed(new_rewards):
-            discount_cumulative_reward = reward + discount_cumulative_reward * 0.95
-            new_discount_cumulative_rewards.append(
-                discount_cumulative_reward)
+        # importlib.reload(tf)
+        # keras = tf.keras;
+        # Adam = tf.keras.optimizers.Adam
+        # kls = tf.keras.losses
+        observation_count = 0
+        actions = []
+        observations = []
+        rewards = []
+        probs = []
+        discount_cumulative_rewards = []
+        network_controller = PPO.NetworkController(network_type, observation_dims, action_dims, load = True)
+        network_controller.load(load_location)
+        while observation_count < num_observations:
+            game = game_type()
+            done = False
+            new_actions = []
+            new_observations = []
+            new_rewards = []
+            new_probs = []
+            prev_action = 0
+            prev_prob = None
+            action_repetitions = 0
+            while not done and observation_count < num_observations:
+                observation = game.get_model_input()
+                observation = tf.reshape(observation,shape=(1,len(observation)))
+                if action_repetitions == 0:
+                    observation_count += 1
+                    # TODO create network controller from model file
+                    prob, action = network_controller.get_prob_action(observation)
+                    prev_prob = prob
+                    prev_action = action
+                done, reward = game.step(
+                    action_to_action_array(prev_action))
+                if done or action_repetitions == 0:
+                    new_observations.append(observation)
+                    new_actions.append(prev_action)
+                    new_rewards.append(reward)
+                    new_probs.append(prev_prob)
+                action_repetitions = (action_repetitions + 1) % 4
 
-        observations += new_observations
-        actions += new_actions
-        rewards += new_rewards
-        probs += new_probs
-        discount_cumulative_rewards += new_discount_cumulative_rewards
-        print(sum(new_discount_cumulative_rewards) /
-            len(new_discount_cumulative_rewards))
+            new_discount_cumulative_rewards = []
+            discount_cumulative_reward = 0
+            for reward in reversed(new_rewards):
+                discount_cumulative_reward = reward + discount_cumulative_reward * 0.95
+                new_discount_cumulative_rewards.append(
+                    discount_cumulative_reward)
 
-    trajectories.observations = np.array(observations)
-    print(trajectories.observations)
-    trajectories.actions = np.array(actions)
-    trajectories.rewards = np.array(rewards)
-    trajectories.probabilities = np.array(probs)
-    trajectories.discount_cumulative_rewards = np.array(discount_cumulative_rewards)
+            observations += new_observations
+            actions += new_actions
+            rewards += new_rewards
+            probs += new_probs
+            discount_cumulative_rewards += new_discount_cumulative_rewards
 
+        print('Completed Collection')
+        trajectories = Trajectories(
+            np.array(observations),
+            np.array(actions),
+            np.array(rewards),
+            np.array(probs),
+            np.array(discount_cumulative_rewards)
+        )
+        print('Putting trajectories on queue')
+        output_queue.put(trajectories)
 
+        continue
 
 def action_to_action_array(action: int) -> list[int]:
     '''Convert the combination action index to a action array'''
@@ -199,7 +196,7 @@ class PPO:
             self.observation_dims = game_type.get_input_shape()
             # self.total_time_steps = 10000000
             self.total_time_steps = 30000000
-            self.observations_per_batch = 5000
+            self.observations_per_batch = 10000
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
@@ -210,45 +207,36 @@ class PPO:
             self.network_controller = PPO.NetworkController(
                 network, self.observation_dims, self.action_dims)
 
+            self.task_queue = multiprocessing.Queue()
+            self.response_queue = multiprocessing.Queue()
+            self.workers : list[multiprocessing.Process]  = []
+
         def create_trajectories_parralel(self) -> Trajectories:
 
-            print('Creating Processes')
-            BaseManager.register('Trajectories', Trajectories)
-            manager = BaseManager()
-            manager.start()
+            self.save()
+            for _ in self.workers:
+                self.task_queue.put(True)
 
-            shared_trajectories_list : list[Trajectories] = []
-            processes = []
-            num_processes = 1
-
-            self.network_controller.save(self.save_location)
-            for i in range(num_processes):
-                trajectories = manager.Trajectories() # type: ignore
-                shared_trajectories_list.append(trajectories)
-                process = Process(target=create_trajectories_process, args=[
-                    2,
-                    '',trajectories,
-                    self.game_type,
-                    self.observation_dims,
-                    self.action_dims,
-                    self.network_type,
-                    self.save_location])
-                processes.append(process)
-                process.start()
-
-            print('Joining Processes')
-            for process in processes:
-                process.join()
+            num_responses = 0
+            trajectories_list : list[Trajectories] = []
+            while len(trajectories_list) < len(self.workers):
+                if not self.response_queue.empty():
+                    print('Received Response')
+                    trajectories = self.response_queue.get()
+                    trajectories_list.append(trajectories)
 
             print('Concatinating Results')
-            print(shared_trajectories_list[0].get_observations())
-            return Trajectories(
-                np.concatenate(*[trajectories.get_observations() for trajectories in shared_trajectories_list]),
-                np.concatenate(*[trajectories.actions for trajectories in shared_trajectories_list]),
-                np.concatenate(*[trajectories.rewards for trajectories in shared_trajectories_list]),
-                np.concatenate(*[trajectories.probabilities for trajectories in shared_trajectories_list]),
-                np.concatenate(*[trajectories.discount_cumulative_rewards for trajectories in shared_trajectories_list]),
+            trajectories = Trajectories(
+                np.concatenate(tuple(trajectories.observations for trajectories in trajectories_list)),
+                np.array([action for trajectories in trajectories_list for action in list(trajectories.actions)]),
+                np.array([reward for trajectories in trajectories_list for reward in list(trajectories.rewards)]),
+                np.concatenate(tuple(np.reshape(trajectories.probabilities,
+                (trajectories.probabilities.shape[0],1,trajectories.probabilities.shape[1]))
+                for trajectories in trajectories_list)),
+                np.array([reward for trajectories in trajectories_list for reward in list(trajectories.discount_cumulative_rewards)]),
             )
+            # print(trajectories)
+            return trajectories
 
         def create_trajectories(self) -> Trajectories:
             '''
@@ -338,6 +326,7 @@ class PPO:
             advantages_tensor = tf.convert_to_tensor(advantages, dtype=tf.float32)
             new_probs_indexed = tf.convert_to_tensor(
                 np.array([prob[action] for prob, action in zip(new_probs, actions)]), dtype=tf.float32)
+            current_probs = np.reshape(current_probs, (current_probs.shape[0], current_probs.shape[1]))
             current_probs_indexed = tf.convert_to_tensor(
                 np.array([prob[action] for prob, action in zip(current_probs, actions)]), dtype=tf.float32)
             ratios = tf.math.divide(new_probs_indexed, current_probs_indexed)
@@ -355,6 +344,7 @@ class PPO:
             Update the policy using the trajectories and advantage estimates
             Use stochastic gradient descent using ADAM
             '''
+            print(trajectories)
             discount_cumulative_rewards = tf.reshape(
                 trajectories.discount_cumulative_rewards, (len(trajectories.discount_cumulative_rewards),))
             advantages = tf.reshape(
@@ -401,20 +391,18 @@ class PPO:
             # self.network_controller.critic.model.save(f'{self.save_location}/critic')
 
         def create_workers(self):
-            task_queue = multiprocessing.Queue()
-            response_queue = multiprocessing.Queue()
 
             BaseManager.register('Trajectories', Trajectories)
             manager = BaseManager()
             manager.start()
 
             self.workers = []
-            num_processes = 1
+            num_processes = 10
             for i in range(num_processes):
                 process = Process(target=create_trajectories_process, args=[
-                    2,
-                    task_queue,
-                    response_queue,
+                    int(self.observations_per_batch / num_processes),
+                    self.task_queue,
+                    self.response_queue,
                     self.game_type,
                     self.observation_dims,
                     self.action_dims,
