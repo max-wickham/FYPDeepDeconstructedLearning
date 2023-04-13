@@ -183,6 +183,8 @@ class PPO:
             dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
             action = dist.sample(1)
             action = int(action.numpy()[0])
+            if action >= 4:
+                action = 3
             return prob, action
 
         def get_values(self, observations: npt.NDArray) -> npt.NDArray:
