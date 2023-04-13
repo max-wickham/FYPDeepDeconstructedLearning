@@ -195,8 +195,11 @@ class PPO:
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
             # self.total_time_steps = 10000000
-            self.total_time_steps = 30000000
-            self.observations_per_batch = 10000
+            # self.total_time_steps = 30000000
+            # self.observations_per_batch = 10000
+            self.total_time_steps = 10000
+            self.observations_per_batch = 500
+
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
@@ -324,11 +327,17 @@ class PPO:
             surrogate_2 = []
 
             advantages_tensor = tf.convert_to_tensor(advantages, dtype=tf.float32)
-            new_probs_indexed = tf.convert_to_tensor(
-                np.array([prob[action] for prob, action in zip(new_probs, actions)]), dtype=tf.float32)
-            current_probs = np.reshape(current_probs, (current_probs.shape[0], current_probs.shape[1]))
+            # new_probs_indexed = tf.convert_to_tensor(
+            #     np.array([prob[action] for prob, action in zip(new_probs, actions)]), dtype=tf.float32)
+            current_probs = np.reshape(current_probs, (current_probs.shape[0], current_probs.shape[2]))
             current_probs_indexed = tf.convert_to_tensor(
                 np.array([prob[action] for prob, action in zip(current_probs, actions)]), dtype=tf.float32)
+            new_probs_indexed = tf.gather_nd(
+                new_probs,
+                indices = tf.constant([[index, action] for index, action in enumerate(actions)]))
+            # current_probs_indexed = tf.gather_nd(
+            #     current_probs,
+            #     indices = tf.constant([[index, action] for index, action in enumerate(actions)]))
             ratios = tf.math.divide(new_probs_indexed, current_probs_indexed)
             surrogate_1 = tf.math.multiply(ratios, advantages_tensor)
             surrogate_2 = tf.math.multiply(tf.clip_by_value(
@@ -344,7 +353,6 @@ class PPO:
             Update the policy using the trajectories and advantage estimates
             Use stochastic gradient descent using ADAM
             '''
-            print(trajectories)
             discount_cumulative_rewards = tf.reshape(
                 trajectories.discount_cumulative_rewards, (len(trajectories.discount_cumulative_rewards),))
             advantages = tf.reshape(
@@ -357,7 +365,7 @@ class PPO:
                 critic_tape.watch(self.network_controller.critic.model.trainable_variables)
                 probabilities = self.network_controller.actor(
                     trajectories.observations, training=True, multi_dim=True)
-                actor_tape.watch(self.network_controller.actor.model.trainable_variables)
+                # actor_tape.watch(self.network_controller.actor.model.trainable_variables)
                 values = self.network_controller.critic(
                     trajectories.observations, training=True, multi_dim=True)
                 values = tf.reshape(values, (len(values),))
@@ -391,14 +399,14 @@ class PPO:
             # self.network_controller.critic.model.save(f'{self.save_location}/critic')
 
         def create_workers(self):
-
+            '''Create Workers to collect training data'''
             BaseManager.register('Trajectories', Trajectories)
             manager = BaseManager()
             manager.start()
 
             self.workers = []
-            num_processes = 10
-            for i in range(num_processes):
+            num_processes = 4
+            for _ in range(num_processes):
                 process = Process(target=create_trajectories_process, args=[
                     int(self.observations_per_batch / num_processes),
                     self.task_queue,
@@ -421,6 +429,7 @@ class PPO:
             print('training')
             self.create_workers()
             while time_steps < self.total_time_steps:
+                print('Steps',time_steps)
                 batches += 1
                 # trajectories = self.create_trajectories()
                 trajectories = self.create_trajectories_parralel()
