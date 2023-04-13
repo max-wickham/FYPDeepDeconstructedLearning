@@ -49,6 +49,7 @@ def create_trajectories_process(
     num_observations : int,
     input_queue : multiprocessing.Queue,
     output_queue : multiprocessing.Queue,
+    stop_queue : multiprocessing.Queue,
     game_type : Type[Game],
     observation_dims : int,
     action_dims : int,
@@ -57,6 +58,8 @@ def create_trajectories_process(
     ):
 
     while True:
+        if not stop_queue.empty():
+            break
         if input_queue.empty():
             continue
         input_queue.get()
@@ -216,6 +219,7 @@ class PPO:
 
             self.task_queue = multiprocessing.Queue()
             self.response_queue = multiprocessing.Queue()
+            self.stop_queue = multiprocessing.Queue()
             self.workers : list[multiprocessing.Process]  = []
 
         def create_trajectories_parralel(self) -> Trajectories:
@@ -414,6 +418,7 @@ class PPO:
                     int(self.observations_per_batch / self.num_workers),
                     self.task_queue,
                     self.response_queue,
+                    self.stop_queue,
                     self.game_type,
                     self.observation_dims,
                     self.action_dims,
@@ -422,6 +427,8 @@ class PPO:
                 self.workers.append(process)
                 process.start()
 
+        def stop_workers(self):
+            self.stop_queue.put(True)
 
 
         def train(self):
@@ -431,22 +438,26 @@ class PPO:
             batches = 0
             print('training')
             self.create_workers()
-            while time_steps < self.total_time_steps:
-                print('Steps',time_steps)
-                batches += 1
-                # trajectories = self.create_trajectories()
-                trajectories = self.create_trajectories_parralel()
-                print('Created Trajectories')
-                time_steps += len(trajectories.observations)
+            try:
+                while time_steps < self.total_time_steps:
+                    print('Steps',time_steps)
+                    batches += 1
+                    # trajectories = self.create_trajectories()
+                    trajectories = self.create_trajectories_parralel()
+                    print('Created Trajectories')
+                    time_steps += len(trajectories.observations)
 
-                values, advantages = self.compute_value_advantage_estimates(
-                    trajectories)
+                    values, advantages = self.compute_value_advantage_estimates(
+                        trajectories)
 
                 for _ in range(self.updates_per_iteration):
                     actor_loss, critic_loss = self.update_policy(
                         trajectories, advantages)
 
-                self.save()
+                    self.save()
+            except Exception:
+                ...
+            self.stop_workers()
 
     def load(self, load_location: str):
         '''Load a pre-trained model'''
