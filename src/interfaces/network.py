@@ -1,13 +1,16 @@
 '''Neural Network Interface'''
 from abc import ABC, abstractmethod
 
+from tensorflow import keras
 import tensor_annotations.tensorflow as ttf
 from tensor_annotations import axes
 import numpy as np
-
+import tensorflow
 
 class Network(ABC):
     '''Generic Neural Network Base Class'''
+
+    model : tensorflow.keras.Model
 
     def __init__(self, input_dims: int,
                  output_dim: int,
