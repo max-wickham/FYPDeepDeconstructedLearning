@@ -5,7 +5,7 @@ import pickle
 import random
 import numpy as np
 
-from src.interfaces.game import Coordinate, Done, DrawInformation, Game, Reward
+from src.interfaces.game import Colour, Coordinate, Done, DrawInformation, Game, Reward
 
 Health = float
 Direction = int
@@ -59,22 +59,21 @@ class GameState:
     def to_draw_information(self) -> DrawInformation:
         rectangles = (
             [
-                (self.PLAYER_WIDTH, self.PLAYER_HEIGHT, (self.player_pos, int(self.PLAYER_HEIGHT / 2) ),(0,255,255), 'player')
+                (self.PLAYER_WIDTH, self.PLAYER_HEIGHT, Coordinate(self.player_pos, int(self.PLAYER_HEIGHT / 2) ), Colour(0,255,255), 'player')
             ]+
             [
-                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, (255,255,255), 'bullet') for bullet in self.player_bullets
+                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, Colour(255,255,255), 'bullet') for bullet in self.player_bullets
             ] +
             [
-                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, (255,0,0), 'bullet') for bullet in self.enemy_bullets
+                (self.BULLET_SIZE, self.BULLET_SIZE, bullet, Colour(255,0,0), 'bullet') for bullet in self.enemy_bullets
             ] +
             [
-                (self.ENEMY_WIDTH, self.ENEMY_HEIGHT, enemy.pos, (0,255,0), 'enemy') for enemy in self.enemies
+                (self.ENEMY_WIDTH, self.ENEMY_HEIGHT, enemy.pos, Colour(0,255,0), 'enemy') for enemy in self.enemies
             ] +
             [
                 (self.SHIELD_WIDTH, self.SHIELD_HEIGHT,
-                    (shield.pos, self.SHIELD_HEIGHT_POS), (100,100,0), 'shield') for shield in self.shields
+                    Coordinate(shield.pos, self.SHIELD_HEIGHT_POS), Colour(100,100,0), 'shield') for shield in self.shields
             ]
-
         )
         return DrawInformation(rectangles)
 

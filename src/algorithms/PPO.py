@@ -3,6 +3,7 @@ PPO Algorithm
 Algorithm Pseudo Code https://spinningup.openai.com/en/latest/algorithms/ppo.html
 '''
 import dataclasses
+from dataclasses import field
 import multiprocessing
 from multiprocessing.managers import BaseManager
 from multiprocessing.shared_memory import SharedMemory
@@ -35,11 +36,11 @@ from src.interfaces.game import Game
 @dataclasses.dataclass
 class Trajectories:
     '''Trajectory stored from one frame of the game'''
-    observations: npt.NDArray = np.array([])
-    actions: npt.NDArray = np.array([])
-    rewards: npt.NDArray = np.array([])
-    probabilities: npt.NDArray = np.array([])
-    discount_cumulative_rewards: npt.NDArray = np.array([])
+    observations: npt.NDArray
+    actions: npt.NDArray
+    rewards: npt.NDArray
+    probabilities: npt.NDArray
+    discount_cumulative_rewards: npt.NDArray
 
     def get_observations(self):
         return self.observations
@@ -316,11 +317,11 @@ class PPO:
             # TODO normalize advantages ?
             return values, advantages
 
-        def actor_loss(self, new_probs: npt.NDArray,
+        def actor_loss(self, new_probs: ttf.Tensor1,
                        current_probs: npt.NDArray,
                        actions: npt.NDArray,
                        advantages: npt.NDArray,
-                       critic_loss: npt.NDArray):
+                       critic_loss: ttf.Tensor1):
             '''Calculate the actor loss'''
             entropy = tf.reduce_mean(tf.math.negative(
                 tf.math.multiply(new_probs, tf.math.log(new_probs))))
@@ -408,7 +409,7 @@ class PPO:
             self.workers = []
             for _ in range(self.num_workers):
                 process = Process(target=create_trajectories_process, args=[
-                    int(self.observations_per_batch / num_processes),
+                    int(self.observations_per_batch / self.num_workers),
                     self.task_queue,
                     self.response_queue,
                     self.game_type,
@@ -439,9 +440,6 @@ class PPO:
                 values, advantages = self.compute_value_advantage_estimates(
                     trajectories)
 
-                #TODO compute a set of advantages and trajectories in parrallel
-
-
                 for _ in range(self.updates_per_iteration):
                     actor_loss, critic_loss = self.update_policy(
                         trajectories, advantages)
@@ -460,8 +458,7 @@ class PPO:
                 np.array(input_vector).reshape(-1).reshape(
                     1, len(input_vector)
                 ))
-        self.actor : keras.Model
-        prob = self.actor(input_vector)
+        prob : ttf.Tensor1 = self.actor(input_vector) # type: ignore
         prob = prob.numpy()[0]
         dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
         action = dist.sample(1)
@@ -472,6 +469,7 @@ class PPO:
         trainer = PPO.Trainer(game, network, save_location)
         trainer.train()
 
+    actor : keras.Model
+
     def __init__(self) -> None:
-        # actor for use when loading a model
-        self.actor = None
+        ...
