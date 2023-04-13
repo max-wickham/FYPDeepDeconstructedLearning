@@ -3,6 +3,7 @@ PPO Algorithm
 Algorithm Pseudo Code https://spinningup.openai.com/en/latest/algorithms/ppo.html
 '''
 import dataclasses
+from dataclasses import field
 import multiprocessing
 from multiprocessing.managers import BaseManager
 from multiprocessing.shared_memory import SharedMemory
@@ -35,11 +36,11 @@ from src.interfaces.game import Game
 @dataclasses.dataclass
 class Trajectories:
     '''Trajectory stored from one frame of the game'''
-    observations: npt.NDArray = np.array([])
-    actions: npt.NDArray = np.array([])
-    rewards: npt.NDArray = np.array([])
-    probabilities: npt.NDArray = np.array([])
-    discount_cumulative_rewards: npt.NDArray = np.array([])
+    observations: npt.NDArray = field(default_factory=list)
+    actions: npt.NDArray = field(default_factory=list)
+    rewards: npt.NDArray = field(default_factory=list)
+    probabilities: npt.NDArray = field(default_factory=list)
+    discount_cumulative_rewards: npt.NDArray = field(default_factory=list)
 
     def get_observations(self):
         return self.observations
