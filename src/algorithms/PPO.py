@@ -195,17 +195,18 @@ class PPO:
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
             # self.total_time_steps = 10000000
-            # self.total_time_steps = 30000000
-            # self.observations_per_batch = 10000
-            self.total_time_steps = 10000
-            self.observations_per_batch = 500
+            self.total_time_steps = 60000000
+            self.observations_per_batch = 20000
+            self.num_workers = 10
+            # self.total_time_steps = 10000
+            # self.observations_per_batch = 500
 
             self.updates_per_iteration = 10
             self.game_type = game_type
             self.network_type = network
             self.gamma = 0.95
             self.clip = 0.2
-            self.repeat_action_num = 6
+            self.repeat_action_num = 3
 
             self.network_controller = PPO.NetworkController(
                 network, self.observation_dims, self.action_dims)
@@ -405,8 +406,7 @@ class PPO:
             manager.start()
 
             self.workers = []
-            num_processes = 4
-            for _ in range(num_processes):
+            for _ in range(self.num_workers):
                 process = Process(target=create_trajectories_process, args=[
                     int(self.observations_per_batch / num_processes),
                     self.task_queue,
