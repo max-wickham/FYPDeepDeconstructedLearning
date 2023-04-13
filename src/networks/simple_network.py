@@ -2,7 +2,10 @@
 import tensorflow as tf
 import tensor_annotations.tensorflow as ttf
 from tensor_annotations import axes
-from tensorflow import keras
+# from tensorflow impor t keras
+keras = tf.keras;
+Adam = tf.keras.optimizers.Adam
+kls = tf.keras.losses
 import numpy as np
 
 from src.interfaces.network import Network
