@@ -41,7 +41,7 @@ class GameState:
     enemies: list[Enemy] = field(default_factory=list)
     shields: list[Shield] = field(default_factory=list)
     player_pos: int = 100
-    player_health: int = 100
+    player_health: int = 10
     player_speed: int = 0
 
     # CONSTANTS
