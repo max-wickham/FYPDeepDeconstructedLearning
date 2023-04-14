@@ -2,6 +2,7 @@
 PPO Algorithm
 Algorithm Pseudo Code https://spinningup.openai.com/en/latest/algorithms/ppo.html
 '''
+import gc
 from src.interfaces.game import Game
 from src.interfaces.network import Network
 import tensorflow_probability as tfp
@@ -61,7 +62,6 @@ def create_trajectories_process(
         if input_queue.empty():
             continue
         input_queue.get()
-
         # importlib.reload(tf)
         # keras = tf.keras;
         # Adam = tf.keras.optimizers.Adam
@@ -458,6 +458,8 @@ class PPO:
             batches = 0
             print('training')
             self.create_workers()
+            trajectories : Trajectories | None = None
+            advantages : npt.NDArray | None = None
             while time_steps < self.total_time_steps:
                 print('Steps', time_steps)
                 batches += 1
@@ -469,13 +471,15 @@ class PPO:
                 values, advantages = self.compute_value_advantage_estimates(
                     trajectories)
             print('Collected Data')
-            for _ in range(self.updates_per_iteration):
-                print('Updating')
-                actor_loss, critic_loss = self.update_policy(
-                    trajectories, advantages)
+            if advantages is not None and trajectories is not None:
+                for _ in range(self.updates_per_iteration):
+                    print('Updating')
+                    actor_loss, critic_loss = self.update_policy(
+                        trajectories, advantages)
 
                 self.save()
-
+            del trajectories
+            gc.collect()
             self.stop_workers()
 
     def load(self, load_location: str):
