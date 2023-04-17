@@ -470,16 +470,17 @@ class PPO:
 
                 values, advantages = self.compute_value_advantage_estimates(
                     trajectories)
-            print('Collected Data')
-            if advantages is not None and trajectories is not None:
+                print('Collected Data')
                 for _ in range(self.updates_per_iteration):
                     print('Updating')
                     actor_loss, critic_loss = self.update_policy(
                         trajectories, advantages)
 
-                self.save()
-            del trajectories
-            gc.collect()
+                    self.save()
+
+                del trajectories
+                gc.collect()
+
             self.stop_workers()
 
     def load(self, load_location: str):
