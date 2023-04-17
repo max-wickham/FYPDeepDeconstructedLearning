@@ -116,7 +116,7 @@ def create_trajectories_process(
             actions += new_actions
             rewards += new_rewards
             probs += new_probs
-            discount_cumulative_rewards += new_discount_cumulative_rewards
+            discount_cumulative_rewards += reversed(new_discount_cumulative_rewards)
 
         print('Completed Collection')
         trajectories = Trajectories(
