@@ -350,8 +350,9 @@ class SpaceInvaders(Game):
             shields[mod(shield.pos,0.5)] = shield.health
         if flatten:
             vector = np.concatenate((
-                enemy_bullets[10:-10,0:30].flatten(),
-                []
+                enemy_bullets.flatten(),
+                enemies.flatten(),
+                shields.flatten()
             ))
         else:
             vector = (enemy_bullets[10:-10,0:30],enemies)

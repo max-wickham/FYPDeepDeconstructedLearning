@@ -39,8 +39,10 @@ class Trajectories:
     rewards: npt.NDArray
     probabilities: npt.NDArray
     discount_cumulative_rewards: npt.NDArray
+    scores : list[float]
 
     def get_observations(self):
+        '''Returns observations'''
         return self.observations
 
 
@@ -55,6 +57,7 @@ def create_trajectories_process(
     network_type: type[Network],
     load_location: str
 ):
+    '''Create a set of trajectories on an individual thread'''
 
     while True:
         if not stop_queue.empty():
@@ -71,9 +74,10 @@ def create_trajectories_process(
         observations = []
         rewards = []
         probs = []
+        scores = []
         discount_cumulative_rewards = []
         network_controller = PPO.NetworkController(
-            network_type,network_type, observation_dims, action_dims, load=True)
+            network_type, network_type, observation_dims, action_dims, load=True)
         network_controller.load(load_location)
         while observation_count < num_observations:
             game = game_type()
@@ -85,7 +89,10 @@ def create_trajectories_process(
             prev_action = 0
             prev_prob = None
             action_repetitions = 0
+            print('New Game')
+            frame = 0
             while not done and observation_count < num_observations:
+                frame += 1
                 observation = game.get_model_input()
                 observation = tf.reshape(
                     observation, shape=(1, len(observation)))
@@ -104,27 +111,31 @@ def create_trajectories_process(
                     new_rewards.append(reward)
                     new_probs.append(prev_prob)
                 action_repetitions = (action_repetitions + 1) % 4
-
+            if done:
+                scores.append(frame)
             new_discount_cumulative_rewards = []
             discount_cumulative_reward = 0
             for reward in reversed(new_rewards):
                 discount_cumulative_reward = reward + discount_cumulative_reward * 0.95
                 new_discount_cumulative_rewards.append(
-                    discount_cumulative_reward)
+                    discount_cumulative_reward / 10)
 
             observations += new_observations
             actions += new_actions
             rewards += new_rewards
             probs += new_probs
-            discount_cumulative_rewards += reversed(new_discount_cumulative_rewards)
+            discount_cumulative_rewards += reversed(
+                new_discount_cumulative_rewards)
 
+        # print(discount_cumulative_rewards)
         print('Completed Collection')
         trajectories = Trajectories(
             np.array(observations),
             np.array(actions),
             np.array(rewards),
             np.array(probs),
-            np.array(discount_cumulative_rewards)
+            np.array(discount_cumulative_rewards),
+            scores
         )
         print('Putting trajectories on queue')
         output_queue.put(trajectories)
@@ -132,7 +143,7 @@ def create_trajectories_process(
         continue
 
 
-def action_to_action_array(action: int) -> list[int]:
+def action_to_action_array(action: int) -> list[float]:
     '''Convert the combination action index to a action array'''
     # print(action.numpy()[0])
     return [
@@ -149,7 +160,12 @@ class PPO:
         actor: Network
         critic: Network
 
-        def __init__(self, actor_network: type[Network], critic_network:  type[Network], input_dims: int, output_dims: int, load=False) -> None:
+        def __init__(self,
+                     actor_network: type[Network],
+                     critic_network:  type[Network],
+                     input_dims: int,
+                     output_dims: int,
+                     load=False) -> None:
             if load:
                 return
             self.learning_rate = 0.005
@@ -162,7 +178,8 @@ class PPO:
             self.actor_optimiser = Adam(lr=self.learning_rate)
             self.critic_optimiser = Adam(lr=self.learning_rate)
 
-        def load(self, load_location: str, load_critic = False):
+        def load(self, load_location: str, load_critic=False):
+            '''Load saved models'''
             print('Load')
             self.actor = keras.models.load_model(
                 f'{load_location}/actor',  custom_objects={'tf': tf})  # type: ignore
@@ -172,6 +189,7 @@ class PPO:
                     f'{load_location}/critic',  custom_objects={'tf': tf})  # type: ignore
 
         def save(self, save_location: str):
+            '''Save current models'''
             if not os.path.exists(f'{save_location}'):
                 os.mkdir(f'{save_location}')
             self.actor.model.save(f'{save_location}/actor')
@@ -203,7 +221,19 @@ class PPO:
                      game_type: type[Game],
                      actor_network: type[Network],
                      critic_network: type[Network],
-                     save_location: str) -> None:
+                     save_location: str,
+                     stats_location='ppo_stats') -> None:
+            self.stats_location = stats_location
+            try:
+                os.rmdir(stats_location)
+            except Exception:
+                ...
+            os.mkdir(stats_location)
+            # with open(f'{self.stats_location}/game_stats.csv', 'a', encoding='utf8') as file:
+            #     file.write('value,advantage,action\n')
+            with open(f'{self.stats_location}/loss_stats.csv', 'a', encoding='utf8') as file:
+                file.write('actor_loss,critic_loss\n')
+
             self.save_location = save_location
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
@@ -212,11 +242,11 @@ class PPO:
             # self.total_time_steps = 10000000
             self.total_time_steps = 60000000
             self.observations_per_batch = 20000
-            self.num_workers = 10
-            # self.total_time_steps = 1000
+            self.num_workers = 8
+            # self.total_time_steps = 50000
             # self.observations_per_batch = 500
 
-            self.updates_per_iteration = 10
+            self.updates_per_iteration = 2
             self.game_type = game_type
             self.gamma = 0.95
             self.clip = 0.2
@@ -230,21 +260,19 @@ class PPO:
             self.stop_queue = multiprocessing.Queue()
             self.workers: list[multiprocessing.Process] = []
 
-        def create_trajectories_parralel(self) -> Trajectories:
-
+        def create_trajectories_parallel(self) -> Trajectories:
+            '''Create a set of trajectories using parallel workers'''
             self.save()
+            # Start the workers
             for _ in self.workers:
                 self.task_queue.put(True)
-
-            num_responses = 0
+            # Wait until received trajectories from every worker
             trajectories_list: list[Trajectories] = []
             while len(trajectories_list) < len(self.workers):
                 if not self.response_queue.empty():
-                    print('Received Response')
                     trajectories = self.response_queue.get()
                     trajectories_list.append(trajectories)
 
-            print('Concatinating Results')
             trajectories = Trajectories(
                 np.concatenate(
                     tuple(trajectories.observations for trajectories in trajectories_list)),
@@ -252,75 +280,79 @@ class PPO:
                     trajectories.actions)]),
                 np.array([reward for trajectories in trajectories_list for reward in list(
                     trajectories.rewards)]),
-                np.concatenate(tuple(np.reshape(trajectories.probabilities,
-                                                (trajectories.probabilities.shape[0], 1, trajectories.probabilities.shape[1]))
-                                     for trajectories in trajectories_list)),
+                np.concatenate(
+                    tuple(
+                        np.reshape(trajectories.probabilities,
+                                   (trajectories.probabilities.shape[0],
+                                    1, trajectories.probabilities.shape[1])
+                                   )
+                        for trajectories in trajectories_list)),
                 np.array([reward for trajectories in trajectories_list for reward in list(
                     trajectories.discount_cumulative_rewards)]),
+                [score for trajectories in trajectories_list for score in trajectories.scores]
             )
-            # print(trajectories)
             return trajectories
 
-        def create_trajectories(self) -> Trajectories:
-            '''
-            Collect a set of trajectories by running policy on the environment
-            '''
-            observation_count = 0
-            actions = []
-            observations = []
-            rewards = []
-            probs = []
-            discount_cumulative_rewards = []
+        # def create_trajectories(self) -> Trajectories:
+        #     '''
+        #     Collect a set of trajectories by running policy on the environment
+        #     '''
+        #     observation_count = 0
+        #     actions = []
+        #     observations = []
+        #     rewards = []
+        #     probs = []
+        #     discount_cumulative_rewards = []
 
-            while observation_count < self.observations_per_batch:
-                print('New Game')
-                game = self.game_type()
-                done = False
-                new_actions = []
-                new_observations = []
-                new_rewards = []
-                new_probs = []
-                prev_action = 0
-                prev_prob = None
-                action_repetitions = 0
-                while not done and observation_count < self.observations_per_batch:
-                    observation = game.get_model_input()
-                    if action_repetitions == 0:
-                        observation_count += 1
-                        prob, action = self.network_controller.get_prob_action(
-                            observation)
-                        prev_prob = prob
-                        prev_action = action
-                    done, reward = game.step(
-                        action_to_action_array(prev_action))
-                    if done or action_repetitions == 0:
-                        new_observations.append(observation)
-                        new_actions.append(prev_action)
-                        new_rewards.append(reward)
-                        new_probs.append(prev_prob)
-                    action_repetitions = (action_repetitions + 1) % 4
+        #     while observation_count < self.observations_per_batch:
+        #         print('New Game')
+        #         game = self.game_type()
+        #         done = False
+        #         new_actions = []
+        #         new_observations = []
+        #         new_rewards = []
+        #         new_probs = []
+        #         prev_action = 0
+        #         prev_prob = None
+        #         action_repetitions = 0
+        #         while not done and observation_count < self.observations_per_batch:
+        #             observation = game.get_model_input()
+        #             if action_repetitions == 0:
+        #                 observation_count += 1
+        #                 prob, action = self.network_controller.get_prob_action(
+        #                     observation)
+        #                 prev_prob = prob
+        #                 prev_action = action
+        #             done, reward = game.step(
+        #                 action_to_action_array(prev_action))
+        #             if done or action_repetitions == 0:
+        #                 new_observations.append(observation)
+        #                 new_actions.append(prev_action)
+        #                 new_rewards.append(reward)
+        #                 new_probs.append(prev_prob)
+        #             action_repetitions = (action_repetitions + 1) % 4
 
-                new_discount_cumulative_rewards = []
-                discount_cumulative_reward = 0
-                for reward in reversed(new_rewards):
-                    discount_cumulative_reward = reward + discount_cumulative_reward * self.gamma
-                    new_discount_cumulative_rewards.append(
-                        discount_cumulative_reward)
+        #         new_discount_cumulative_rewards = []
+        #         discount_cumulative_reward = 0
+        #         for reward in reversed(new_rewards):
+        #             discount_cumulative_reward = reward + discount_cumulative_reward * self.gamma
+        #             new_discount_cumulative_rewards.append(
+        #                 discount_cumulative_reward)
 
-                observations += new_observations
-                actions += new_actions
-                rewards += new_rewards
-                probs += new_probs
-                discount_cumulative_rewards += new_discount_cumulative_rewards
-                print(sum(new_discount_cumulative_rewards) /
-                      len(new_discount_cumulative_rewards))
-            return Trajectories(
-                np.array(observations),
-                np.array(actions),
-                np.array(rewards),
-                np.array(probs),
-                np.array(discount_cumulative_rewards)
-            )
+        #         observations += new_observations
+        #         actions += new_actions
+        #         rewards += new_rewards
+        #         probs += new_probs
+        #         discount_cumulative_rewards += new_discount_cumulative_rewards
+        #         print(sum(new_discount_cumulative_rewards) /
+        #               len(new_discount_cumulative_rewards))
+        #     return Trajectories(
+        #         np.array(observations),
+        #         np.array(actions),
+        #         np.array(rewards),
+        #         np.array(probs),
+        #         np.array(discount_cumulative_rewards)
+        #     )
 
         def compute_value_advantage_estimates(self, trajectories: Trajectories
                                               ) -> tuple[npt.NDArray, npt.NDArray]:
@@ -330,9 +362,12 @@ class PPO:
                 trajectories.observations)
             # compute the log estimates using the actor
             # log_probs = self.model.get_log_probs(observations, actions)
-            advantages = trajectories.discount_cumulative_rewards - values
-            advantages = (advantages - np.mean(advantages)) / \
-                (np.std(advantages) + 1e-10)
+            advantages = np.subtract(
+                trajectories.discount_cumulative_rewards, values)
+            # advantages = trajectories.discount_cumulative_rewards - values
+            advantages = ((advantages - np.mean(advantages)) / \
+                (np.std(advantages) + 1e-10))
+            # advantages = advantages / np.mean(advantages)
             # TODO normalize advantages ?
             return values, advantages
 
@@ -344,20 +379,21 @@ class PPO:
             '''Calculate the actor loss'''
             entropy = tf.reduce_mean(tf.math.negative(
                 tf.math.multiply(new_probs, tf.math.log(new_probs))))
-            print(new_probs)
-            print(entropy)
+            # print(new_probs)
+            # print(entropy)
             surrogate_1 = []
             surrogate_2 = []
 
             advantages_tensor = tf.convert_to_tensor(
                 advantages, dtype=tf.float32)
-            print(advantages_tensor)
+            # print(advantages_tensor)
             # new_probs_indexed = tf.convert_to_tensor(
             #     np.array([prob[action] for prob, action in zip(new_probs, actions)]), dtype=tf.float32)
             current_probs = np.reshape(
                 current_probs, (current_probs.shape[0], current_probs.shape[2]))
             current_probs_indexed = tf.convert_to_tensor(
-                np.array([prob[action] for prob, action in zip(current_probs, actions)]), dtype=tf.float32)
+                np.array([prob[action]
+                          for prob, action in zip(current_probs, actions)]), dtype=tf.float32)
             new_probs_indexed = tf.gather_nd(
                 new_probs,
                 indices=tf.constant([[index, action] for index, action in enumerate(actions)]))
@@ -380,12 +416,15 @@ class PPO:
             Use stochastic gradient descent using ADAM
             '''
             discount_cumulative_rewards = tf.reshape(
-                trajectories.discount_cumulative_rewards, (len(trajectories.discount_cumulative_rewards),))
-            advantages = tf.reshape(
-                advantage_estimates, (len(advantage_estimates),))
-            current_probs = tf.reshape(trajectories.probabilities,
-                                       (len(trajectories.probabilities), self.action_dims*self.action_dims))
-            print()
+                trajectories.discount_cumulative_rewards,
+                (len(trajectories.discount_cumulative_rewards),)
+            )
+
+            # advantages = tf.reshape(
+            #     advantage_estimates, (len(advantage_estimates),))
+            # current_probs = tf.reshape(trajectories.probabilities,
+            #                            (len(trajectories.probabilities), self.action_dims*self.action_dims))
+            # print()
 
             with tf.GradientTape() as critic_tape, tf.GradientTape() as actor_tape:
                 actor_tape.watch(
@@ -402,8 +441,14 @@ class PPO:
                     kls.mean_squared_error(discount_cumulative_rewards, values)
                 print('Computing Loss')
                 actor_loss = self.actor_loss(
-                    probabilities, trajectories.probabilities, trajectories.actions, advantage_estimates, critic_loss)
+                    probabilities,
+                    trajectories.probabilities,
+                    trajectories.actions,
+                    advantage_estimates,
+                    critic_loss
+                )
 
+            # calculate and apply gradients
             actor_gradients = actor_tape.gradient(
                 actor_loss, self.network_controller.actor.model.trainable_variables)
             critic_gradients = critic_tape.gradient(
@@ -449,6 +494,7 @@ class PPO:
                 process.start()
 
         def stop_workers(self):
+            '''Send a message to each worker to trigger a stop'''
             self.stop_queue.put(True)
 
         def train(self):
@@ -458,24 +504,39 @@ class PPO:
             batches = 0
             print('training')
             self.create_workers()
-            trajectories : Trajectories | None = None
-            advantages : npt.NDArray | None = None
+            trajectories: Trajectories | None = None
+            advantages: npt.NDArray | None = None
             while time_steps < self.total_time_steps:
                 print('Steps', time_steps)
                 batches += 1
                 # trajectories = self.create_trajectories()
-                trajectories = self.create_trajectories_parralel()
+                trajectories = self.create_trajectories_parallel()
+                max_cumulative_discount_reward = max(
+                    trajectories.discount_cumulative_rewards)
+                with open(f'{self.stats_location}/scores.csv',
+                          'a',
+                          encoding='utf8') as file:
+                    for score in trajectories.scores:
+                        file.write(f'{score}\n')
+
                 print('Created Trajectories')
                 time_steps += len(trajectories.observations)
 
                 values, advantages = self.compute_value_advantage_estimates(
                     trajectories)
                 print('Collected Data')
+                # Write the game data to file
+                # with open(f'{self.stats_location}/game_stats.csv', 'a', encoding='utf8') as file:
+                #     for value, advantage, action in zip(values, advantages, trajectories.actions):
+                #         file.write(f'{value},{advantage},{action}\n')
                 for _ in range(self.updates_per_iteration):
                     print('Updating')
                     actor_loss, critic_loss = self.update_policy(
                         trajectories, advantages)
-
+                    with open(f'{self.stats_location}/loss_stats.csv',
+                              'a',
+                              encoding='utf8') as file:
+                        file.write(f'{actor_loss},{critic_loss}\n')
                     self.save()
 
                 del trajectories
@@ -487,6 +548,9 @@ class PPO:
         '''Load a pre-trained model'''
         self.actor = keras.models.load_model(
             f'{load_location}/actor',  custom_objects={'tf': tf})  # type: ignore
+        self.critic = keras.models.load_model(
+            f'{load_location}/critic',  custom_objects={'tf': tf})  # type: ignore
+        self.count = 0
 
     def compute_action(self, game: Game):
         '''Compute the actions of a current game state of the loaded model'''
@@ -497,21 +561,34 @@ class PPO:
             ))
         prob: ttf.Tensor1 = self.actor(input_vector)  # type: ignore
         prob = prob.numpy()[0]
+        # print(prob)
         dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
         action = dist.sample(1)
-        return action_to_action_array(action)
+
+        action_num = action.numpy() < 2
+        # print(action_num)
+        # if self.count % 10  == 0:
+
+        #     print(self.critic(input_vector).numpy()[0][0])
+        self.count += 1
+        return (action_to_action_array(action), self.critic(input_vector).numpy()[0][0])
 
     def train(self,
               game: type[Game],
               actor_network: type[Network],
               critic_network: type[Network],
-              save_location='model'):
+              save_location='model',
+              stats_location='ppo_stats'):
         '''Train the model on a specific game and network'''
-        trainer = PPO.Trainer(game, actor_network,
-                              critic_network, save_location)
+        trainer = PPO.Trainer(game,
+                              actor_network,
+                              critic_network,
+                              save_location,
+                              stats_location=stats_location)
         trainer.train()
 
     actor: keras.Model
+    critic: keras.Model
 
     def __init__(self) -> None:
         ...

@@ -22,8 +22,9 @@ class SimpleActorNetwork(Network):
         input_layer = keras.layers.Input(input_dims)
         dense_layer1 = keras.layers.Dense(10, activation="relu")(input_layer)
         dense_layer2 = keras.layers.Dense(5, activation="relu")(dense_layer1)
+        dense_layer3 = keras.layers.Dense(5, activation="relu")(dense_layer2)
         output_layer = keras.layers.Dense(
-            output_dim, activation="softmax")(dense_layer2)
+            output_dim, activation="softmax")(dense_layer3)
         self.model = keras.Model(inputs=input_layer, outputs=output_layer)
         # self.optimiser = tf.keras.optimizers.RMSprop(
         #     learning_rate=learning_rate, momentum=0.9, epsilon=0.01)

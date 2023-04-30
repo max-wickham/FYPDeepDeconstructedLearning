@@ -18,5 +18,7 @@ if __name__ == '__main__':
     ppo = PPO()
     print('Training PPO')
     print('######################')
-    ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = f'{os.environ["PBS_O_WORKDIR"]}/ppo_6')
+    ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork,
+    save_location = f'{os.environ["PBS_O_WORKDIR"]}/ppo_9',
+    stats_location= f'{os.environ["PBS_O_WORKDIR"]}/ppo_9_stats')
     # ppo.train(SpaceInvaders, SimpleNetwork, save_location = 'ppo_5')
