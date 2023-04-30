@@ -3,14 +3,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-location = 'ppo_7_stats'
-for location in  ('ppo_7_stats', 'ppo_8_stats'):
+location = 'ppo_9_stats'
+for location in  ['ppo_8_stats','ppo_9_stats']:
     with open(f'{location}/scores.csv', 'r', encoding='utf-8') as file:
         lines = file.read().split('\n')[:-1]
 
     scores = [int(line) for line in lines]
 
-    window_size = 1000
+    window_size = 100
 
     # Convert array of integers to pandas series
     numbers_series = pd.Series(scores)

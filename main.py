@@ -42,7 +42,15 @@ if __name__ == '__main__':
     # # ui.playback()
 
 
-    ############ MultiModelPPO Train
+    ########### MultiModelPPO Train
     # print('Starting Training')
+    # multi_model_ppo = MultiModelPPO()
+    # multi_model_ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = 'multi_model_ppo_1')
+
+    # ########### MultiModelPPO Play
     multi_model_ppo = MultiModelPPO()
-    multi_model_ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = 'multi_model_ppo_1')
+    multi_model_ppo.load('multi_model_ppo_1')
+    ui = GameUI(SpaceInvaders, model = multi_model_ppo, record=False)
+    # ui = GameUI(SpaceInvaders, record=False)
+    ui.run()
+    # # ui.playback()
