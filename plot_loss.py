@@ -1,21 +1,41 @@
-
+import math
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 
 ACTOR = True
-LOCATION = 'ppo_8_stats'
+LOCATION = 'ppo_9_stats'
 
 with open(f'{LOCATION}/loss_stats.csv', 'r', encoding='utf-8') as file:
     lines = file.read().split('\n')[2:-1]
 
-actor_scores = [float(line.split(',')[0]) for line in lines]
-critic_scores = [float(line.split(',')[1]) for line in lines]
-window_size = 1
+scores = [
+    [float(line.split(',')[i]) for line in lines]
+    for i in range(len(lines[0].split(',')))
+    ]
+scores = [
+    [x if not math.isnan(x) else 0 for x in score ]
+    for score in scores
+]
+scores = [
+    np.array(score) / (np.max(score) + 1) for score in scores
+]
 
-for scores in (actor_scores, critic_scores):
+
+
+# actor_scores = [
+#     [float(line.split(',')[i]) for line in lines]
+#     for i in range(len(line.split(','))-1)
+#     ]
+# critic_scores = [float(line.split(',')[-1]) for line in lines]
+
+# critic_scores = np.array(critic_scores) / np.max(critic_scores)
+window_size = 1
+print(scores)
+for score in scores[:-1]:
 
     # Convert array of integers to pandas series
-    numbers_series = pd.Series(scores)
+    numbers_series = pd.Series(score)
 
     # Get the window of series
     # of observations of specified window size

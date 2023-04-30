@@ -1,7 +1,7 @@
 '''
 One PPO per critic penultimate layer length
 '''
-from contextlib import ExitStack
+
 import gc
 import dataclasses
 import multiprocessing
@@ -370,8 +370,7 @@ class MultiModelPPO:
                 new_probs,
                 indices=tf.constant([[index, action] for index, action in enumerate(actions)]))
             ratios = tf.math.divide(new_probs_indexed, current_probs_indexed)
-            ratios = tf.slice(
-                ratios, [0], [len(ratios)-1])  # type: ignore
+            ratios = tf.slice(ratios, [0], [len(ratios)-1])  # type: ignore
             surrogate_1 = tf.math.multiply(ratios, advantages)
             surrogate_2 = tf.math.multiply(tf.clip_by_value(
                 ratios, 1.0 - self.clip, 1.0 + self.clip), advantages)
@@ -390,13 +389,8 @@ class MultiModelPPO:
                 trajectories.discount_cumulative_rewards,
                 (len(trajectories.discount_cumulative_rewards),)
             )
-
-            # with tf.GradientTape() as critic_tape, tf.GradientTape() as actor_tape:
-            with ExitStack() as stack, tf.GradientTape() as critic_tape:
-                actor_tapes = [
-                    stack.enter_context(tf.GradientTape()) for _ in range(self.num_actors)
-                ]
-                for actor, actor_tape in zip(self.network_controller.actors, actor_tapes):
+            with tf.GradientTape() as critic_tape, tf.GradientTape() as actor_tape:
+                for actor in self.network_controller.actors:
                     actor_tape.watch(actor.model.trainable_variables)
                 critic_tape.watch(
                     self.network_controller.critic.model.trainable_variables)
@@ -425,9 +419,8 @@ class MultiModelPPO:
             # calculate and apply gradients
             sub_actor_gradients = [
                 actor_tape.gradient(
-                    actor_loss, actor.model.trainable_variables)
-                for actor_loss, actor, actor_tape in
-                zip(actor_losses, self.network_controller.actors, actor_tapes)
+                    actor_loss, self.network_controller.actors[i].model.trainable_variables)
+                for actor_loss, i in zip(actor_losses, range(self.num_actors))
             ]
             critic_gradients = critic_tape.gradient(
                 critic_loss, self.network_controller.critic.model.trainable_variables)
@@ -529,13 +522,8 @@ class MultiModelPPO:
 
     def load(self, load_location: str):
         '''Load a pre-trained model'''
-        # TODO store num actors in configs
-        self.actors = [  # type: ignore
-                keras.models.load_model(
-                    f'{load_location}/actor_{i}',  custom_objects={'tf': tf}
-                )  # type: ignore
-                for i in range(self.num_actors)
-            ]
+        self.actor = keras.models.load_model(
+            f'{load_location}/actor',  custom_objects={'tf': tf})  # type: ignore
         self.critic = keras.models.load_model(
             f'{load_location}/critic',  custom_objects={'tf': tf})  # type: ignore
         self.count = 0
@@ -543,41 +531,23 @@ class MultiModelPPO:
     def compute_action(self, game: Game):
         '''Compute the actions of a current game state of the loaded model'''
         input_vector = game.get_model_input()
-        # input_vector = tf.convert_to_tensor(
-        #     np.array(input_vector).reshape(-1).reshape(
-        #         1, len(input_vector)
-        #     ))
-        # prob: ttf.Tensor1 = self.actor(input_vector)  # type: ignore
-        # prob = prob.numpy()[0]
-        # # print(prob)
-        # dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
-        # action = dist.sample(1)
-
-        # action_num = action.numpy() < 2
-        # # print(action_num)
-        # # if self.count % 10  == 0:
-
-        # #     print(self.critic(input_vector).numpy()[0][0])
-        # self.count += 1
-        # return (action_to_action_array(action), self.critic(input_vector).numpy()[0][0])
-
         input_vector = tf.convert_to_tensor(
             np.array(input_vector).reshape(-1).reshape(
                 1, len(input_vector)
             ))
-        observation = input_vector
-        probs = [actor(observation).numpy()[0] for actor in self.actors]
-        # Multiply the probabilities together
-        prob = tf.reduce_prod(probs, axis=0)
-        # Normalise the probabilities
-        prob = prob / (np.sum(prob) + 0.001)
-        # Sample an action from the distribution
+        prob: ttf.Tensor1 = self.actor(input_vector)  # type: ignore
+        prob = prob.numpy()[0]
+        # print(prob)
         dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
         action = dist.sample(1)
-        action = int(action.numpy()[0])
-        if action >= 4:
-            action = 3
-        return action_to_action_array(action), self.critic(input_vector).numpy()[0][0]
+
+        action_num = action.numpy() < 2
+        # print(action_num)
+        # if self.count % 10  == 0:
+
+        #     print(self.critic(input_vector).numpy()[0][0])
+        self.count += 1
+        return (action_to_action_array(action), self.critic(input_vector).numpy()[0][0])
 
     def train(self,
               game: type[Game],
@@ -597,4 +567,4 @@ class MultiModelPPO:
     critic: keras.Model
 
     def __init__(self) -> None:
-        self.num_actors = 3
+        ...
