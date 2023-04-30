@@ -263,7 +263,7 @@ class SpaceInvaders(Game):
             self._game_state.player_bullets.append(
                 (self._game_state.player_pos, self._game_state.PLAYER_HEIGHT / 2))
 
-    def step(self, actions: list[int], time_step: float = 0.05) -> tuple[Reward, Done]:
+    def step(self, actions: list[float], time_step: float = 0.05) -> tuple[Done, Reward]:
         self._frame_time = time_step
         self._game_time += time_step
 

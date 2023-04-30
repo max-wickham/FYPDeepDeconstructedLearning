@@ -3,7 +3,7 @@ from abc import ABC, abstractclassmethod, abstractmethod
 from dataclasses import dataclass
 from typing import NamedTuple
 
-import numpy as np
+import numpy.typing as npt
 
 Reward = float
 Done = bool
@@ -37,12 +37,12 @@ class Game(ABC):
         '''Initialise the game'''
 
     @abstractmethod
-    def step(self, actions: list[int], time_step: float = 0.05) -> tuple[Reward, Done]:
+    def step(self, actions: list[float], time_step: float = 0.05) -> tuple[Done, Reward]:
         '''Step the game forward one time-step
         and return the reward change whether the game has finished'''
 
     @abstractmethod
-    def get_model_input(self) -> np.ndarray:
+    def get_model_input(self) -> npt.NDArray:
         '''Generate a numpy array with the input to the model'''
 
     @classmethod
