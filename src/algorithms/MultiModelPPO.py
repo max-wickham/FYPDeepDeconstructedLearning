@@ -1,6 +1,8 @@
 '''
 One PPO per critic penultimate layer length
 '''
+from src.interfaces.game import Game
+from src.interfaces.network import Network
 from contextlib import ExitStack
 import gc
 import dataclasses
@@ -21,9 +23,6 @@ keras = tf.keras
 Adam = tf.keras.optimizers.Adam
 kls = tf.keras.losses
 
-from src.interfaces.network import Network
-from src.interfaces.game import Game
-
 
 @dataclasses.dataclass
 class Trajectories:
@@ -35,10 +34,34 @@ class Trajectories:
     probabilities: list[npt.NDArray]
     discount_cumulative_rewards: npt.NDArray
     scores: list[float]
+    advantages: npt.NDArray
 
     def get_observations(self):
         '''Returns observations'''
         return self.observations
+
+
+def compute_value_advantage_estimates(observations: npt.NDArray,
+                                      network_controller: 'MultiModelPPO.NetworkController'):
+    '''For a given set of trajectories calculate the set of advantage estimates'''
+    # compute the value function for the set of trajectories using the critic
+    # values are of dimension num_observations x num_actors and are calculated by the critic
+    critic_values = network_controller.get_values(observations)
+    sum_values: ttf.Tensor1 = tf.reduce_sum(critic_values, axis=1)
+    values_shifted: ttf.Tensor1 = tf.identity(critic_values)  # type: ignore
+    # remove the first value from values_shifted
+    values_shifted: ttf.Tensor1 = tf.slice(
+        values_shifted, [1, 0], [-1, -1])
+    # remove the last value from values
+    values: ttf.Tensor1 = tf.slice(
+        critic_values, [0, 0], [int(critic_values.shape[0])-1, -1])  # type: ignore
+    # compute advantages as the increase in value from one observation to another
+    advantages: ttf.Tensor1 = tf.subtract(values_shifted, values)
+    # normalise the advantages, which is a num_observations x num_actors tensor
+    advantages = tf.subtract(advantages, tf.reduce_mean(advantages, axis=0)) / \
+        (tf.math.reduce_std(advantages, axis=0) + 1e-5)
+
+    return advantages
 
 
 def create_trajectories_process(
@@ -70,6 +93,7 @@ def create_trajectories_process(
         probs: list[list[npt.NDArray]] = [[] for _ in range(num_actors)]
         scores = []
         discount_cumulative_rewards = []
+        advantages: None | npt.NDArray = None
         network_controller = MultiModelPPO.NetworkController(
             network_type,
             network_type,
@@ -80,7 +104,7 @@ def create_trajectories_process(
         )
 
         # load the saved network
-        network_controller.load(load_location)
+        network_controller.load(load_location, load_critic=True)
 
         while observation_count < num_observations:
             # create a new game
@@ -126,24 +150,35 @@ def create_trajectories_process(
                 new_discount_cumulative_rewards.append(
                     (discount_cumulative_reward))
 
-            observations += new_observations
-            actions += new_actions
-            rewards += new_rewards
+            # calculate the values of each observation
+            # calculate the difference in values of each observation
+            # remove the last action, observation, reward and dcr
+            new_advantages = compute_value_advantage_estimates(
+                np.array(new_observations), network_controller
+            ).numpy()
+            observations += new_observations[:-1]
+            actions += new_actions[:-1]
+            rewards += new_rewards[:-1]
             for probs_list, new_probs_list in zip(probs, new_probs):
-                probs_list += new_probs_list
+                probs_list += new_probs_list[:-1]
             # reverse the discount cumulative rewards to correct order
             discount_cumulative_rewards += reversed(
-                new_discount_cumulative_rewards)
-
-        trajectories = Trajectories(
-            np.array(observations),
-            np.array(actions),
-            np.array(rewards),
-            [np.array(prob) for prob in probs],
-            np.array(discount_cumulative_rewards),
-            scores
-        )
-        output_queue.put(trajectories)
+                new_discount_cumulative_rewards[1:])
+            # print(advantages)
+            # print(new_advantages)
+            advantages = new_advantages if advantages is None else np.concatenate(
+                (advantages, new_advantages))
+        if advantages is not None:
+            trajectories = Trajectories(
+                np.array(observations),
+                np.array(actions),
+                np.array(rewards),
+                [np.array(prob) for prob in probs],
+                np.array(discount_cumulative_rewards),
+                scores,
+                advantages
+            )
+            output_queue.put(trajectories)
 
         continue
 
@@ -229,7 +264,10 @@ class MultiModelPPO:
 
         def get_values(self, observations: npt.NDArray) -> ttf.Tensor1:
             '''Run the critic on a set of observations'''
-            values = self.critic(observations, multi_dim=True)
+            print(observations)
+            values = self.critic(
+                tf.reshape(observations,
+                           (observations.shape[0], observations.shape[2])))
             return values
 
     class Trainer:
@@ -255,9 +293,9 @@ class MultiModelPPO:
             # self.total_time_steps = 10000000
             # self.total_time_steps = 60000000
             # self.observations_per_batch = 20000
-            self.num_workers = 2
+            self.num_workers = 1
             self.total_time_steps = 50000
-            self.observations_per_batch = 500
+            self.observations_per_batch = 250
             self.num_actors = 3
 
             self.updates_per_iteration = 2
@@ -325,31 +363,11 @@ class MultiModelPPO:
                 np.array([reward for trajectories in trajectories_list for reward in list(
                     trajectories.discount_cumulative_rewards)]),
                 # list of scores
-                [score for trajectories in trajectories_list for score in trajectories.scores]
+                [score for trajectories in trajectories_list for score in trajectories.scores],
+                # advantages 2d numpy array
+                np.concatenate([trajectories.advantages for trajectories in trajectories_list])
             )
             return trajectories
-
-        def compute_value_advantage_estimates(self, trajectories: Trajectories
-                                              ) -> tuple[ttf.Tensor1, ttf.Tensor1, ttf.Tensor1]:
-            '''For a given set of trajectories calculate the set of advantage estimates'''
-            # compute the value function for the set of trajectories using the critic
-            # values are of dimension num_observations x num_actors
-            values = self.network_controller.get_values(
-                trajectories.observations)
-            sum_values: ttf.Tensor1 = tf.reduce_sum(values, axis=1)
-
-            values_shifted: ttf.Tensor1 = tf.identity(values)  # type: ignore
-            # remove the first value from values_shifted
-            values_shifted: ttf.Tensor1 = tf.slice(
-                values_shifted, [1, 0], [-1, -1])
-            # remove the last value from values
-            values: ttf.Tensor1 = tf.slice(
-                values, [0, 0], [int(values.shape[0])-1, -1])  # type: ignore
-            advantages: ttf.Tensor1 = tf.subtract(values_shifted, values)
-            # normalise the advantages, which is a num_observations x num_actors tensor
-            advantages = tf.subtract(advantages, tf.reduce_mean(advantages, axis=0)) / \
-                (tf.math.reduce_std(advantages, axis=0) + 1e-10)
-            return values, sum_values, advantages
 
         def actor_loss(self,
                        new_probs: ttf.Tensor1,
@@ -357,12 +375,14 @@ class MultiModelPPO:
                        actions: npt.NDArray,
                        advantages: ttf.Tensor1):
             '''Calculate the actor loss'''
+            # the entropy of the probabilities is the log of a probability times the probability
             entropy = tf.reduce_mean(tf.math.negative(
                 tf.math.multiply(new_probs, tf.math.log(new_probs))))
             surrogate_1 = []
             surrogate_2 = []
             current_probs = np.reshape(
                 current_probs, (current_probs.shape[0], current_probs.shape[2]))
+            # index each probability with the action that was taken at that observation
             current_probs_indexed = tf.convert_to_tensor(
                 np.array([prob[action]
                           for prob, action in zip(current_probs, actions)]), dtype=tf.float32)
@@ -370,8 +390,9 @@ class MultiModelPPO:
                 new_probs,
                 indices=tf.constant([[index, action] for index, action in enumerate(actions)]))
             ratios = tf.math.divide(new_probs_indexed, current_probs_indexed)
-            ratios = tf.slice(
-                ratios, [0], [len(ratios)-1])  # type: ignore
+            # # reduce length of ratios by one to match number of advantages
+            # ratios = tf.slice(
+            #     ratios, [0], [len(ratios)-1])  # type: ignore
             surrogate_1 = tf.math.multiply(ratios, advantages)
             surrogate_2 = tf.math.multiply(tf.clip_by_value(
                 ratios, 1.0 - self.clip, 1.0 + self.clip), advantages)
@@ -381,7 +402,7 @@ class MultiModelPPO:
                 tf.math.minimum(surrogate_1, surrogate_2)) + 0.001 * entropy)
             return loss
 
-        def update_policy(self, trajectories: Trajectories, advantage_estimates: ttf.Tensor1):
+        def update_policy(self, trajectories: Trajectories):
             '''
             Update the policy using the trajectories and advantage estimates
             Use stochastic gradient descent using ADAM
@@ -391,24 +412,34 @@ class MultiModelPPO:
                 (len(trajectories.discount_cumulative_rewards),)
             )
 
-            # with tf.GradientTape() as critic_tape, tf.GradientTape() as actor_tape:
+            advantage_estimates: ttf.Tensor1 = tf.convert_to_tensor(
+                trajectories.advantages, dtype=tf.float32)  # type: ignore
+            actor_losses = []
+            actor_tapes = []
+            critic_loss = 0
             with ExitStack() as stack, tf.GradientTape() as critic_tape:
                 actor_tapes = [
                     stack.enter_context(tf.GradientTape()) for _ in range(self.num_actors)
                 ]
+                # watch the trainable variables of each actor
                 for actor, actor_tape in zip(self.network_controller.actors, actor_tapes):
                     actor_tape.watch(actor.model.trainable_variables)
+                # watch the trainable critic variables
                 critic_tape.watch(
                     self.network_controller.critic.model.trainable_variables)
+                # get a list of probabilities for each observation for each actor
                 sub_probabilities: list[ttf.Tensor1] = [
                     actor(trajectories.observations,
-                                training=True, multi_dim=True)
+                          training=True, multi_dim=True)
                     for actor in self.network_controller.actors
                 ]  # type: ignore
+                # get a set of state values using the critic for each actor
                 values = self.network_controller.critic(
                     trajectories.observations, training=True, multi_dim=True)
+                # calculate the sum of the sub values
                 values_summed = tf.math.reduce_sum(values, axis=1)
                 values_summed = tf.reshape(values_summed, (len(values),))
+                # calculate the critic loss with respect to the discount cumulative rewards
                 critic_loss = kls.mean_squared_error(
                     discount_cumulative_rewards, values_summed)
                 actor_losses = [
@@ -469,7 +500,7 @@ class MultiModelPPO:
                     self.actor_network_type,
                     self.num_actors,
                     self.save_location
-                    ])
+                ])
                 self.workers.append(process)
                 process.start()
 
@@ -486,8 +517,6 @@ class MultiModelPPO:
             time_steps = 0
             batches = 0
             trajectories: Trajectories | None = None
-            advantages: ttf.Tensor1 | None = None
-
             # run for the specified number of time steps
             while time_steps < self.total_time_steps:
                 batches += 1
@@ -503,15 +532,9 @@ class MultiModelPPO:
 
                 time_steps += len(trajectories.observations)
 
-                _, _, advantages = self.compute_value_advantage_estimates(
-                    trajectories)
-                # Write the game data to file
-                # with open(f'{self.stats_location}/game_stats.csv', 'a', encoding='utf8') as file:
-                #     for value, advantage, action in zip(values, advantages, trajectories.actions):
-                #         file.write(f'{value},{advantage},{action}\n')
                 for _ in range(self.updates_per_iteration):
                     actor_losses, critic_loss = self.update_policy(
-                        trajectories, advantages)
+                        trajectories)
                     # save the losses
                     with open(f'{self.stats_location}/loss_stats.csv',
                               'a',
@@ -531,11 +554,11 @@ class MultiModelPPO:
         '''Load a pre-trained model'''
         # TODO store num actors in configs
         self.actors = [  # type: ignore
-                keras.models.load_model(
-                    f'{load_location}/actor_{i}',  custom_objects={'tf': tf}
-                )  # type: ignore
-                for i in range(self.num_actors)
-            ]
+            keras.models.load_model(
+                f'{load_location}/actor_{i}',  custom_objects={'tf': tf}
+            )  # type: ignore
+            for i in range(self.num_actors)
+        ]
         self.critic = keras.models.load_model(
             f'{load_location}/critic',  custom_objects={'tf': tf})  # type: ignore
         self.count = 0
@@ -587,10 +610,10 @@ class MultiModelPPO:
               stats_location='ppo_stats1'):
         '''Train the model on a specific game and network'''
         trainer = self.Trainer(game,
-                              actor_network,
-                              critic_network,
-                              save_location,
-                              stats_location=stats_location)
+                               actor_network,
+                               critic_network,
+                               save_location,
+                               stats_location=stats_location)
         trainer.train()
 
     actor: keras.Model

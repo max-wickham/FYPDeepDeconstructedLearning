@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 location = 'ppo_9_stats'
-for location in  ['ppo_8_stats','ppo_9_stats']:
+for location in  ['models/ppo_8_stats','models/ppo_9_stats']:
     with open(f'{location}/scores.csv', 'r', encoding='utf-8') as file:
         lines = file.read().split('\n')[:-1]
 
