@@ -14,8 +14,6 @@ from pygame.locals import (
 )
 
 from src.interfaces.game import DrawInformation, Game
-import time
-
 
 class GameUI:
     '''Implements the game UI using Pygame'''
@@ -89,9 +87,10 @@ class GameUI:
         '''Get the actions for the current frame using the model'''
         if self.model is not None:
             actions = self.model.compute_action(self.game)
-            print(actions[1])
-            self.critic = actions[1]
-            return actions[0]
+            return actions
+            # print(actions[1])
+            # self.critic = actions[1]
+            # return actions[0]
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.KEYUP:
