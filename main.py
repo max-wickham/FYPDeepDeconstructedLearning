@@ -23,11 +23,13 @@ if __name__ == '__main__':
 
 
     ############ PPO Train
-    # print('Starting Training')
-    # ppo = PPO()
-    # print('Training PPO')
-    # print('######################')
-    # # ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = f'{os.environ["PBS_O_WORKDIR"]}/ppo_6')
+    print('Starting Training')
+    ppo = PPO()
+    print('Training PPO')
+    print('######################')
+    ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork,
+        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple',
+        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple_stats')
     # ppo.train(SpaceInvaders, SimpleActorNetwork,SimpleCriticNetwork, save_location = 'ppo_3')
 
     ############ DDQN Train
@@ -48,9 +50,9 @@ if __name__ == '__main__':
     # multi_model_ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = 'multi_model_ppo_1')
 
     # ########### MultiModelPPO Play
-    multi_model_ppo = MultiModelPPO()
-    multi_model_ppo.load('multi_model_ppo_1')
-    ui = GameUI(SpaceInvaders, model = multi_model_ppo, record=False)
-    # ui = GameUI(SpaceInvaders, record=False)
-    ui.run()
-    # # ui.playback()
+    # multi_model_ppo = MultiModelPPO()
+    # multi_model_ppo.load('multi_model_ppo_1')
+    # ui = GameUI(SpaceInvaders, model = multi_model_ppo, record=False)
+    # # ui = GameUI(SpaceInvaders, record=False)
+    # ui.run()
+    # # # ui.playback()

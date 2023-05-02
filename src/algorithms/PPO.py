@@ -116,7 +116,7 @@ def create_trajectories_process(
             new_discount_cumulative_rewards = []
             discount_cumulative_reward = 0
             for reward in reversed(new_rewards):
-                discount_cumulative_reward = reward + discount_cumulative_reward * 0.95
+                discount_cumulative_reward = reward + discount_cumulative_reward * 0.98
                 new_discount_cumulative_rewards.append(
                     discount_cumulative_reward / 10)
 
@@ -241,14 +241,14 @@ class PPO:
             self.critic_network_type = critic_network
             # self.total_time_steps = 10000000
             self.total_time_steps = 60000000
-            self.observations_per_batch = 20000
-            self.num_workers = 8
+            self.observations_per_batch = 10000
+            self.num_workers = 7
             # self.total_time_steps = 50000
             # self.observations_per_batch = 500
 
             self.updates_per_iteration = 2
             self.game_type = game_type
-            self.gamma = 0.95
+            self.gamma = 0.98
             self.clip = 0.2
             self.repeat_action_num = 3
 
