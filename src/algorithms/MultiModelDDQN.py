@@ -329,15 +329,15 @@ class MultiModelDDQN:
         Train the N Q-Function models for a given game
         '''
 
-        NUM_ACTORS = 3
+        NUM_ACTORS = 4
         INIT_MEMORY = 1000
-        NUM_WORKERS = 1
+        NUM_WORKERS = 7
         EPS_MIN = 0.05
-        EPS_DECAY = 0.01
+        EPS_DECAY = 0.0001
         DISCOUNT_FACTOR = 0.95
-        NUM_FRAMES = 1000000
-        TARGET_C = 1000
-        BATCH_SIZE = 1000
+        NUM_FRAMES = 10000000
+        TARGET_C = 20000
+        BATCH_SIZE = 5000
 
         def __init__(self,
                      actor_network: type[Network],

@@ -64,9 +64,13 @@ if __name__ == '__main__':
 
 
     ############## MultiModelDDQN Train
-    # MultiModelDDQN.train(SpaceInvaders, SimpleDDQNNetwork, SimpleCriticNetwork)
+    MultiModelDDQN.train(SpaceInvaders, SimpleDDQNNetwork, SimpleCriticNetwork,
+    save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_ddqn_simple')
+
+    # MultiModelDDQN.train(SpaceInvaders, SimpleDDQNNetwork, SimpleCriticNetwork,
+    # save_location = 'models/multi_ddqn_simple')
 
     ############## MultiModelDDQN Play
-    ui = GameUI(SpaceInvaders, model = MultiModelDDQN('multi_ddqn'), record=False)
-    ui.run()
+    # ui = GameUI(SpaceInvaders, model = MultiModelDDQN('multi_ddqn'), record=False)
+    # ui.run()
     # # # ui.playback()

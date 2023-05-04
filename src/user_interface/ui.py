@@ -83,7 +83,7 @@ class GameUI:
                          pygame.Rect(700, 300, 50, -1*self.critic * 2))
         pygame.display.flip()
 
-    def get_actions(self) -> list[int | float]:
+    def get_actions(self) -> list[float]:
         '''Get the actions for the current frame using the model'''
         if self.model is not None:
             actions = self.model.compute_action(self.game)
