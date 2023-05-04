@@ -291,12 +291,12 @@ class MultiModelPPO:
             self.actor_network_type = actor_network
             self.critic_network_type = critic_network
             # self.total_time_steps = 10000000
-            # self.total_time_steps = 60000000
-            # self.observations_per_batch = 20000
-            self.num_workers = 1
-            self.total_time_steps = 50000
-            self.observations_per_batch = 250
-            self.num_actors = 3
+            self.total_time_steps = 60000000
+            self.observations_per_batch = 20000
+            self.num_workers = 7
+            # self.total_time_steps = 50000
+            # self.observations_per_batch = 250
+            self.num_actors = 5
 
             self.updates_per_iteration = 2
             self.game_type = game_type

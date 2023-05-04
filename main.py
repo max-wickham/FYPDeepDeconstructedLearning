@@ -14,23 +14,23 @@ from src.algorithms.MultiModelPPO import MultiModelPPO
 if __name__ == '__main__':
     multiprocessing.set_start_method('spawn')
 
-    ########### PPO Play
+    # ########### PPO Play
     ppo = PPO()
     ppo.load('models/ppo_9')
     ui = GameUI(SpaceInvadersLarge, model = ppo, record=False)
     # ui = GameUI(SpaceInvaders, record=False)
     ui.run()
-    # # ui.playback()
+    # # # ui.playback()
 
 
-    ############ PPO Train
-    print('Starting Training')
-    ppo = PPO()
-    print('Training PPO')
-    print('######################')
-    ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork,
-        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple',
-        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple_stats')
+    # ############ PPO Train
+    # print('Starting Training')
+    # ppo = PPO()
+    # print('Training PPO')
+    # print('######################')
+    # ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple_stats')
     # ppo.train(SpaceInvaders, SimpleActorNetwork,SimpleCriticNetwork, save_location = 'ppo_3')
 
     ############ DDQN Train
@@ -48,7 +48,9 @@ if __name__ == '__main__':
     ########### MultiModelPPO Train
     # print('Starting Training')
     # multi_model_ppo = MultiModelPPO()
-    # multi_model_ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = 'multi_model_ppo_1')
+    # multi_model_ppo.train(SpaceInvadersLarge, SimpleActorNetwork, SimpleCriticNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model_simple',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model_simple_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()
