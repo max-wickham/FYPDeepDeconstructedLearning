@@ -1,6 +1,8 @@
 import os
-os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import multiprocessing
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+from src.algorithms.MultiModelDDQN import MultiModelDDQN
 from src.networks.simple_network import SimpleActorNetwork, SimpleCriticNetwork, SimpleDDQNNetwork
 from src.user_interface.ui import GameUI
 from src.games.space_invaders import SpaceInvaders
@@ -15,22 +17,22 @@ if __name__ == '__main__':
     multiprocessing.set_start_method('spawn')
 
     ########### PPO Play
-    ppo = PPO()
-    ppo.load('models/ppo_9')
-    ui = GameUI(SpaceInvadersLarge, model = ppo, record=False)
-    # ui = GameUI(SpaceInvaders, record=False)
-    ui.run()
-    # # ui.playback()
+    # ppo = PPO()
+    # ppo.load('models/ppo_8')
+    # ui = GameUI(SpaceInvaders, model = ppo, record=False)
+    # # ui = GameUI(SpaceInvaders, record=False)
+    # ui.run()
+    # # # ui.playback()
 
 
     ############ PPO Train
-    print('Starting Training')
-    ppo = PPO()
-    print('Training PPO')
-    print('######################')
-    ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork,
-        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple',
-        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple_stats')
+    # print('Starting Training')
+    # ppo = PPO()
+    # print('Training PPO')
+    # print('######################')
+    # ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/ppo_large_simple_stats')
     # ppo.train(SpaceInvaders, SimpleActorNetwork,SimpleCriticNetwork, save_location = 'ppo_3')
 
     ############ DDQN Train
@@ -56,4 +58,13 @@ if __name__ == '__main__':
     # # ui = GameUI(SpaceInvadersLarge, model = multi_model_ppo, record=False)
     # ui = GameUI(SpaceInvaders, model = multi_model_ppo, record=False)
     # ui.run()
+    # # # ui.playback()
+
+
+    ############## MultiModelDDQN Train
+    # MultiModelDDQN.train(SpaceInvaders, SimpleDDQNNetwork, SimpleCriticNetwork)
+
+    ############## MultiModelDDQN Play
+    ui = GameUI(SpaceInvaders, model = MultiModelDDQN('multi_ddqn'), record=False)
+    ui.run()
     # # # ui.playback()

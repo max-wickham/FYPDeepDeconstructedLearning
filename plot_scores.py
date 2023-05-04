@@ -10,7 +10,7 @@ for location in  ['models/ppo_8_stats','models/ppo_9_stats']:
 
     scores = [int(line) for line in lines]
 
-    window_size = 100
+    window_size = 1000
 
     # Convert array of integers to pandas series
     numbers_series = pd.Series(scores)
