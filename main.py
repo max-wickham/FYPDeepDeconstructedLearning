@@ -65,6 +65,6 @@ if __name__ == '__main__':
     # MultiModelDDQN.train(SpaceInvaders, SimpleDDQNNetwork, SimpleCriticNetwork)
 
     ############## MultiModelDDQN Play
-    ui = GameUI(SpaceInvaders, model = MultiModelDDQN('multi_ddqn'), record=False)
+    ui = GameUI(SpaceInvaders, model = MultiModelDDQN('models/multi_ddqn_simple'), record=False)
     ui.run()
     # # # ui.playback()

@@ -68,6 +68,7 @@ def create_trajectories_process(
     args: WorkerArgs
 ):
     '''Can be run as a separate process to collect training data'''
+    eps = args.eps
     while True:
         # stop if received stop message
         if not args.stop_queue.empty():
@@ -89,8 +90,6 @@ def create_trajectories_process(
             load=True,
             load_location=args.load_location
         )
-        eps = 1
-        eps_min = 0.2
 
         observations: list[npt.NDArray] = []
         actions: list[int] = []
@@ -112,7 +111,7 @@ def create_trajectories_process(
                 score += 1
                 # step the game
                 action = network_controller.epsilon_greedy(
-                    eps, observation)
+                    args.eps, observation)
                 done, reward = game.step(action_to_action_array(action))
                 # store the frame state
                 new_observations.append(observation)
@@ -121,7 +120,7 @@ def create_trajectories_process(
                 # update variables
                 observation = game.get_model_input()
                 observation_count += 1
-                if eps > eps_min:
+                if eps > args.eps_min:
                     eps -= args.eps_decay
 
             # calculate discount cumulative rewards
