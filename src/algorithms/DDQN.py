@@ -56,12 +56,12 @@ def collect_training_data(
         # Adam = tf.keras.optimizers.Adam
         # kls = tf.keras.losses
         observation_count = 0
-        # actions = []
-        # observations = []
-        # rewards = []
-        # probs = []
-        # scores = []
-        # discount_cumulative_rewards = []
+        actions = []
+        observations = []
+        rewards = []
+        probs = []
+        scores = []
+        discount_cumulative_rewards = []
 
 
         network_controller = DDQN.NetworkController(
@@ -249,11 +249,11 @@ class DDQN:
                 # we use a cloned model to predict here for stability. Model is changed every C frames
                 # we use the online model to choose best action to deal with overestimation error (Double-Q learning)
                 if not done:
-                    best_actions = int(np.argmax(
+                    best_action= int(np.argmax(
                         self.network_controller.get_actions_q_vals(new_state)))
                     target = reward + discount_factor * \
                         self.target_network_controller.reward_for_action(
-                            new_state, best_actions)
+                            new_state, best_action)
 
                 current_q_values = self.network_controller.get_actions_q_vals(
                     new_state)
