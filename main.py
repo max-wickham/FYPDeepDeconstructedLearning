@@ -50,7 +50,9 @@ if __name__ == '__main__':
     ########### MultiModelPPO Train
     # print('Starting Training')
     # multi_model_ppo = MultiModelPPO()
-    # multi_model_ppo.train(SpaceInvaders, SimpleActorNetwork, SimpleCriticNetwork, save_location = 'multi_model_ppo_1')
+    # multi_model_ppo.train(SpaceInvadersLarge, SimpleActorNetwork, SimpleCriticNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model_simple',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model_simple_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()
