@@ -9,7 +9,7 @@ i=0
 while [ $i -ne 100 ]
 do
         i=$(($i+1))
-        python $HOME/FYPDeepDeconstructedLearning/main.py
+        python $HOME/FYPDeepDeconstructedLearning/main2.py
         echo $i
         export LOAD=true
 done

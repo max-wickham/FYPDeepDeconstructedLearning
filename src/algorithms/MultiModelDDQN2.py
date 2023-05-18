@@ -140,7 +140,7 @@ def create_trajectories_process(
                 critic_values)  # type: ignore
             values_shifted: ttf.Tensor1 = tf.slice(
                 values_shifted, [1, 0], [-1, -1])
-            values_shifted = tf.scalar_mul(args.discount_factor, values_shifted)
+            values_shifted = tf.math.scalar_mul(args.discount_factor, values_shifted) # type: ignore
             # remove the last value from values
             values: ttf.Tensor1 = tf.slice(
                 critic_values, [0, 0], [int(critic_values.shape[0])-1, -1])  # type: ignore
@@ -338,7 +338,7 @@ class MultiModelDDQN:
         Train the N Q-Function models for a given game
         '''
 
-        NUM_ACTORS = 1
+        NUM_ACTORS = 3
         INIT_MEMORY = 1000
         NUM_WORKERS = 7
         EPS_MIN = 0.05

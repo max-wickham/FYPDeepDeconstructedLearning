@@ -29,7 +29,7 @@ class Network(ABC):
     def load(self, location: str):
         '''load a model'''
         self.model = keras.models.load_model(location,  custom_objects={
-                                'tf': tf})  # type: ignore
+                                'tf': tf}, compile=False)  # type: ignore
 
     def __call__(self,
                  input_data: np.ndarray,

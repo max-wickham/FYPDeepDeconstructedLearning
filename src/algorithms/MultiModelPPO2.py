@@ -1,8 +1,16 @@
 '''
-One PPO per critic penultimate layer length
+Uses N PPO agents. The critic outputs N values that are summed to give the value function.
+Each of the agents is trained using the corresponding value function node,
+with the advantage function calculated by giving the a weight proportional
+to the node value over the summed value of the discount cumulative reward.
+A_n = V_n / V_t * DCR
+The probability of each action outputted by the agents is then multiplied
+
+This version is improved to contain better load and saving of the state
 '''
 from src.interfaces.game import Game
 from src.interfaces.network import Network
+from src.util.configs import DataclassSaveMixin
 from contextlib import ExitStack
 import gc
 import dataclasses
@@ -10,7 +18,7 @@ import multiprocessing
 from multiprocessing.managers import BaseManager
 from multiprocessing import Process
 import os
-from typing import Type
+from typing import NamedTuple, Type
 import json
 
 import numpy as np
@@ -30,7 +38,6 @@ class Trajectories:
     observations: npt.NDArray
     actions: npt.NDArray
     rewards: npt.NDArray
-    # probabilities outputted by each actor network
     probabilities: list[npt.NDArray]
     discount_cumulative_rewards: npt.NDArray
     scores: list[float]
@@ -41,107 +48,86 @@ class Trajectories:
         return self.observations
 
 
-# def compute_value_advantage_estimates(observations: npt.NDArray,
-#                                       network_controller: 'MultiModelPPO.NetworkController'):
-#     '''For a given set of trajectories calculate the set of advantage estimates'''
-#     # compute the value function for the set of trajectories using the critic
-#     # values are of dimension num_observations x num_actors and are calculated by the critic
-#     critic_values = network_controller.get_values(observations)
-#     sum_values: ttf.Tensor1 = tf.reduce_sum(critic_values, axis=1)
-#     values_shifted: ttf.Tensor1 = tf.identity(critic_values)  # type: ignore
-#     # remove the first value from values_shifted
-#     values_shifted: ttf.Tensor1 = tf.slice(
-#         values_shifted, [1, 0], [-1, -1])
-#     # remove the last value from values
-#     values: ttf.Tensor1 = tf.slice(
-#         critic_values, [0, 0], [int(critic_values.shape[0])-1, -1])  # type: ignore
-#     # compute advantages as the increase in value from one observation to another
-#     advantages: ttf.Tensor1 = tf.subtract(values_shifted, values)
-#     # normalise the advantages, which is a num_observations x num_actors tensor
-#     advantages = tf.subtract(advantages, tf.reduce_mean(advantages, axis=0)) / \
-#         (tf.math.reduce_std(advantages, axis=0) + 1e-5)
-
-#     return advantages
-
-
 def compute_advantage_estimates(observations: npt.NDArray,
-    network_controller: 'MultiModelPPO.NetworkController',
-    discount_cumulative_rewards: npt.NDArray):
+                                network_controller: 'MultiModelPPO2.NetworkController',
+                                discount_cumulative_rewards: npt.NDArray):
     '''Calculate the advantage estimates for a single game'''
     # Compute the critic value for each frame
-    # Weight the disount cumulative reward by the critic value
+    # Weight the discount cumulative reward by the critic value
     # Compute the difference between the two
     critic_values = network_controller.get_values(observations).numpy() + 0.01
-    # num_observations x num_actors
-    # print('Critic', critic_values)
-    # print(discount_cumulative_rewards[0])
     val_sum = np.sum(critic_values, axis=1)
     scaled_dcr = discount_cumulative_rewards / (val_sum)
-    # print(scaled_dcr[0])
-    proportinal_dcr = critic_values * scaled_dcr[:, np.newaxis]
-    # print(proportinal_dcr[0])
-    advantages = np.subtract(proportinal_dcr, critic_values)
-    normalised_advantages = (advantages - np.mean(advantages, axis=0)) / np.std(advantages, axis=0)
+    proportional_dcr = critic_values * scaled_dcr[:, np.newaxis]
+    advantages = np.subtract(proportional_dcr, critic_values)
+    normalised_advantages = (
+        advantages - np.mean(advantages, axis=0)) / np.std(advantages, axis=0)
     normalised_advantages[np.isnan(normalised_advantages)] = 0
-    # print('Normalised', normalised_advantages)
     return normalised_advantages
 
-def create_trajectories_process(
-    num_observations: int,
-    input_queue: multiprocessing.Queue,
-    output_queue: multiprocessing.Queue,
-    stop_queue: multiprocessing.Queue,
-    game_type: Type[Game],
-    observation_dims: int,
-    action_dims: int,
-    network_type: type[Network],
-    num_actors: int,
+
+class WorkerArgs(NamedTuple):
+    '''Args for input to a worker'''
+    num_observations: int
+    input_queue: multiprocessing.Queue
+    output_queue: multiprocessing.Queue
+    stop_queue: multiprocessing.Queue
+    game_type: Type[Game]
+    observation_dims: int
+    action_dims: int
+    num_actors: int
+    actor_network: type[Network]
+    critic_network: type[Network]
     load_location: str
+    discount_factor: float
+
+def create_trajectories_process(
+    args: WorkerArgs
 ):
     '''Create a set of trajectories on an individual thread'''
     ACTION_REPETITIONS = 2
     while True:
-        if not stop_queue.empty():
+        if not args.stop_queue.empty():
             break
-        if input_queue.empty():
+        if args.input_queue.empty():
             continue
-        input_queue.get()
+        args.input_queue.get()
 
         # initialize variables
         observation_count = 0
         actions = []
         observations = []
         rewards = []
-        probs: list[list[npt.NDArray]] = [[] for _ in range(num_actors)]
+        probs: list[list[npt.NDArray]] = [[] for _ in range(args.num_actors)]
         scores = []
         discount_cumulative_rewards = []
         advantages: None | npt.NDArray = None
-        network_controller = MultiModelPPO.NetworkController(
-            network_type,
-            network_type,
-            observation_dims,
-            action_dims,
-            num_actors,
+        network_controller = MultiModelPPO2.NetworkController(
+            args.actor_network,
+            args.critic_network,
+            args.observation_dims,
+            args.action_dims,
+            args.num_actors,
             load=True
         )
 
         # load the saved network
-        network_controller.load(load_location, load_critic=True)
+        network_controller.load(args.load_location)
 
-        while observation_count < num_observations:
+        while observation_count < args.num_observations:
             # create a new game
-            game = game_type()
+            game = args.game_type()
             done = False
             new_actions = []
             new_observations = []
             new_rewards = []
-            new_probs = [[] for _ in range(num_actors)]
+            new_probs = [[] for _ in range(args.num_actors)]
             prev_action = 0
             prev_prob: list[npt.NDArray] = []
             action_repetitions = 0
             frame = 0
             # run the game until it is done or we have enough observations
-            while not done and observation_count < num_observations:
+            while not done and observation_count < args.num_observations:
                 frame += 1
                 observation = game.get_model_input()
                 observation = tf.reshape(
@@ -154,7 +140,6 @@ def create_trajectories_process(
                     prev_action = action
                 done, reward = game.step(
                     action_to_action_array(prev_action))
-                # repeat the same action for ACTION_REPETITIONS frames
                 if done or action_repetitions == 0 and not len(prev_prob) == 0:
                     new_observations.append(observation)
                     new_actions.append(prev_action)
@@ -185,8 +170,11 @@ def create_trajectories_process(
                 new_discount_cumulative_rewards)
             # print(advantages)
             # print(new_advantages)
-            new_advantages = compute_advantage_estimates( np.array(new_observations), network_controller, np.array(list(reversed(
-                new_discount_cumulative_rewards))))
+            new_advantages = compute_advantage_estimates(
+                np.array(new_observations),
+                network_controller,
+                np.array(list(reversed(
+                    new_discount_cumulative_rewards))))
             advantages = new_advantages if advantages is None else np.concatenate(
                 (advantages, new_advantages))
         if advantages is not None:
@@ -199,7 +187,7 @@ def create_trajectories_process(
                 scores,
                 advantages
             )
-            output_queue.put(trajectories)
+            args.output_queue.put(trajectories)
 
         continue
 
@@ -213,13 +201,15 @@ def action_to_action_array(action: int) -> list[float]:
     ]
 
 
-class MultiModelPPO:
+class MultiModelPPO2:
     '''Model implementing the PPO training algorithm'''
+    INFO = 'MultiModelPPO2 with product of sub agents probabilities and cyclic training'
 
     class NetworkController:
         '''Actor and critic models'''
-        actors: list[Network]
-        critic: Network
+        _actors: list[Network]
+        _critic: Network
+        LEARNING_RATE = 0.005
 
         def __init__(self,
                      actor_network: type[Network],
@@ -228,53 +218,75 @@ class MultiModelPPO:
                      output_dims: int,
                      num_actors: int,
                      load=False) -> None:
-            self.num_actors = num_actors
+            self._num_actors = num_actors
             if load:
                 return
-            self.learning_rate = 0.005
-
+            self.input_dims = input_dims
+            self.output_dims = output_dims
             # takes an observation and outputs a set of actions
             # square action dims to get output space
-
-            self.actors: list[actor_network] = [actor_network(
+            self._actors: list[actor_network] = [actor_network(
                 (input_dims), output_dims * output_dims) for _ in range(num_actors)]
             # takes an observation and outputs a value
-            self.critic = critic_network((input_dims), num_actors)
-            self.actor_optimisers = [Adam(lr=self.learning_rate) for _ in range(self.num_actors)]
-            self.critic_optimiser = Adam(lr=self.learning_rate)
+            self._critic = critic_network((input_dims), num_actors)
+            self.actor_optimisers = [
+                Adam(lr=self.LEARNING_RATE) for _ in range(self._num_actors)]
+            self.critic_optimiser = Adam(lr=self.LEARNING_RATE)
 
-        def load(self, load_location: str, load_critic=False):
+        @classmethod
+        def load_saved_model(cls, load_location) -> 'MultiModelPPO2.NetworkController':
+            '''Load a saved model without passing any configs'''
+            network_controller = cls.__new__(cls)
+            network_controller.load(load_location)
+            network_controller.actor_optimisers = [
+                Adam(lr=network_controller.LEARNING_RATE) for _ in range(network_controller._num_actors)]
+            network_controller.critic_optimiser = Adam(lr=network_controller.LEARNING_RATE)
+            return network_controller
+
+        def load(self, load_location: str):
             '''Load saved models'''
-            print('Load')
-
-            self.actors = [  # type: ignore
-                keras.models.load_model(
-                    f'{load_location}/actor_{i}',  custom_objects={'tf': tf}
-                )  # type: ignore
-                for i in range(self.num_actors)
-            ]
-            print('Actor Loaded')
-            if load_critic:
-                self.critic = keras.models.load_model(
-                    f'{load_location}/critic',  custom_objects={'tf': tf})  # type: ignore
+            with open(f'{load_location}/model_configs.json', 'r', encoding='utf8') as file:
+                model_configs = json.loads(file.read())
+            self._num_actors = model_configs['num_actors']
+            self.input_dims = model_configs['input_dims']
+            self.output_dims = model_configs['output_dims']
+            self._actors = [Network(
+                model_configs['input_dims'],
+                model_configs['output_dims']
+            ) for i in range(model_configs['num_actors'])]
+            for i, actor in enumerate(self._actors):
+                actor.load(f'{load_location}/actor_{i}')
+            self._critic = Network(
+                model_configs['input_dims'],
+                model_configs['output_dims']
+            )
+            self._critic.load(f'{load_location}/critic')
 
         def save(self, save_location: str):
-            '''Save current models'''
+            '''Save the current models'''
             if not os.path.exists(f'{save_location}'):
                 os.mkdir(f'{save_location}')
-            for i, actor in enumerate(self.actors):
+            with open(f'{save_location}/model_configs.json', 'w', encoding='utf8') as file:
+                file.write(json.dumps(
+                    {
+                        'num_actors': self._num_actors,
+                        'input_dims': self.input_dims,
+                        'output_dims': self.output_dims,
+                    }
+                ))
+            for i, actor in enumerate(self._actors):
                 actor.model.save(f'{save_location}/actor_{i}')
-            self.critic.model.save(f'{save_location}/critic')
+            self._critic.model.save(f'{save_location}/critic')
 
         def get_prob_action(self, observation: npt.NDArray) -> tuple[list[npt.NDArray], int]:
             '''Returns the probability of
             each action combination and an action sampled from this distribution'''
             # Get the probability of each action from each sub agent
-            probs = [actor(observation).numpy()[0] for actor in self.actors]
+            probs = [actor(observation).numpy()[0] for actor in self._actors]
             # Multiply the probabilities together
             prob = tf.reduce_prod(probs, axis=0)
-            # # Normalise the probabilities
-            # prob = prob / (np.sum(prob) + 0.001)
+            # Normalise the probabilities
+            prob = prob / (np.sum(prob) + 0.001)
             # Sample an action from the distribution
             dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
             action = dist.sample(1)
@@ -285,14 +297,40 @@ class MultiModelPPO:
 
         def get_values(self, observations: npt.NDArray) -> ttf.Tensor1:
             '''Run the critic on a set of observations'''
-            print(observations)
-            values = self.critic(
-                tf.reshape(observations,
-                           (observations.shape[0], observations.shape[2])))
+            values = self._critic(observations, multi_dim=True)
+            # values = self._critic(
+            #     tf.reshape(observations,
+            #                (observations.shape[0], observations.shape[2])))
             return values
+
+        @property
+        def actors(self):
+            '''Actors Getter'''
+            return self._actors
+
+        @property
+        def critic(self):
+            '''Critic Getter'''
+            return self._critic
 
     class Trainer:
         '''Train a PPO model'''
+        class Configs(DataclassSaveMixin):
+            '''Training Parameters'''
+            NUM_WORKERS: int = 7
+            TOTAL_TIME_STEPS: int = 600000
+            OBSERVATIONS_PER_BATCH: int = 6000
+            NUM_AGENTS: int = 3
+            UPDATES_PER_ITERATION: int = 2
+            GAMMA: float = 0.99
+            CLIP: float = 0.2
+            REPEAT_ACTION_NUM: int = 3
+            GAMES_TO_TRAIN_OVER: int = 2000
+
+        class TrainingState(DataclassSaveMixin):
+            '''Current Training State'''
+            games_played: int = 0
+            time_steps: int = 0
 
         def __init__(self,
                      game_type: type[Game],
@@ -302,43 +340,42 @@ class MultiModelPPO:
                      stats_location='ppo_stats1',
                      ) -> None:
             self.stats_location = stats_location
-            # remove old stats if they exist
-            # if os.path.exists(stats_location):
-            #     os.rmdir(stats_location)
-            if not os.path.exists(stats_location):
-                os.mkdir(stats_location)
             self.save_location = save_location
             self.action_dims = game_type.get_action_shape()
             self.observation_dims = game_type.get_input_shape()
             self.actor_network_type = actor_network
             self.critic_network_type = critic_network
-            # self.total_time_steps = 10000000
-            self.total_time_steps = 60000000
-            self.observations_per_batch = 6000
-            self.num_workers = 7
-            # self.total_time_steps = 50000
-            # self.observations_per_batch = 250
-            self.num_actors = 3
-
-            self.updates_per_iteration = 2
             self.game_type = game_type
-            self.gamma = 0.95
-            self.clip = 0.2
-            self.repeat_action_num = 3
-            self.num_games_played = 0
 
-            with open(f'{self.stats_location}/loss_stats.csv', 'a', encoding='utf8') as file:
-                file.write(
-                    f'{"".join([f"actor_loss{i}," for i in range(self.num_actors)])}critic_loss\n'
+            if not 'LOAD' in os.environ or os.environ['LOAD'] != 'true':
+                self.configs = self.Configs()
+                self.training_state = self.TrainingState()
+                self.network_controller = MultiModelPPO2.NetworkController(
+                    actor_network,
+                    critic_network,
+                    self.observation_dims,
+                    self.action_dims,
+                    self.configs.NUM_AGENTS,
                 )
-
-            self.network_controller = MultiModelPPO.NetworkController(
-                actor_network,
-                critic_network,
-                self.observation_dims,
-                self.action_dims,
-                self.num_actors,
-            )
+                if not os.path.exists(stats_location):
+                    os.mkdir(stats_location)
+                with open(f'{self.stats_location}/loss_stats.csv', 'w', encoding='utf8') as file:
+                    file.write(
+                        f'{"".join([f"actor_loss{i},"for i in range(self.configs.NUM_AGENTS)])}critic_loss\n'
+                    )
+                with open(f'{self.stats_location}/scores.csv', 'w', encoding='utf8') as file:
+                    file.write(
+                        ''
+                    )
+            else:
+                self.configs = self.Configs.load(
+                    f'{self.save_location}/training_configs.json')
+                self.training_state = self.TrainingState.load(
+                    f'{self.save_location}/training_state.json')
+                self.network_controller = MultiModelPPO2.NetworkController.load_saved_model(
+                    self.save_location)
+                # reset time steps
+                self.training_state.time_steps = 0
 
             # queues for messaging between workers
             self.task_queue = multiprocessing.Queue()
@@ -349,7 +386,6 @@ class MultiModelPPO:
 
         def create_trajectories_parallel(self) -> Trajectories:
             '''Create a set of trajectories using parallel workers'''
-            self.save()
             # Start the workers
             for _ in self.workers:
                 self.task_queue.put(True)
@@ -368,7 +404,7 @@ class MultiModelPPO:
                 # list of actions
                 np.array([action for trajectories in trajectories_list for action in list(
                     trajectories.actions)]),
-                # list of rewalen(self.actors)rds
+                # list of rewards
                 np.array([reward for trajectories in trajectories_list for reward in list(
                     trajectories.rewards)]),
                 # list of lists of probabilities
@@ -380,7 +416,7 @@ class MultiModelPPO:
                                         1, trajectories.probabilities[i].shape[1])
                                        )
                             for trajectories in trajectories_list))
-                    for i in range(self.num_actors)
+                    for i in range(self.configs.NUM_AGENTS)
                 ],
                 # list of cumulative rewards
                 np.array([reward for trajectories in trajectories_list for reward in list(
@@ -388,7 +424,8 @@ class MultiModelPPO:
                 # list of scores
                 [score for trajectories in trajectories_list for score in trajectories.scores],
                 # advantages 2d numpy array
-                np.concatenate([trajectories.advantages for trajectories in trajectories_list])
+                np.concatenate(
+                    [trajectories.advantages for trajectories in trajectories_list])
             )
             return trajectories
 
@@ -396,7 +433,7 @@ class MultiModelPPO:
                        new_probs: ttf.Tensor1,
                        current_probs: npt.NDArray,
                        actions: npt.NDArray,
-                       advantages: ttf.Tensor1) -> ttf.Tensor0:
+                       advantages: ttf.Tensor1):
             '''Calculate the actor loss'''
             # the entropy of the probabilities is the log of a probability times the probability
             entropy = tf.reduce_mean(tf.math.negative(
@@ -418,7 +455,7 @@ class MultiModelPPO:
             #     ratios, [0], [len(ratios)-1])  # type: ignore
             surrogate_1 = tf.math.multiply(ratios, advantages)
             surrogate_2 = tf.math.multiply(tf.clip_by_value(
-                ratios, 1.0 - self.clip, 1.0 + self.clip), advantages)
+                ratios, 1.0 - self.configs.CLIP, 1.0 + self.configs.CLIP), advantages)
             surrogate_1 = tf.stack(surrogate_1)
             surrogate_2 = tf.stack(surrogate_2)
             loss = tf.math.negative(tf.reduce_mean(
@@ -440,10 +477,12 @@ class MultiModelPPO:
             actor_losses = []
             actor_tapes = []
             critic_loss = 0
-            with ExitStack() as stack, tf.GradientTape() as critic_tape:
-                actor_tapes = [
-                    stack.enter_context(tf.GradientTape()) for _ in range(self.num_actors)
-                ]
+            mod_games_played = self.training_state.games_played % self.configs.GAMES_TO_TRAIN_OVER
+            index = int(
+                mod_games_played / (self.configs.GAMES_TO_TRAIN_OVER / self.configs.NUM_AGENTS))
+            actor = self.network_controller.actors[index]
+            with tf.GradientTape() as actor_tape, tf.GradientTape() as critic_tape:
+                actor_tape.watch(actor.model.trainable_variables)
                 # watch the trainable variables of each actor
                 for actor, actor_tape in zip(self.network_controller.actors, actor_tapes):
                     actor_tape.watch(actor.model.trainable_variables)
@@ -465,60 +504,42 @@ class MultiModelPPO:
                 # calculate the critic loss with respect to the discount cumulative rewards
                 critic_loss = kls.mean_squared_error(
                     discount_cumulative_rewards, values_summed)
-                actor_losses = [
-                    self.actor_loss(
-                        probabilities,
-                        old_probabilities,
-                        trajectories.actions,
-                        advantage_estimates[:, i]
-                    )
-                    for probabilities, old_probabilities, i
-                    in zip(sub_probabilities, trajectories.probabilities, range(self.num_actors))
-                ]
 
-            for loss in actor_losses:
-                if np.isnan(loss.numpy()):
-                    return actor_losses, critic_loss
+                actor_loss = self.actor_loss(
+                    sub_probabilities[index],
+                    trajectories.probabilities[index],
+                    trajectories.actions,
+                    advantage_estimates[:, index])
+
             # calculate and apply gradients
-            sub_actor_gradients = [
-                actor_tape.gradient(
-                    actor_loss, actor.model.trainable_variables)
-                for actor_loss, actor, actor_tape in
-                zip(actor_losses, self.network_controller.actors, actor_tapes)
-            ]
+            actor_gradient = actor_tape.gradient(
+                actor_loss, actor.model.trainable_variables)
             critic_gradients = critic_tape.gradient(
                 critic_loss, self.network_controller.critic.model.trainable_variables)
 
-
-            games_to_train_over = 1000
-            mod_games_played = self.num_games_played % games_to_train_over
-            index = int(mod_games_played / (games_to_train_over / self.num_actors))
-            self.network_controller.actor_optimisers[index].apply_gradients(
-                zip(sub_actor_gradients[index], self.network_controller.actors[index].model.trainable_variables)
-            )
-            # for index, actor, actor_gradients, actor_optimiser in zip(
-            #     range(self.num_actors),
-            #     self.network_controller.actors,
-            #     sub_actor_gradients,
-            #     self.network_controller.actor_optimisers):
-            #     if self.num_games_played % 2000 > 1000 * index and self.num_games_played % 2000 < 1000 * index + 1000:
-            #         actor_optimiser.apply_gradients(
-            #             zip(actor_gradients, actor.model.trainable_variables))
-
-            self.network_controller.critic_optimiser.apply_gradients(
-                zip(critic_gradients, self.network_controller.critic.model.trainable_variables))
+            if not tf.math.is_nan(actor_loss).numpy() and not tf.math.is_nan(critic_loss).numpy():
+                self.network_controller.actor_optimisers[index].apply_gradients(
+                    zip(actor_gradient, actor.model.trainable_variables)
+                )
+                self.network_controller.critic_optimiser.apply_gradients(
+                    zip(critic_gradients, self.network_controller.critic.model.trainable_variables))
             return actor_losses, critic_loss
 
         def save(self):
             '''Save the trained models'''
             if not os.path.exists(f'{self.save_location}'):
                 os.mkdir(f'{self.save_location}')
-            configs = {
-                'game_type': str(type(self.game_type)),
-                'network_type': str(type(self.actor_network_type))
-            }
+            self.network_controller.save(self.save_location)
             with open(f'{self.save_location}/configs.json', 'w', encoding='utf8') as file:
-                file.write(json.dumps(configs))
+                file.write(json.dumps({
+                    'game_type': str(self.game_type),
+                    'network_type': str(self.actor_network_type),
+                    'algo_info' : MultiModelPPO2.INFO
+                }))
+            self.configs.save(f'{self.save_location}/training_configs.json')
+            self.training_state.save(
+                f'{self.save_location}/training_state.json')
+            print(self.training_state)
             self.network_controller.save(self.save_location)
 
         def create_workers(self):
@@ -527,18 +548,24 @@ class MultiModelPPO:
             manager = BaseManager()
             manager.start()
             self.workers = []
-            for _ in range(self.num_workers):
+
+            for _ in range(self.configs.NUM_WORKERS):
                 process = Process(target=create_trajectories_process, args=[
-                    int(self.observations_per_batch / self.num_workers),
-                    self.task_queue,
-                    self.response_queue,
-                    self.stop_queue,
-                    self.game_type,
-                    self.observation_dims,
-                    self.action_dims,
-                    self.actor_network_type,
-                    self.num_actors,
-                    self.save_location
+                    WorkerArgs(
+                        int(self.configs.OBSERVATIONS_PER_BATCH /
+                        self.configs.NUM_WORKERS),
+                        self.task_queue,
+                        self.response_queue,
+                        self.stop_queue,
+                        self.game_type,
+                        self.observation_dims,
+                        self.action_dims,
+                        self.configs.NUM_AGENTS,
+                        self.actor_network_type,
+                        self.critic_network_type,
+                        self.save_location,
+                        self.configs.GAMMA
+                    )
                 ])
                 self.workers.append(process)
                 process.start()
@@ -551,28 +578,24 @@ class MultiModelPPO:
             '''Train the model by running games'''
             # should also save the game type, network type and the training parameters
             self.create_workers()
-
             # initialise variables
-            time_steps = 0
-            batches = 0
             trajectories: Trajectories | None = None
             # run for the specified number of time steps
-            while time_steps < self.total_time_steps:
-                batches += 1
+            while self.training_state.time_steps < self.configs.TOTAL_TIME_STEPS:
                 # create the trajectories using the parallel workers
+                self.save()
                 trajectories = self.create_trajectories_parallel()
-
-                # save the scores, TODO move this to the trajectories class
+                # save the scores
                 with open(f'{self.stats_location}/scores.csv',
                           'a',
                           encoding='utf8') as file:
                     for score in trajectories.scores:
                         file.write(f'{score}\n')
-                self.num_games_played += len(trajectories.scores)
 
-                time_steps += len(trajectories.observations)
-
-                for _ in range(self.updates_per_iteration):
+                self.training_state.time_steps += len(
+                    trajectories.observations)
+                self.training_state.games_played += len(trajectories.scores)
+                for _ in range(self.configs.UPDATES_PER_ITERATION):
                     actor_losses, critic_loss = self.update_policy(
                         trajectories)
                     # save the losses
@@ -583,63 +606,45 @@ class MultiModelPPO:
                             f'{"".join([f"{actor_loss}," for actor_loss in actor_losses])}\
                                 {critic_loss}\n'
                         )
-                    self.save()
-
                 del trajectories
                 gc.collect()
 
             self.stop_workers()
 
-    def load(self, load_location: str):
-        '''Load a pre-trained model'''
-        # TODO store num actors in configs
-        self.actors = [  # type: ignore
-            keras.models.load_model(
-                f'{load_location}/actor_{i}',  custom_objects={'tf': tf}
-            )  # type: ignore
-            for i in range(self.num_actors)
-        ]
-        self.critic = keras.models.load_model(
-            f'{load_location}/critic',  custom_objects={'tf': tf})  # type: ignore
-        self.count = 0
+    def get_values(self, game):
+        '''Get critic values for a game state'''
+        model_input = game.get_model_input()
+        return self.network_controller.critic(
+            tf.convert_to_tensor(
+                np.array(model_input).reshape(-1).reshape(
+                    1, model_input.shape[0]
+                ))
+        ).numpy()[0]
+
+    # def get_values(self, game):
+    #     model_input = game.get_model_input()
+    #     return self.network_controller.get_values(model_input)
 
     def compute_action(self, game: Game):
         '''Compute the actions of a current game state of the loaded model'''
         input_vector = game.get_model_input()
-        input_vector = tf.convert_to_tensor(
-            np.array(input_vector).reshape(-1).reshape(
-                1, len(input_vector)
-            ))
-        observation = input_vector
-        probs = [actor(observation).numpy()[0] for actor in self.actors]
-        # Multiply the probabilities together
-        prob = tf.reduce_prod(probs, axis=0)
-        # Normalise the probabilities
-        prob = prob / (np.sum(prob) + 0.001)
-        # Sample an action from the distribution
-        dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
-        action = dist.sample(1)
-        action = int(action.numpy()[0])
-        if action >= 4:
-            action = 3
-        return action_to_action_array(action), self.critic(input_vector).numpy()[0][0]
+        return self.network_controller.get_prob_action(input_vector)[0]
 
-    def train(self,
+    @classmethod
+    def train(cls,
               game: type[Game],
               actor_network: type[Network],
               critic_network: type[Network],
               save_location='model',
               stats_location='ppo_stats1'):
         '''Train the model on a specific game and network'''
-        trainer = self.Trainer(game,
-                               actor_network,
-                               critic_network,
-                               save_location,
-                               stats_location=stats_location)
+        trainer = cls.Trainer(game,
+                              actor_network,
+                              critic_network,
+                              save_location,
+                              stats_location=stats_location)
         trainer.train()
 
-    actor: keras.Model
-    critic: keras.Model
-
-    def __init__(self) -> None:
-        self.num_actors = 3
+    def __init__(self, load_location) -> None:
+        self.network_controller = self.NetworkController.load_saved_model(
+            load_location)

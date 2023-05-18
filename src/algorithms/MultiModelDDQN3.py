@@ -32,7 +32,6 @@ class Trajectories:
     actions: npt.NDArray
     rewards: npt.NDArray
     discount_cumulative_rewards: npt.NDArray
-    sub_agent_rewards: npt.NDArray
     scores: list[float]
 
 
@@ -132,30 +131,7 @@ def create_trajectories_process(
                 new_discount_cumulative_rewards.append(
                     (discount_cumulative_reward))
 
-            # TODO try this
-            # https://proceedings.neurips.cc/paper/2019/file/97108695bd93b6be52fa0334874c8722-Paper.pdf#cite.grimm2019learning
-            critic_values: ttf.Tensor1 = network_controller.value(
-                np.array(new_observations))
-            values_shifted: ttf.Tensor1 = tf.identity(
-                critic_values)  # type: ignore
-            values_shifted: ttf.Tensor1 = tf.slice(
-                values_shifted, [1, 0], [-1, -1])
-            values_shifted = tf.scalar_mul(args.discount_factor, values_shifted)
-            # remove the last value from values
-            values: ttf.Tensor1 = tf.slice(
-                critic_values, [0, 0], [int(critic_values.shape[0])-1, -1])  # type: ignore
-            new_sub_agent_rewards: npt.NDArray = tf.subtract(
-                values, values_shifted).numpy()
-
-            observations += new_observations[:-1]
-            actions += new_actions[:-1]
-            rewards += new_rewards[:-1]
-            sub_agent_rewards = np.concatenate((sub_agent_rewards, new_sub_agent_rewards))  \
-                if len(sub_agent_rewards) > 0 else new_sub_agent_rewards
-            discount_cumulative_rewards += list(
-                reversed(new_discount_cumulative_rewards))[:-1]
-            scores.append(score)
-            done_flags += ([False] * (len(new_observations) - 1)) + [True]
+            observations += new_observations
 
         trajectories = Trajectories(
             np.array(observations),
@@ -163,7 +139,6 @@ def create_trajectories_process(
             np.array(actions),
             np.array(rewards),
             np.array(discount_cumulative_rewards),
-            np.array(sub_agent_rewards),
             scores
         )
         print('Completed Process')
@@ -333,12 +308,22 @@ class MultiModelDDQN:
             '''Getter for the critic'''
             return self._critic
 
+        @property
+        def targets(self):
+            '''Getter for the critic'''
+            return self._target_actors
+
+        @property
+        def actors(self):
+            '''Getter for the critic'''
+            return self._actors
+
     class Trainer:
         '''
         Train the N Q-Function models for a given game
         '''
 
-        NUM_ACTORS = 1
+        NUM_ACTORS = 3
         INIT_MEMORY = 1000
         NUM_WORKERS = 7
         EPS_MIN = 0.05
@@ -476,18 +461,112 @@ class MultiModelDDQN:
             Train the critic on the discount cumulative rewards
             and the actors on their sub rewards
             '''
-            # TODO find a way to do this without for loops
-            state_q_vals = [
-                self.network_controller.target_q_vals(observation)
-                for observation in trajectories.observations
+
+            # 1. Calculate the state q_vals as a tensor
+                # Calculate the target q_vals as a tensor
+            # 2. Calculate the values as a tensor
+            # 3. Calculate the updated q_vals using value differences
+            # 4. Remove all the q_vals where done
+            # 5. Compute the softmax of the q_vals
+            # 6. Compute the KL divergence sum of all q_val combinations
+            # 7. Calculate the gradients for vale function with loss = mse(dcr, sum(values)) - lambda*KL_divergence
+            # 8. Optimise the q functions
+
+
+            target_state_q_vals = [
+                target(trajectories.observations)
+                for target in self.network_controller.targets
             ]
-            # best_actions = [
-            #     int(
-            #         np.argmax(
-            #             np.sum(next_state_q_vals, axis=0)
-            #         )
-            #     ) for next_state_q_vals in state_q_vals
-            # ]
+            # remove the last first q_val
+            target_state_q_vals = [ tf.slice(
+                q_vals,  [1, 0], [-1, -1])  # type: ignore
+                for  q_vals in target_state_q_vals
+            ]
+            # remove the last q_val
+            current_q_vals = [
+                actor(trajectories.observations)
+                for actor in self.network_controller.actors
+            ]
+            current_q_vals = [ tf.slice(
+                q_vals, [0, 0], [int(q_vals.shape[0])-1, -1])  # type: ignore
+                for  q_vals in current_q_vals
+            ]
+
+            # calculate the critic value of each state
+            critic_values = self.network_controller.critic(
+                trajectories.observations
+            )
+            # find the values of the next state and multiply by the discount factor
+            values_shifted: ttf.Tensor1 = tf.slice(tf.identity(
+                critic_values), [1, 0], [-1, -1])  # type: ignore
+            values_shifted = tf.math.scalar_mul(args.discount_factor, values_shifted) # type: ignore
+            # remove the last value from values
+            values: ttf.Tensor1 = tf.slice(
+                critic_values, [0, 0], [int(critic_values.shape[0])-1, -1])  # type: ignore
+            # calculate the sub agent rewards as Vi - lambda*V'i`
+            sub_agent_rewards: npt.NDArray = tf.subtract(
+                values, values_shifted).numpy()
+
+            for actor_index in range(self.NUM_ACTORS):
+                next_state_target_q_vals = target_state_q_vals[actor_index]
+                current_q_vals = current_q_vals[actor_index]
+                # current_q_vals[action] = reward[actor_index] + self.DISCOUNT_FACTOR * next_state_target_q_vals[action]
+                # index the target q_vals with the next state action
+                target_q_val = tf.gather_nd(
+                    next_state_target_q_vals,
+                    indices=tf.constant([[index+1, action] for index, action in enumerate(trajectories.actions[1:])])
+                )
+
+                tf.tensor_scatter_nd_update(current_q_vals,
+                    tf.constant([[index, action] for index, action in enumerate(trajectories.actions[:-1])]),
+                    target_q_val
+                )
+                # filter out updates on the done frame
+                current_q_vals[actor_index] = tf.gather_nd(
+                    current_q_vals,
+                    indices=tf.constant([[index+1] for index, done in enumerate(trajectories.done_flags) if not done])
+                )
+
+            # calcualte probabilitiy distributions
+            action_distributions = [
+                tf.nn.softmax(q_vals, axis = 1) for q_vals in current_q_vals
+            ]
+
+            sum_kl_divergence = tf.constant(0)
+            for i in range(self.NUM_ACTORS):
+                for j in range(self.NUM_ACTORS):
+                    # calculate i / j
+                    ratio = tf.math.divide(action_distributions[i], action_distributions[j])
+                    log_ratio = tf.math.log(ratio)
+                    # pi*ln(pi/pj)
+                    entropy = tf.math.multiply(action_distributions[i], log_ratio)
+                    sum_entropy = tf.reduce_sum(entropy)
+                    sum_kl_divergence = tf.math.add(sum_kl_divergence, sum_entropy)
+
+
+            # train the critic
+            with tf.GradientTape() as critic_tape:
+                critic_tape.watch(
+                    self.network_controller.critic.model.trainable_variables)
+                critic_values = self.network_controller.value(
+                    trajectories.observations)
+                values = tf.reduce_sum(critic_values, axis=1)
+                discount_cumulative_rewards = tf.reshape(
+                    trajectories.discount_cumulative_rewards,
+                    (len(trajectories.discount_cumulative_rewards),)
+                )
+                critic_loss = 0.5 * \
+                    kls.mean_squared_error(discount_cumulative_rewards, values) - \
+                    0.1 * sum_kl_divergence
+
+            critic_gradients = critic_tape.gradient(
+                critic_loss, self.network_controller.critic.model.trainable_variables)
+            self.network_controller.critic_optimiser.apply_gradients(
+                zip(critic_gradients, self.network_controller.critic.model.trainable_variables))
+
+            # TODO apply changes to the actors
+            # filter out the done values
+
 
             for actor_index in range(self.NUM_ACTORS):
                 print('Training actor', actor_index)
@@ -500,19 +579,6 @@ class MultiModelDDQN:
                     target = trajectories.sub_agent_rewards[index][actor_index]
                     action = trajectories.actions[index]
                     if not done:
-                        new_observation = trajectories.observations[index + 1]
-
-                        ###### next action chosen by the current agent ######
-                        # best_action = int(
-                        #     np.argmax(
-                        #         self.network_controller.get_action_q_vals(
-                        #             actor_index, new_observation)
-                        #     )
-                        # )
-                        # target = target + self.DISCOUNT_FACTOR * \
-                        #     self.network_controller.target_reward_for_action(
-                        #         actor_index, new_observation, best_action)
-
                         ###### next action chosen by combined agents ######
                         # This method is better acording to the paper
                         # https://people.eecs.berkeley.edu/~russell/papers/ml03-qdecomp.pdf
