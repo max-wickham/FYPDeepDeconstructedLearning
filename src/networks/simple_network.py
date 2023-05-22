@@ -67,9 +67,17 @@ class SimpleCriticNetwork(Network):
         )
 
 class MultiplicationLayer(Layer):
+    '''Does a matrix multiplication of the input with itself and then appends the input'''
     def __init__(self, input_dims, **kwargs):
         self.input_dims = input_dims
         super(MultiplicationLayer, self).__init__(**kwargs)
+
+    # def get_config(self):
+    #     config = super().get_config().copy()
+    #     config.update({
+    #         'input_dims': self.input_dims,
+    #     })
+    #     return config
 
     # def build(self, input_shape):
     #     '''No trainable variables'''
@@ -79,6 +87,7 @@ class MultiplicationLayer(Layer):
         '''Multiply the inputs together to form a matrix
         and then concatenate with the original input'''
         # n * 8 | 8
+        print('layer',inputs.shape)
         multi_dim = not (len(inputs.shape) == 1 or inputs.shape[0] is None)
         length = inputs.shape[1 if len(inputs.shape) > 1 else 0]
         if inputs.shape[0] is None:
@@ -99,6 +108,7 @@ class MultiplicationLayer(Layer):
             (inputs_reshaped.shape[0],length*length + length))
         if multi_dim:
             outputs = tf.reshape(outputs, (outputs.shape[0], 1, outputs.shape[1]))
+        print(outputs.shape)
         return outputs
 
     def compute_output_shape(self, input_shape):
@@ -117,7 +127,8 @@ class SimpleSwitchNetwork(Network):
         super().__init__(input_dims, output_dim, learning_rate, train, load, model_file)
         model = tf.keras.models.Sequential()
         model.add(keras.layers.Input(input_dims))
-        model.add(MultiplicationLayer(input_dims))
+        # model.add(keras.layers.Input(input_dims))
+        # model.add(MultiplicationLayer(input_dims))
         model.add(keras.layers.Dense(10, activation="relu"))
         model.add(keras.layers.Dense(
             output_dim, activation="softmax"))

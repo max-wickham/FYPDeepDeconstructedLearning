@@ -1,4 +1,5 @@
 '''Implementation of a UI for a game'''
+import math
 import time
 import pickle
 
@@ -79,8 +80,24 @@ class GameUI:
             # else:
             pygame.draw.rect(self.screen, rectangle[3], pygame.Rect(
                 left, top, rectangle[0], rectangle[1]))
-        pygame.draw.rect(self.screen, (255, 255, 0),
-                         pygame.Rect(700, 300, 50, -1*self.critic * 2))
+
+        for rotated_rectangle in draw_information.rotated_rectangles:
+            # Create a surface to draw the rotated rectangle
+            surface = pygame.Surface((rotated_rectangle[0], rotated_rectangle[1]), pygame.SRCALPHA)
+
+            # Draw the rectangle on the surface
+            pygame.draw.rect(surface, rotated_rectangle[4], (0, 0, rotated_rectangle[0], rotated_rectangle[1]))
+
+            # Rotate the surface
+            rotated_surface = pygame.transform.rotate(surface, rotated_rectangle[3] * 180 / math.pi)
+
+            # Get the size and position of the rotated surface
+            rotated_surface_rect = rotated_surface.get_rect()
+            rotated_surface_rect.center = rotated_rectangle[2][0], 600 - rotated_rectangle[2][1]
+            # Blit the rotated surface onto the window
+            self.screen.blit(rotated_surface, rotated_surface_rect)
+        # pygame.draw.rect(self.screen, (255, 255, 0),
+        #                  pygame.Rect(700, 300, 50, -1*self.critic * 2))
         pygame.display.flip()
 
     def get_actions(self) -> list[float]:

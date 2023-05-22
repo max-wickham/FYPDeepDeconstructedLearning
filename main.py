@@ -1,11 +1,12 @@
 import os
 import multiprocessing
 
-from src.algorithms.MultiModelPPO2 import MultiModelPPO2
+from src.algorithms.MultiModelPPO3 import MultiModelPPO3
+from src.games.driving import DrivingGame
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from src.algorithms.MultiModelDDQN import MultiModelDDQN
-from src.networks.simple_network import SimpleActorNetwork, SimpleCriticNetwork, SimpleDDQNNetwork
+from src.networks.simple_network import SimpleActorNetwork, SimpleCriticNetwork, SimpleDDQNNetwork, SimpleSwitchNetwork
 from src.user_interface.ui import GameUI
 from src.games.space_invaders import SpaceInvaders
 from src.games.space_invaders_large import SpaceInvadersLarge
@@ -51,9 +52,10 @@ if __name__ == '__main__':
 
     ########### MultiModelPPO Train
     print('Starting Training')
-    MultiModelPPO2.train(SpaceInvadersLarge, SimpleActorNetwork, SimpleCriticNetwork,
-        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model2_adv6',
-        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model2_adv6_stats')
+    MultiModelPPO3.Trainer.Configs.GAMMA = 0.999
+    MultiModelPPO3.train(DrivingGame, SimpleActorNetwork, SimpleCriticNetwork,SimpleSwitchNetwork,
+        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/driving_multi_model',
+        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/driving_multi_model_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()

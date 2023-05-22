@@ -6,7 +6,7 @@ source activate py311
 export first_run=True
 echo "Running"
 i=0
-while [ $i -ne 100 ]
+while [ $i -ne 1000 ]
 do
         i=$(($i+1))
         python $HOME/FYPDeepDeconstructedLearning/main.py
@@ -17,4 +17,4 @@ mkdir $WORK/$PBS_JOBID
 cp * $WORK/$PBS_JOBID
 
 
-### #PBS -l select=1:ncpus=4:mem=8gb:ngpus=1:gpu_type=RTX6000
+### ##PBS -l select=1:ncpus=11:mem=30gb

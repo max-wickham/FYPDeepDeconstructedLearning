@@ -11,8 +11,8 @@ Layer = keras.layers.Layer
 Adam = tf.keras.optimizers.Adam
 kls = tf.keras.losses
 
-class SimpleActorNetwork(Network):
-    '''Simple Neural network'''
+class LargeSimpleActorNetwork(Network):
+    '''Large Simple Neural network'''
 
     def __init__(self,
                  input_dims: int,
@@ -39,8 +39,8 @@ class SimpleActorNetwork(Network):
         )
 
 
-class SimpleCriticNetwork(Network):
-    '''Simple Neural network'''
+class LargeSimpleCriticNetwork(Network):
+    '''Large Simple Neural network'''
 
     def __init__(self,
                  input_dims: int,

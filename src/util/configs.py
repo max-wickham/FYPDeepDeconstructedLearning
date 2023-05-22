@@ -14,4 +14,4 @@ class DataclassSaveMixin(BaseModel):
     def save(self, location):
         '''Store Configs'''
         with open(location, 'w', encoding='utf8') as file:
-            file.write(json.dumps(self.dict()))
+            file.write(json.dumps(self.dict(), indent=4))

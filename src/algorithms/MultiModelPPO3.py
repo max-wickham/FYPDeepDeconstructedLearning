@@ -10,6 +10,7 @@ of agents in the previous frame as inputs.
 '''
 from src.interfaces.game import Game
 from src.interfaces.network import Network
+from src.networks.simple_network import MultiplicationLayer
 from src.util.configs import DataclassSaveMixin
 from contextlib import ExitStack
 import gc
@@ -162,7 +163,7 @@ def create_trajectories_process(
             discount_cumulative_reward = 0
             # reverse the rewards and calculate the discount cumulative reward
             for reward in reversed(new_rewards):
-                discount_cumulative_reward = reward + discount_cumulative_reward * 0.95
+                discount_cumulative_reward = reward + discount_cumulative_reward * args.discount_factor
                 new_discount_cumulative_rewards.append(
                     (discount_cumulative_reward))
 
@@ -241,6 +242,7 @@ class MultiModelPPO3:
             self._actors: list[actor_network] = [actor_network(
                 (self.input_dims + output_dims * output_dims), output_dims * output_dims) for _ in range(num_actors)]
             self._switch = switch_network(
+                pow(output_dims * output_dims * num_actors, 2) +
                 output_dims * output_dims * num_actors, output_dims * output_dims)
             # takes an observation and outputs a value
             self._critic = critic_network((input_dims), num_actors)
@@ -274,17 +276,21 @@ class MultiModelPPO3:
             self.input_dims = model_configs['input_dims']
             self.output_dims = model_configs['output_dims']
             self._actors = [Network(
-                model_configs['input_dims'] +
+                self.input_dims +
                 self.output_dims * self.output_dims,
-                model_configs['output_dims']
-            ) for i in range(model_configs['num_actors'])]
+                self.output_dims
+            ) for i in range(self._num_actors)]
             for i, actor in enumerate(self._actors):
                 actor.load(f'{load_location}/actor_{i}')
             self._critic = Network(
-                model_configs['input_dims'],
-                model_configs['output_dims']
+                self.input_dims,
+                self._num_actors
             )
             self._critic.load(f'{load_location}/critic')
+            self._switch = Network(
+                pow(self.output_dims * self.output_dims * self._num_actors, 2) +
+                self.output_dims * self.output_dims * self._num_actors, self.output_dims * self.output_dims)
+            self._switch.load(f'{load_location}/switch')
 
         def save(self, save_location: str):
             '''Save the current models'''
@@ -297,20 +303,50 @@ class MultiModelPPO3:
                         'input_dims': self.input_dims,
                         'output_dims': self.output_dims,
                     }
-                ))
+                , indent=4))
             for i, actor in enumerate(self._actors):
                 actor.model.save(f'{save_location}/actor_{i}')
             self._critic.model.save(f'{save_location}/critic')
+            self._switch.model.save(f'{save_location}/switch')
+
+        def expand_probs(self, inputs, *args, **kwargs):
+            '''Multiply the inputs together to form a matrix
+            and then concatenate with the original input'''
+            # n * 8 | 8
+            multi_dim = not (len(inputs.shape) == 1 or inputs.shape[0] is None)
+            length = inputs.shape[1 if len(inputs.shape) > 1 else 0]
+            if inputs.shape[0] is None:
+                # None * 8
+                inputs = tf.reshape(inputs,(length,))
+            # n * 8 * 1 | 8 * 1
+            inputs_reshaped = tf.expand_dims(inputs, axis=len(inputs.shape))
+            if len(inputs_reshaped.shape) == 2:
+                # 8 * 1
+                inputs_reshaped = tf.expand_dims(inputs_reshaped, axis=0)
+                # 1 * 8 * 1
+            inputs_transposed = tf.reshape(inputs_reshaped, (inputs_reshaped.shape[0], 1, length))
+            multiplication_matrix  = tf.matmul(inputs_reshaped, inputs_transposed)
+            multiplication_array = tf.reshape(multiplication_matrix,
+            (inputs_reshaped.shape[0], length*length,1))
+            concatenated_response = tf.concat([inputs_reshaped, multiplication_array], 1)
+            outputs = tf.reshape(concatenated_response,
+                (inputs_reshaped.shape[0],length*length + length))
+            if multi_dim:
+                outputs = tf.reshape(outputs, (outputs.shape[0], 1, outputs.shape[1]))
+            return outputs
 
         def get_prob_action(self, observation: npt.NDArray) -> tuple[list[npt.NDArray], int]:
             '''Returns the probability of
             each action combination and an action sampled from this distribution'''
             # Get the probability of each action from each sub agent
+            if isinstance(observation, np.ndarray):
+                observation = tf.convert_to_tensor(observation, dtype=tf.float32)
+                observation = tf.expand_dims(observation, 0)
             probs = [actor(np.concatenate((observation.numpy()[0], self.last_output))).numpy()[
                 0] for actor in self._actors]
             # Multiply the probabilities together
             probs_input = tf.concat(probs, 0)
-            prob: ttf.Tensor1 = self._switch.model(probs_input)  # type: ignore
+            prob: ttf.Tensor1 = self._switch.model(self.expand_probs(probs_input))  # type: ignore
             self.last_output = prob.numpy()[0]
             # # Sample an action from the distribution
             dist = tfp.distributions.Categorical(probs=prob, dtype=tf.float32)
@@ -347,15 +383,16 @@ class MultiModelPPO3:
         '''Train a PPO model'''
         class Configs(DataclassSaveMixin):
             '''Training Parameters'''
-            NUM_WORKERS: int = 1
-            TOTAL_TIME_STEPS: int = 600000
-            OBSERVATIONS_PER_BATCH: int = 6000
+            NUM_WORKERS: int = 7
+            TOTAL_TIME_STEPS: int = 600000 # this is for one run of the program
+            OBSERVATIONS_PER_BATCH: int = 3000
             NUM_AGENTS: int = 3
             UPDATES_PER_ITERATION: int = 2
-            GAMMA: float = 0.95
+            GAMMA: float = 0.999
             CLIP: float = 0.2
             REPEAT_ACTION_NUM: int = 3
-            GAMES_TO_TRAIN_OVER: int = 1000
+            GAMES_TO_TRAIN_OVER: int = 500
+            ENTROPY_SCALAR = 0.005
 
         class TrainingState(DataclassSaveMixin):
             '''Current Training State'''
@@ -492,7 +529,7 @@ class MultiModelPPO3:
             surrogate_1 = tf.stack(surrogate_1)
             surrogate_2 = tf.stack(surrogate_2)
             loss = tf.math.negative(tf.reduce_mean(
-                tf.math.minimum(surrogate_1, surrogate_2)) + 0.001 * entropy)
+                tf.math.minimum(surrogate_1, surrogate_2)) + self.ENTROPY_SCALAR * entropy)
             return loss
 
         def update_policy(self, trajectories: Trajectories):
@@ -534,12 +571,14 @@ class MultiModelPPO3:
                         for actor in self.network_controller.actors
                     ]  # type: ignore
                     sub_probabilities_combined = self.network_controller.switch(
-                        tf.concat(sub_probabilities, 1), training=True, multi_dim=True # type: ignore
+                        self.network_controller.expand_probs(tf.concat(sub_probabilities, 1)),
+                        training=True, multi_dim=True # type: ignore
                     ) # type: ignore
                     sub_probabilities.append(
-                        tf.reshape(sub_probabilities_combined,
-                            (sub_probabilities_combined.shape[0], sub_probabilities_combined.shape[2])
-                        )
+                        sub_probabilities_combined
+                        # tf.reshape(sub_probabilities_combined,
+                        #     (sub_probabilities_combined.shape[0], sub_probabilities_combined.shape[2])
+                        # )
                     )
                     # get a set of state values using the critic for each actor
                     values = self.network_controller.critic(
@@ -565,9 +604,9 @@ class MultiModelPPO3:
                     actor_loss, actor.model.trainable_variables)
                 critic_gradients = critic_tape.gradient(
                     critic_loss, self.network_controller.critic.model.trainable_variables)
-
+                print(index < self.configs.NUM_AGENTS)
                 (self.network_controller.actor_optimisers[index] if index < self.configs.NUM_AGENTS
-                else self.network_controller.critic_optimiser).apply_gradients(
+                else self.network_controller.switch_optimiser).apply_gradients(
                     zip(actor_gradient, actor.model.trainable_variables)
                 )
                 self.network_controller.critic_optimiser.apply_gradients(
@@ -587,9 +626,11 @@ class MultiModelPPO3:
             with open(f'{self.save_location}/configs.json', 'w', encoding='utf8') as file:
                 file.write(json.dumps({
                     'game_type': str(self.game_type),
-                    'network_type': str(self.actor_network_type),
+                    'actor_network_type': str(self.actor_network_type),
+                    'critic_network_type': str(self.critic_network_type),
+                    'switch_network_type': str(self.switch_network_type),
                     'algo_info': MultiModelPPO3.INFO
-                }))
+                }, indent=4))
             self.configs.save(f'{self.save_location}/training_configs.json')
             self.training_state.save(
                 f'{self.save_location}/training_state.json')
@@ -682,7 +723,8 @@ class MultiModelPPO3:
     def compute_action(self, game: Game):
         '''Compute the actions of a current game state of the loaded model'''
         input_vector = game.get_model_input()
-        return self.network_controller.get_prob_action(input_vector)[0]
+        action = self.network_controller.get_prob_action(input_vector)[1]
+        return action_to_action_array(action)
 
     @classmethod
     def train(cls,

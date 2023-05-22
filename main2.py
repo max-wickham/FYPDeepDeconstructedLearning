@@ -52,9 +52,13 @@ if __name__ == '__main__':
 
     ########### MultiModelPPO Train
     print('Starting Training')
+    MultiModelPPO3.Trainer.Configs.GAMMA = 0.95
+    MultiModelPPO3.Trainer.Configs.ENTROPY_SCALAR = 0.001
     MultiModelPPO3.train(SpaceInvadersLarge, SimpleActorNetwork, SimpleCriticNetwork,SimpleSwitchNetwork,
         save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model3_adv',
         stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model3_adv_stats')
+        # save_location = f'./models/test',
+        # stats_location= f'./models/test_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()

@@ -318,8 +318,8 @@ class MultiModelPPO2:
         class Configs(DataclassSaveMixin):
             '''Training Parameters'''
             NUM_WORKERS: int = 7
-            TOTAL_TIME_STEPS: int = 600000
-            OBSERVATIONS_PER_BATCH: int = 6000
+            TOTAL_TIME_STEPS: int = 300000
+            OBSERVATIONS_PER_BATCH: int = 3000
             NUM_AGENTS: int = 3
             UPDATES_PER_ITERATION: int = 2
             GAMMA: float = 0.99
