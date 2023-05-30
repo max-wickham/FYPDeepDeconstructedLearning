@@ -2,7 +2,9 @@ import os
 import multiprocessing
 
 from src.algorithms.MultiModelPPO3 import MultiModelPPO3
+from src.algorithms.MultiModelPPO4 import MultiModelPPO4
 from src.games.driving import DrivingGame
+from src.networks.ppo4_networks import PPO4ActorNetwork
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from src.algorithms.MultiModelDDQN import MultiModelDDQN
@@ -51,11 +53,16 @@ if __name__ == '__main__':
 
 
     ########### MultiModelPPO Train
-    print('Starting Training')
-    MultiModelPPO3.Trainer.Configs.GAMMA = 0.999
-    MultiModelPPO3.train(DrivingGame, SimpleActorNetwork, SimpleCriticNetwork,SimpleSwitchNetwork,
-        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/driving_multi_model',
-        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/driving_multi_model_stats')
+    # print('Starting Training')
+    # MultiModelPPO3.Trainer.Configs.GAMMA = 0.999
+    # MultiModelPPO3.train(DrivingGame, SimpleActorNetwork, SimpleCriticNetwork,SimpleSwitchNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/driving_multi_model',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/driving_multi_model_stats')
+
+    MultiModelPPO4.Trainer.Configs.GAMMA = 0.993
+    MultiModelPPO4.train(SpaceInvadersLarge, PPO4ActorNetwork, SimpleCriticNetwork,
+        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multp_model_ppo4_space',
+        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multp_model_ppo4_space_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()

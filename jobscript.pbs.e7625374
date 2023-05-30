@@ -1,0 +1,42 @@
+2023-05-29 14:25:04.167075: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-05-29 14:25:05.643464: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-05-29 14:25:05.649216: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-05-29 14:25:19.407174: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+2023-05-29 14:25:48.742501: E tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:266] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+WARNING:absl:`lr` is deprecated in Keras optimizer, please use `learning_rate` or use the legacy optimizer, e.g.,tf.keras.optimizers.legacy.Adam.
+WARNING:absl:`lr` is deprecated in Keras optimizer, please use `learning_rate` or use the legacy optimizer, e.g.,tf.keras.optimizers.legacy.Adam.
+WARNING:absl:`lr` is deprecated in Keras optimizer, please use `learning_rate` or use the legacy optimizer, e.g.,tf.keras.optimizers.legacy.Adam.
+WARNING:absl:`lr` is deprecated in Keras optimizer, please use `learning_rate` or use the legacy optimizer, e.g.,tf.keras.optimizers.legacy.Adam.
+Traceback (most recent call last):
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/main.py", line 63, in <module>
+    MultiModelPPO4.train(SpaceInvadersLarge, PPO4ActorNetwork, SimpleCriticNetwork,
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/src/algorithms/MultiModelPPO4.py", line 799, in train
+    trainer=cls.Trainer(game,
+            ^^^^^^^^^^^^^^^^^
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/src/algorithms/MultiModelPPO4.py", line 412, in __init__
+    os.mkdir(stats_location)
+FileNotFoundError: [Errno 2] No such file or directory: '/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/models/multp_model_ppo4_space_stats'
+2023-05-29 14:25:55.617048: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-05-29 14:25:55.706246: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-05-29 14:25:55.706861: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-05-29 14:26:07.017794: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT
+Traceback (most recent call last):
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/main.py", line 63, in <module>
+    MultiModelPPO4.train(SpaceInvadersLarge, PPO4ActorNetwork, SimpleCriticNetwork,
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/src/algorithms/MultiModelPPO4.py", line 799, in train
+    trainer=cls.Trainer(game,
+            ^^^^^^^^^^^^^^^^^
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/src/algorithms/MultiModelPPO4.py", line 422, in __init__
+    self.configs = self.Configs.load(
+                   ^^^^^^^^^^^^^^^^^^
+  File "/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/src/util/configs.py", line 11, in load
+    with open(location, 'r', encoding='utf8') as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/rds/general/user/mw1919/home/FYPDeepDeconstructedLearning/models/multp_model_ppo4_space/training_configs.json'
+2023-05-29 14:26:34.563661: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-05-29 14:26:34.662529: I tensorflow/tsl/cuda/cudart_stub.cc:28] Could not find cuda drivers on your machine, GPU will not be used.
+2023-05-29 14:26:34.663277: I tensorflow/core/platform/cpu_feature_guard.cc:182] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-05-29 14:26:45.309288: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Could not find TensorRT

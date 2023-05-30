@@ -1,8 +1,11 @@
 import os
 import multiprocessing
 
-from src.algorithms.MultiModelPPO2 import MultiModelPPO2
 from src.algorithms.MultiModelPPO3 import MultiModelPPO3
+from src.algorithms.MultiModelPPO4 import MultiModelPPO4
+from src.games.driving import DrivingGame
+from src.networks.ppo4_networks import PPO4ActorNetwork
+from src.util.configs import DataclassSaveMixin
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from src.algorithms.MultiModelDDQN import MultiModelDDQN
@@ -49,16 +52,45 @@ if __name__ == '__main__':
     # ui.run()
     # # ui.playback()
 
+    class Configs(DataclassSaveMixin):
+        '''Training Parameters'''
+        NUM_WORKERS: int = 7
+        # this will be multiplied by 1000
+        TOTAL_TIME_STEPS: int = 600000
+        OBSERVATIONS_PER_BATCH: int = 3000
+        NUM_AGENTS: int = 2
+        UPDATES_PER_ITERATION: int = 1
+        GAMMA: float = 0.993
+        CLIP: float = 0.2
+        REPEAT_ACTION_NUM: int = 3
+        GAMES_TO_TRAIN_OVER: int = 200
+        ENTROPY_SCALAR = 0.001
+    MultiModelPPO4.Trainer.Configs = Configs
+    MultiModelPPO4.train(SpaceInvadersLarge, PPO4ActorNetwork, SimpleCriticNetwork,
+        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model4_2',
+        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model4_2_stats')
+
 
     ########### MultiModelPPO Train
-    print('Starting Training')
-    MultiModelPPO3.Trainer.Configs.GAMMA = 0.95
-    MultiModelPPO3.Trainer.Configs.ENTROPY_SCALAR = 0.001
-    MultiModelPPO3.train(SpaceInvadersLarge, SimpleActorNetwork, SimpleCriticNetwork,SimpleSwitchNetwork,
-        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model3_adv',
-        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model3_adv_stats')
-        # save_location = f'./models/test',
-        # stats_location= f'./models/test_stats')
+    # print('Starting Training')
+    # class Configs(DataclassSaveMixin):
+    #     '''Training Parameters'''
+    #     NUM_WORKERS: int = 7
+    #     TOTAL_TIME_STEPS: int = 600000 # this is for one run of the program
+    #     OBSERVATIONS_PER_BATCH: int = 3000
+    #     NUM_AGENTS: int = 3
+    #     UPDATES_PER_ITERATION: int = 2
+    #     GAMMA: float = 0.95
+    #     CLIP: float = 0.2
+    #     REPEAT_ACTION_NUM: int = 3
+    #     GAMES_TO_TRAIN_OVER: int = 500
+    #     ENTROPY_SCALAR = 0.001
+    # MultiModelPPO3.Trainer.Configs = Configs
+    # MultiModelPPO3.train(SpaceInvadersLarge, SimpleActorNetwork, SimpleCriticNetwork,SimpleSwitchNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model3_adv',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/multi_model3_adv_stats')
+    #     # save_location = f'./models/test',
+    #     # stats_location= f'./models/test_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()

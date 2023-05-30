@@ -529,7 +529,7 @@ class MultiModelPPO3:
             surrogate_1 = tf.stack(surrogate_1)
             surrogate_2 = tf.stack(surrogate_2)
             loss = tf.math.negative(tf.reduce_mean(
-                tf.math.minimum(surrogate_1, surrogate_2)) + self.ENTROPY_SCALAR * entropy)
+                tf.math.minimum(surrogate_1, surrogate_2)) + self.configs.ENTROPY_SCALAR * entropy)
             return loss
 
         def update_policy(self, trajectories: Trajectories):
@@ -538,6 +538,7 @@ class MultiModelPPO3:
             Use stochastic gradient descent using ADAM
             '''
             try:
+            # if True:
                 discount_cumulative_rewards = tf.reshape(
                     trajectories.discount_cumulative_rewards,
                     (len(trajectories.discount_cumulative_rewards),)
