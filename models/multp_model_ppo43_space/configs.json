@@ -1,0 +1,5 @@
+{
+    "game_type": "<class 'src.games.space_invaders_large.SpaceInvadersLarge'>",
+    "network_type": "<class 'src.networks.ppo4_networks.PPO4ActorNetwork'>",
+    "algo_info": "\n    MultiModelPPO43 with cyclic training,\n    Uses a voting system to decide which agent to listen to,\n    each agent gives an urgency score to its actions and the agent with the highest urgency score is used.\n    The urgency score is subtracted from the reward for an agent however, encouraging agents to only take control when needed.\n\n    Uses better prob calc for normal distributions\n    "
+}

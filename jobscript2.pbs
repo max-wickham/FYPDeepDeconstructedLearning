@@ -1,9 +1,9 @@
 #! /bin/bash
 #PBS -l walltime=40:00:00
-#PBS -l select=1:ncpus=11:mem=30gb
+#PBS -l select=1:ncpus=10:mem=30gb
 module load anaconda3/personal
 source activate py311
-export first_run=false
+export LOAD=false
 echo "Running"
 i=0
 while [ $i -ne 1000 ]

@@ -1,0 +1,34 @@
+Running
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[-4.057044   -4.070781   -4.0170493 ]
+ [ 0.9759781   1.0249262   1.0193735 ]
+ [ 0.5608308   0.51380515  0.5749752 ]
+ ...
+ [ 0.41736907  0.33856663  0.40861067]
+ [ 0.37944978  0.43014345  0.34398445]
+ [ 0.42143294  0.46772507  0.37546307]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00044318914>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0016481328>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013914397>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0018663753>]
+Good Loss
+tf.Tensor(
+[[-3.8826764  -3.8725045  -3.8443942 ]
+ [ 0.09043331  0.12432163  0.11018404]
+ [-0.14084591 -0.12887487 -0.16342835]
+ ...
+ [-0.21439701 -0.22100139 -0.22195649]
+ [ 0.08956232  0.08957761  0.02450373]
+ [ 0.4199901   0.4138323   0.42255053]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003389019>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015243706>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015373824>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0020618709>]
+Good Loss
+tf.Tensor(
+[[-3.730139   -3.7396724  -3.7065504 ]
+ [ 0.13962258  0.12700951  0.15105262]
+ [ 0.17358692  0.18275407  0.18491022]
+ ...
+ [-0.69852716 -0.69676626 -0.667587  ]
+ [-0.6969051  -0.66584307 -0.73473465]
+ [-0.84150213 -0.8544438  -0.8093327 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00055707054>, <tf.Tensor: shape=(), dtype=float32, numpy=nan>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0023536715>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0027510913>]

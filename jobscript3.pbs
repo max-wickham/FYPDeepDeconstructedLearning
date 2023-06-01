@@ -3,12 +3,11 @@
 #PBS -l select=1:ncpus=11:mem=30gb
 module load anaconda3/personal
 source activate py311
-export first_run=True
+export LOAD=false
 echo "Running"
 i=0
 while [ $i -ne 1000 ]
 do
-        export LOAD=true
         i=$(($i+1))
         python $HOME/FYPDeepDeconstructedLearning/main3.py
         echo $i

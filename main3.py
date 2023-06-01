@@ -3,6 +3,10 @@ import multiprocessing
 
 from src.algorithms.MultiModelPPO2_2 import MultiModelPPO2
 from src.algorithms.MultiModelPPO3 import MultiModelPPO3
+from src.algorithms.MultiModelPPO43 import MultiModelPPO4
+from src.networks.ppo4_networks import PPO4ActorNetwork
+from src.networks.simple_network import SimpleCriticNetwork
+from src.util.configs import DataclassSaveMixin
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 from src.algorithms.MultiModelDDQN import MultiModelDDQN
@@ -52,9 +56,28 @@ if __name__ == '__main__':
 
     ########### MultiModelPPO Train
     print('Starting Training')
-    MultiModelPPO2.train(SpaceInvadersLarge, LargeSimpleActorNetwork, LargeSimpleCriticNetwork,
-        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/large_ppo2',
-        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/large_ppo2_stats')
+    # MultiModelPPO2.train(SpaceInvadersLarge, LargeSimpleActorNetwork, LargeSimpleCriticNetwork,
+    #     save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/large_ppo2',
+    #     stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/large_ppo2_stats')
+
+    class Configs(DataclassSaveMixin):
+        '''Training Parameters'''
+        NUM_WORKERS: int = 7
+        # this will be multiplied by 1000
+        TOTAL_TIME_STEPS: int = 600000
+        OBSERVATIONS_PER_BATCH: int = 10000
+        NUM_AGENTS: int = 2
+        UPDATES_PER_ITERATION: int = 1
+        GAMMA: float = 0.999
+        CLIP: float = 0.2
+        REPEAT_ACTION_NUM: int = 3
+        GAMES_TO_TRAIN_OVER: int = 1000
+        ENTROPY_SCALAR = 0.001
+        VOTE_ENTROPY_SCALAR = 0.0005
+    MultiModelPPO4.Trainer.Configs = Configs
+    MultiModelPPO4.train(SpaceInvadersLarge, PPO4ActorNetwork, SimpleCriticNetwork,
+        save_location = f'{os.environ["PBS_O_WORKDIR"]}/models/ppo4_with_all_votes_dual',
+        stats_location= f'{os.environ["PBS_O_WORKDIR"]}/models/ppo4_with_all_votes_dual_stats')
 
     # # # ########### MultiModelPPO Play
     # multi_model_ppo = MultiModelPPO()

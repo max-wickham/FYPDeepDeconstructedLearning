@@ -5,7 +5,8 @@ with the advantage function calculated by giving the a weight proportional
 to the node value over the summed value of the discount cumulative reward.
 DCR_n = V_n / V_t * DCR
 
-The agents vote on which action to make
+Uses another agents to decide on the best actions to be taken, as well as feeding the decisions
+of agents in the previous frame as inputs.
 '''
 from src.interfaces.game import Game
 from src.interfaces.network import Network
@@ -56,7 +57,7 @@ class Trajectories:
 
 
 def compute_advantage_estimates(observations: npt.NDArray,
-                                votes: list[tuple[float, int]],
+                                votes: list[list[tuple[float, int]]],
                                 network_controller: 'MultiModelPPO4.NetworkController',
                                 discount_cumulative_rewards: npt.NDArray):
     '''Calculate the advantage estimates for a single game'''
@@ -66,18 +67,24 @@ def compute_advantage_estimates(observations: npt.NDArray,
     critic_values = network_controller.get_values(observations).numpy() + 0.01
     val_sum = np.sum(critic_values, axis=1)
     # add the summed critic values to the array
-    val_sum_reshaped = np.reshape(val_sum, (len(val_sum), 1))
-    critic_values = np.concatenate((critic_values, val_sum_reshaped), axis=1)
+    # val_sum_reshaped = np.reshape(val_sum, (len(val_sum), 1))
+    # critic_values = np.concatenate((critic_values, val_sum_reshaped), axis=1)
     scaled_dcr = discount_cumulative_rewards / (val_sum)
     proportional_dcr = critic_values * scaled_dcr[:, np.newaxis]
     advantages = np.subtract(proportional_dcr, critic_values)
     # remove the votes from the advantages
-    for advantage, vote in zip(advantages, votes):
-        advantage[int(vote[1])] -= max(int(vote[0]),0.0)
+    num_agents = advantages.shape[1]
+    advantages = np.hstack((advantages, advantages))
+    print('advantantages',advantages)
+    # print('votes',votes)
+    for advantage, index_votes in zip(advantages, votes):
+        for vote, index in index_votes:
+            advantage[num_agents + index] -= max(vote,0.0)
     # add the standard advantage estimate
     normalised_advantages = (
         advantages - np.mean(advantages, axis=0)) / np.std(advantages, axis=0)
     normalised_advantages[np.isnan(normalised_advantages)] = 0
+
     return normalised_advantages
 
 
@@ -158,13 +165,14 @@ def create_trajectories_process(
                     observation_count += 1
                     frame_dists, frame_actions, frame_votes = network_controller.get_prob_action(
                         observation)
+                    # print('frame_votes', frame_votes)
                 done, reward = game.step(frame_actions)
                 if done or action_repetitions == 0:
                     new_observations.append(observation)
                     new_actions.append(list(frame_actions))
                     new_rewards.append(reward)
                     new_distributions.append(frame_dists)
-                    new_votes.append([frame_vote[0] for frame_vote in frame_votes])
+                    new_votes.append(frame_votes)
                 action_repetitions = (
                     action_repetitions + 1) % ACTION_REPETITIONS
             scores.append(frame)
@@ -197,6 +205,7 @@ def create_trajectories_process(
             # num_agent * n * 5 -> num_agent * n * 1
             advantages = new_advantages if advantages is None else np.concatenate(
                 (advantages, new_advantages))
+
         if advantages is not None:
             trajectories = Trajectories(
                 np.array(observations),
@@ -326,16 +335,18 @@ class MultiModelPPO4:
             # for each actor and each action whether it should take control
             for action_index in range(self.action_dims):
                 votes = [
-                    np.random.normal(actor_output[4*action_index], actor_output[4*action_index + 2])
+                    np.random.normal(actor_output[4*action_index], actor_output[4*action_index + 1])
                     for actor_output in actor_outputs
                 ]
                 actor_index: ActorIndex = int(np.argmax(votes))
                 vote: Vote = votes[actor_index]
                 action_votes.append((vote, actor_index))
-
+            # print('action_votes',action_votes)
             # take the prob distribution for the action for the actor index corresponding to each action
             # then sample the prob distribution to get an action of either 0 or 1
             action_distributions = [
+                # select the actor corresponding to the correct actor index,
+                # then select the distribution corresponding to the action index
                 actor_outputs[action_vote[1]][action_index * 4+2: action_index * 4+4]
                 for action_index, action_vote in enumerate(action_votes)
             ]
@@ -344,7 +355,6 @@ class MultiModelPPO4:
                 probs=distribution, dtype=tf.float32).sample(1)
                 for distribution in action_distributions
             ]
-            # print(action_votes)
             return actor_outputs, actions, action_votes
 
         def get_values(self, observations: npt.NDArray) -> ttf.Tensor1:
@@ -490,7 +500,7 @@ class MultiModelPPO4:
             '''Calculate the actor loss'''
             # the entropy of the probabilities is the log of a probability times the probability
             losses = []
-            print(current_distributions)
+            # print(current_distributions)
             for action_index in range(self.action_dims):
                 action_new_dists = new_distributions[:,action_index*4+2:action_index*4+4]
                 action_cur_dists = current_distributions[:,action_index*4+2:action_index*4+4]
@@ -498,21 +508,26 @@ class MultiModelPPO4:
                     tf.math.multiply(action_new_dists, tf.math.log(action_new_dists))))
                 surrogate_1 = []
                 surrogate_2 = []
+                # action_cur_dists = np.reshape(
+                # action_cur_dists, (action_cur_dists.shape[0], action_cur_dists.shape[2]))
                 current_probs_indexed = tf.convert_to_tensor(
                     np.array([prob[int(action)]
                             for prob, action in zip(action_cur_dists, actions[:,action_index])]), dtype=tf.float32)
+                # print(action_new_dists)
                 new_probs_indexed = tf.gather_nd(
                     action_new_dists,
                     indices=tf.constant([[index, int(action)] for index, action in enumerate(actions[:,action_index])]))
                 ratios = tf.math.divide(new_probs_indexed, current_probs_indexed)
-                surrogate_1 = tf.math.multiply(ratios, advantages)
+                action_advantages = advantages[:,0]
+                surrogate_1 = tf.math.multiply(ratios, action_advantages)
                 surrogate_2 = tf.math.multiply(tf.clip_by_value(
-                    ratios, 1.0 - self.configs.CLIP, 1.0 + self.configs.CLIP), advantages)
+                    ratios, 1.0 - self.configs.CLIP, 1.0 + self.configs.CLIP), action_advantages)
                 surrogate_1 = tf.stack(surrogate_1)
                 surrogate_2 = tf.stack(surrogate_2)
                 loss = tf.math.negative(tf.reduce_mean(
                     tf.math.minimum(surrogate_1, surrogate_2)) + self.configs.ENTROPY_SCALAR * entropy)
                 losses.append(loss)
+
             new_distributions = tf.convert_to_tensor(
                     new_distributions, dtype=tf.float32) # type: ignore
 
@@ -521,7 +536,8 @@ class MultiModelPPO4:
                 action_vote_cur_dists = current_distributions[:,action_index*4:action_index*4+2]
                 action_votes = votes[:,]
 
-                entropy = tf.math.negative(tf.math.log(tf.multiply(action_vote_cur_dists[:,1],action_vote_cur_dists[:,1])))
+                entropy = tf.math.negative(
+                    tf.math.log(tf.multiply(action_vote_cur_dists[:,1],action_vote_cur_dists[:,1])))
                 entropy = tf.clip_by_value(entropy, 0, 1000)
                 entropy = tf.reduce_mean(entropy)
                 surrogate_1 = []
@@ -533,18 +549,25 @@ class MultiModelPPO4:
                 curr_mean, curr_std_dev = tf.squeeze(curr_mean, axis=-1), tf.squeeze(curr_std_dev, axis=-1)
                 new_normal_dist = tfp.distributions.Normal(loc=new_mean, scale=new_std_dev + 0.0001)
                 curr_normal_dist = tfp.distributions.Normal(loc=curr_mean, scale=curr_std_dev + 0.0001)
-                new_pdf_values = new_normal_dist.prob(action_votes)
-                curr_pdf_values = curr_normal_dist.prob(action_votes)
-                print('curr',  curr_pdf_values + 0.0000001)
+                # print('new_mean',new_mean)
+                # print('new_std',new_std_dev)
+                # print('curr_mean',curr_mean)
+                # print('curr_std', curr_std_dev)
+                # print('action_votes',action_votes)
+                new_pdf_values = new_normal_dist.prob(np.array(action_votes[:,0]))
+                curr_pdf_values = curr_normal_dist.prob(np.array(action_votes[:,0]))
+                # print('curr',  curr_pdf_values + 0.0000001)
                 ratios = tf.math.divide(new_pdf_values, curr_pdf_values + 0.0000001)
-                surrogate_1 = tf.math.multiply(ratios, advantages)
+                action_advantages = advantages[:,1]
+                surrogate_1 = tf.math.multiply(ratios, action_advantages)
                 surrogate_2 = tf.math.multiply(tf.clip_by_value(
-                    ratios, 1.0 - self.configs.CLIP, 1.0 + self.configs.CLIP), advantages)
+                    ratios, 1.0 - self.configs.CLIP, 1.0 + self.configs.CLIP), action_advantages)
                 surrogate_1 = tf.stack(surrogate_1)
                 surrogate_2 = tf.stack(surrogate_2)
+                # print(surrogate_1)
+                # print(surrogate_2)
                 loss = tf.math.negative(tf.reduce_mean(
                     tf.math.minimum(surrogate_1, surrogate_2)) + self.configs.VOTE_ENTROPY_SCALAR * entropy)
-                print(entropy)
                 losses.append(loss)
             print(losses)
             return sum(losses)
@@ -582,7 +605,8 @@ class MultiModelPPO4:
             Update the policy using the trajectories and advantage estimates
             Use stochastic gradient descent using ADAM
             '''
-            try:
+            if True:
+            # try:
                 discount_cumulative_rewards = tf.reshape(
                     trajectories.discount_cumulative_rewards,
                     (len(trajectories.discount_cumulative_rewards),)
@@ -608,8 +632,8 @@ class MultiModelPPO4:
                     # get a list of probabilities for each observation for each actor
                     # concatenate the probabilities to the inputs
                     dist_shape = trajectories.distributions.shape
-                    print(trajectories.observations.shape)
-                    print(trajectories.distributions.shape)
+                    # print(trajectories.observations.shape)
+                    # print(trajectories.distributions.shape)
                     obv_dists = np.concatenate((trajectories.observations,
                                     np.reshape(trajectories.distributions,
                                         (dist_shape[0], 1, dist_shape[1] * dist_shape[2])))
@@ -653,16 +677,17 @@ class MultiModelPPO4:
                     critic_loss=kls.mean_squared_error(
                         discount_cumulative_rewards, values_summed)
                     # here the sub probs will give the actual probs outputted by the switch at the last index
-                    print('index', index)
-                    print(trajectories.distributions.shape)
+                    # print('index', index)
+                    # print(trajectories.distributions.shape)
                     actor_loss=self.actor_loss(
                         sub_distributions,
                         trajectories.distributions[:,index,:],
                         trajectories.votes,
                         trajectories.actions,
-                        advantage_estimates[:, index])
+                        tf.transpose(tf.gather(tf.transpose(advantage_estimates), (index, index + self.configs.NUM_AGENTS)))
+                    )
                     #
-                print(actor_loss)
+                # print(actor_loss)
                 if tf.math.is_nan(actor_loss).numpy() or tf.math.is_nan(critic_loss).numpy():
                     raise Exception
                 # calculate and apply gradients
@@ -670,18 +695,18 @@ class MultiModelPPO4:
                     actor_loss, actor.model.trainable_variables)
                 critic_gradients=critic_tape.gradient(
                     critic_loss, self.network_controller.critic.model.trainable_variables)
-                print(index < self.configs.NUM_AGENTS)
+                # print(index < self.configs.NUM_AGENTS)
                 self.network_controller.actor_optimisers[index].apply_gradients(
                     zip(actor_gradient, actor.model.trainable_variables)
                 )
                 self.network_controller.critic_optimiser.apply_gradients(
                     zip(critic_gradients, self.network_controller.critic.model.trainable_variables))
-                print('Good Loss')
+                # print('Good Loss')
                 return actor_losses, critic_loss
-            except:
-                ...
-                print('Bad Loss')
-                return [0 for _ in range(self.configs.NUM_AGENTS)], 0
+            # except:
+            #     ...
+            #     print('Bad Loss')
+            #     return [0 for _ in range(self.configs.NUM_AGENTS)], 0
 
         def save(self):
             '''Save the trained models'''
@@ -777,6 +802,10 @@ class MultiModelPPO4:
                     1, model_input.shape[0]
                 ))
         ).numpy()[0]
+
+    # def get_values(self, game):
+    #     model_input = game.get_model_input()
+    #     return self.network_controller.get_values(model_input)
 
     def compute_action(self, game: Game):
         '''Compute the actions of a current game state of the loaded model'''

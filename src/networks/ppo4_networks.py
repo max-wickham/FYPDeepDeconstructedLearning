@@ -36,8 +36,8 @@ class PPO4ActorNetwork(Network):
             2, activation="softmax")(final_dense_action)
             final_dense_vote = keras.layers.Dense(3, activation="relu")(dense_layer3)
             output_layer_vote = keras.layers.Dense(
-            2, activation="relu")(final_dense_vote)
-            output_layer_vote_increased = keras.layers.Lambda(lambda x: x + 0.5)(output_layer_vote)
+            2, activation="sigmoid")(final_dense_vote)
+            output_layer_vote_increased = keras.layers.Lambda(lambda x: x + 0.0001)(output_layer_vote)
             output_layers += [output_layer_vote_increased,output_layer_action]
 
         output_layer = keras.layers.Concatenate()(output_layers)

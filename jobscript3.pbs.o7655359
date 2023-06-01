@@ -1,0 +1,3726 @@
+Running
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[ 0.9280118   0.92866     0.926614  ]
+ [ 0.29709587  0.29755175  0.29885402]
+ [ 0.7559441   0.75691336  0.7549577 ]
+ ...
+ [-1.3780292  -1.3954734  -1.4019971 ]
+ [-1.0853497  -1.0996892  -1.0626237 ]
+ [-1.6105452  -1.6115171  -1.6231798 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034649577>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034720218>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00067276537>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006900141>]
+Good Loss
+tf.Tensor(
+[[ 0.27504504  0.27515814  0.27507174]
+ [ 0.24928638  0.24955001  0.24956016]
+ [ 0.19421113  0.19417137  0.19404933]
+ ...
+ [-0.4247798  -0.42393067 -0.42558664]
+ [-0.03127573 -0.03116961 -0.0309564 ]
+ [-0.03542264 -0.03518418 -0.03447763]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036552385>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034726906>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070096634>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069572026>]
+Good Loss
+tf.Tensor(
+[[-0.0960696  -0.09606538 -0.09606656]
+ [-0.09832037 -0.09831923 -0.09831668]
+ [-0.09714393 -0.09714419 -0.09714253]
+ ...
+ [-0.43699738 -0.43692017 -0.43633258]
+ [-0.4689363  -0.46996036 -0.46910685]
+ [-0.43948    -0.44031274 -0.4391553 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034092407>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003463898>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068753585>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070037576>]
+Good Loss
+tf.Tensor(
+[[-0.24785121 -0.24776998 -0.24784835]
+ [-0.2133943  -0.21345282 -0.21341084]
+ [-0.23430572 -0.23425508 -0.23430501]
+ ...
+ [ 0.19564804  0.19862883  0.19343016]
+ [ 0.08204927  0.08281006  0.08223713]
+ [ 0.01851176  0.0216234   0.02110052]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003465134>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034574282>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068939396>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007041655>]
+Good Loss
+tf.Tensor(
+[[ 0.08031965  0.08030804  0.08034293]
+ [ 0.11600636  0.11596864  0.11601837]
+ [-0.20930657 -0.20926408 -0.20934346]
+ ...
+ [ 2.177246    2.1786098   2.173197  ]
+ [-0.22573379 -0.22134458 -0.22106716]
+ [-1.4026517  -1.3977754  -1.4012092 ]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034607828>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034895746>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006827768>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069776794>]
+Good Loss
+tf.Tensor(
+[[0.13703808 0.13703805 0.1370385 ]
+ [0.1371652  0.13716461 0.1371653 ]
+ [0.13877265 0.13877225 0.13877276]
+ ...
+ [0.21621983 0.21602288 0.21607836]
+ [0.13232394 0.13209254 0.132061  ]
+ [0.18851703 0.18895343 0.18910423]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034643343>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034930478>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068536977>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006985663>]
+Good Loss
+tf.Tensor(
+[[-0.16117054 -0.16117053 -0.16117059]
+ [-0.16280131 -0.16280128 -0.16280138]
+ [-0.1615156  -0.16151553 -0.16151556]
+ ...
+ [-1.7109355  -1.7109677  -1.7108595 ]
+ [-0.21282828 -0.2127686  -0.21281749]
+ [-0.86875856 -0.8687956  -0.8687725 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003460212>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034580013>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069421757>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007031972>]
+Good Loss
+tf.Tensor(
+[[0.13278382 0.13281941 0.13282643]
+ [0.18516499 0.18512416 0.18523034]
+ [0.7283776  0.7283371  0.7284444 ]
+ ...
+ [0.14624925 0.14619002 0.14636299]
+ [0.18758944 0.1875236  0.1875671 ]
+ [0.14721382 0.1471187  0.14713554]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034647484>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003460148>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068993925>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007051579>]
+Good Loss
+tf.Tensor(
+[[-0.57684124 -0.57618654 -0.5766807 ]
+ [-0.31181026 -0.31217083 -0.31197184]
+ [ 1.0278399   1.0279508   1.0285152 ]
+ ...
+ [ 0.3445776   0.38974506  0.37249175]
+ [-0.67279243 -0.7865393  -0.42448735]
+ [ 1.3895845   1.1219959   1.3054836 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034865618>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034704976>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006923469>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068896805>]
+Good Loss
+tf.Tensor(
+[[-0.21586001 -0.21589592 -0.21578452]
+ [-0.40173885 -0.40131173 -0.4008153 ]
+ [ 3.1470819   3.147035    3.1472654 ]
+ ...
+ [ 0.6292831   0.72153187  0.5728717 ]
+ [-1.5073613  -1.4650121  -1.3638784 ]
+ [ 0.44252634  0.37898222  0.49145594]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035009682>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034675785>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006922387>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007050959>]
+Good Loss
+tf.Tensor(
+[[-0.17785127 -0.17818515 -0.17820041]
+ [-0.10816601 -0.1116567  -0.10777492]
+ [ 0.00400568  0.00746294  0.0034479 ]
+ ...
+ [ 0.54646695  0.5493182   0.5610593 ]
+ [ 0.49477577  0.509383    0.46414256]
+ [ 0.49406606  0.4683539   0.49092093]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035158047>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034609434>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069277>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000691543>]
+Good Loss
+tf.Tensor(
+[[-0.63156104 -0.6322045  -0.633682  ]
+ [-0.31861478 -0.31932214 -0.31666437]
+ [-0.7761321  -0.7788034  -0.77670264]
+ ...
+ [ 0.14621128  0.11358919  0.16608429]
+ [ 0.07565556  0.10611084  0.10247728]
+ [ 0.12724072  0.07140825  0.15146844]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035341593>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034666693>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069164654>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069157424>]
+Good Loss
+tf.Tensor(
+[[ 0.48199117  0.4823444   0.48772308]
+ [-0.00689533 -0.01402216 -0.0103996 ]
+ [ 0.60938305  0.60581774  0.60671103]
+ ...
+ [-1.586947   -1.5803115  -1.5958223 ]
+ [-1.6262621  -1.617052   -1.6181253 ]
+ [-1.6500791  -1.6614933  -1.6653136 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003467039>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033082932>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006814058>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071129313>]
+Good Loss
+tf.Tensor(
+[[ 1.1829113  1.1764748  1.169204 ]
+ [ 1.3093424  1.3076369  1.3146863]
+ [ 1.1061715  1.0996991  1.1089582]
+ ...
+ [-0.8945252 -0.9793101 -0.8378663]
+ [-1.3314958 -1.2951764 -1.386556 ]
+ [-1.6006702 -1.5565488 -1.6278499]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034855088>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034103473>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071548024>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071274815>]
+Good Loss
+tf.Tensor(
+[[ 0.95418537  0.95359683  0.96174294]
+ [ 0.83678174  0.8435643   0.83610755]
+ [ 1.1075859   1.108559    1.0904146 ]
+ ...
+ [-1.5855564  -1.5956205  -1.6004033 ]
+ [-1.6618879  -1.6580597  -1.6671458 ]
+ [-1.7039069  -1.6904681  -1.7193004 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034438432>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036714444>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072797306>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070010225>]
+Good Loss
+tf.Tensor(
+[[ 1.8115937  1.8184952  1.8043867]
+ [ 1.7686994  1.7692857  1.7602024]
+ [ 1.7553561  1.7476602  1.7549075]
+ ...
+ [-1.5654578 -1.5828282 -1.5499607]
+ [-1.629657  -1.6323284 -1.6334766]
+ [-1.7279897 -1.7441072 -1.7093948]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003470183>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003651886>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068795885>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070481113>]
+Good Loss
+tf.Tensor(
+[[-0.74456125 -0.74932843 -0.7244543 ]
+ [ 0.5836836   0.59226525  0.557192  ]
+ [ 0.44668683  0.43675348  0.45241502]
+ ...
+ [-1.0357392  -1.2148273  -1.1344348 ]
+ [-1.0982912  -1.1825697  -1.1556739 ]
+ [-1.1636289  -1.342622   -1.0419453 ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003501638>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034774633>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006922032>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007040687>]
+Good Loss
+tf.Tensor(
+[[-2.0083942  -1.9326711  -1.987235  ]
+ [-0.78922755 -0.71948415 -0.78143543]
+ [-1.6489981  -1.6762304  -1.7441899 ]
+ ...
+ [-0.7078423  -0.94130754 -0.4129686 ]
+ [-1.0819468  -0.89193416 -0.3606739 ]
+ [-1.4136261  -1.4042286  -1.0999724 ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003476993>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003466512>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069568993>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006937522>]
+Good Loss
+tf.Tensor(
+[[ 0.03132008  0.01734816  0.00186329]
+ [ 0.29110277  0.33838493  0.19647278]
+ [ 0.02784882  0.04433364  0.06828436]
+ ...
+ [-1.4775094  -1.4270009  -1.5612046 ]
+ [-1.508841   -1.5864326  -1.4928782 ]
+ [-1.5445204  -1.5978391  -1.6334153 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003430969>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034672595>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006914891>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000690275>]
+Good Loss
+tf.Tensor(
+[[-1.4166615  -1.3974949  -1.4890834 ]
+ [-0.57107425 -0.5670092  -0.52727324]
+ [ 0.49256092  0.56151575  0.5567539 ]
+ ...
+ [-1.408662   -1.3008035  -1.6070871 ]
+ [-1.4350245  -1.4023694  -1.3359907 ]
+ [-1.4731436  -1.4310946  -1.6436739 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034622048>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034696236>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069368415>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069171673>]
+Good Loss
+tf.Tensor(
+[[ 1.7146177  1.7092661  1.7130934]
+ [ 1.617581   1.6212448  1.6206613]
+ [ 1.5850002  1.5813328  1.5890106]
+ ...
+ [-1.5387388 -1.5342096 -1.5926887]
+ [-1.6181885 -1.6507932 -1.6013958]
+ [-1.6893814 -1.727136  -1.6859901]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003516646>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035268327>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007647587>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000714442>]
+Good Loss
+tf.Tensor(
+[[ 2.3064842  2.3035438  2.3313985]
+ [ 1.4509221  1.4699509  1.4616693]
+ [ 1.5096061  1.5137507  1.5029279]
+ ...
+ [-1.3877469 -1.3917706 -1.4469473]
+ [-1.5462357 -1.5604472 -1.5137572]
+ [-1.6661079 -1.6655948 -1.6518551]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034265328>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00037796702>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006915144>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007156782>]
+Good Loss
+tf.Tensor(
+[[ 1.8381912  1.8274524  1.8385152]
+ [ 1.7245235  1.7226     1.729373 ]
+ [ 1.6420724  1.644719   1.6469692]
+ ...
+ [-1.7048436 -1.7143104 -1.696786 ]
+ [-1.751766  -1.7379094 -1.7496799]
+ [-1.7867848 -1.8077332 -1.785491 ]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034493252>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00024274556>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007750032>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006990012>]
+Good Loss
+tf.Tensor(
+[[-0.8454292  -0.86971426 -0.8824242 ]
+ [ 2.3756056   2.4465582   2.3354828 ]
+ [ 0.64270514  0.6304105   0.710231  ]
+ ...
+ [-1.3792137  -1.3137407  -1.4153589 ]
+ [-1.4268454  -1.4868894  -1.4859221 ]
+ [-1.4733814  -1.5470152  -1.3774977 ]], shape=(10066, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003436183>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003465645>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069185864>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006917989>]
+Good Loss
+tf.Tensor(
+[[-1.3889486  -1.4907079  -1.3810067 ]
+ [-0.64981264 -0.6649489  -0.6280482 ]
+ [-1.1961485  -1.1765335  -1.1663315 ]
+ ...
+ [-1.4331161  -1.333871   -1.4409726 ]
+ [-1.4762659  -1.4311501  -1.4192321 ]
+ [-1.5344152  -1.5870582  -1.5792663 ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034834267>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034692694>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006934372>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006923856>]
+Good Loss
+tf.Tensor(
+[[-1.8463334  -1.8616055  -1.8936391 ]
+ [-0.10180131 -0.06571182 -0.1283133 ]
+ [ 0.75710696  0.7948794   0.78156716]
+ ...
+ [-1.4729974  -1.4346219  -1.435767  ]
+ [-1.4898639  -1.4493906  -1.4526279 ]
+ [-1.5103068  -1.5480781  -1.500141  ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034692386>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034651044>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006929545>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006892401>]
+Good Loss
+tf.Tensor(
+[[-1.2944682  -1.2872481  -1.3119231 ]
+ [-1.0048668  -0.99019116 -1.0085945 ]
+ [ 0.06046495  0.10237455  0.05269422]
+ ...
+ [-1.1960796  -0.8539928  -1.2486191 ]
+ [-1.3582606  -1.2884719  -1.105731  ]
+ [-1.4780321  -1.4983944  -1.6418091 ]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035684265>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034670852>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069781096>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000693829>]
+Good Loss
+tf.Tensor(
+[[ 1.9143034  1.9174602  1.9114579]
+ [ 1.8231359  1.8157569  1.8155092]
+ [ 1.6442678  1.6418473  1.6506462]
+ ...
+ [-1.7189221 -1.7205428 -1.7201664]
+ [-1.7478414 -1.7473423 -1.7449747]
+ [-1.7772721 -1.768133  -1.7824664]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034998648>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035247084>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00075902516>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071053626>]
+Good Loss
+tf.Tensor(
+[[ 2.050171   2.0504181  2.0520935]
+ [ 1.8063052  1.8135619  1.7972285]
+ [ 1.6897851  1.6764411  1.685794 ]
+ ...
+ [-1.6211977 -1.5973191 -1.5935302]
+ [-1.6856157 -1.6973709 -1.6914946]
+ [-1.7402551 -1.73996   -1.7350302]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033669602>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000390159>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007316146>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070096337>]
+Good Loss
+tf.Tensor(
+[[ 1.7782477  1.7802948  1.7780175]
+ [ 1.7045541  1.7001756  1.7050444]
+ [ 1.6906935  1.68244    1.6943591]
+ ...
+ [-1.5494314 -1.5675519 -1.564311 ]
+ [-1.6603148 -1.6818935 -1.6606431]
+ [-1.7311231 -1.7373549 -1.7473418]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035167218>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033608289>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006906853>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00073776115>]
+Good Loss
+tf.Tensor(
+[[ 1.8501084   1.8399869   1.8559972 ]
+ [ 1.1293155   1.1424276   1.1398677 ]
+ [ 0.86180574  0.83811265  0.8521503 ]
+ ...
+ [-1.6908871  -1.6828089  -1.691083  ]
+ [-1.7436562  -1.7541442  -1.7319568 ]
+ [-1.7990365  -1.804627   -1.7879611 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003355223>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00041384387>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007679966>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071123475>]
+Good Loss
+tf.Tensor(
+[[ 0.27261573  0.30006543  0.3186649 ]
+ [ 0.5750911   0.60647714  0.53671074]
+ [ 1.1496347   1.1221154   1.152381  ]
+ ...
+ [-1.2239419  -1.3616824  -1.5385003 ]
+ [-1.3742424  -1.5154662  -1.2993934 ]
+ [-1.4941016  -1.6433375  -1.6661457 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035146592>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034665054>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006909643>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006919654>]
+Good Loss
+tf.Tensor(
+[[-2.0862303  -2.0246587  -2.1205897 ]
+ [-0.7513082  -0.7627886  -0.71104455]
+ [ 0.78795296  0.775135    0.80030966]
+ ...
+ [-1.0681828  -1.0821201  -1.3760276 ]
+ [-1.2476577  -1.0166839  -0.9610461 ]
+ [-1.4529979  -1.6852729  -1.5645672 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034590068>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034671064>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069512933>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069609913>]
+Good Loss
+tf.Tensor(
+[[ 1.3978835  1.3730667  1.385112 ]
+ [ 1.3839653  1.3512456  1.3534919]
+ [ 1.6341462  1.5969087  1.6166749]
+ ...
+ [-1.3420224 -1.3203236 -1.3704102]
+ [-1.3922206 -1.2748917 -1.3194106]
+ [-1.4464744 -1.4591572 -1.404113 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034740198>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003463519>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006907103>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006901377>]
+Good Loss
+tf.Tensor(
+[[-1.9231548  -1.8872786  -2.006249  ]
+ [-1.3117113  -1.2861911  -1.3646026 ]
+ [ 0.29958928  0.21002364  0.32767272]
+ ...
+ [-1.341095   -1.2648835  -1.3518832 ]
+ [-1.3959461  -1.5282637  -1.3109372 ]
+ [-1.4640464  -1.4630941  -1.4385018 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003476503>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034673754>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006959696>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006854234>]
+Good Loss
+tf.Tensor(
+[[ 2.6055274  2.618699   2.6005013]
+ [ 2.402086   2.405133   2.3885713]
+ [ 1.8282655  1.8215996  1.8282104]
+ ...
+ [-1.6636873 -1.6954681 -1.6602919]
+ [-1.6945127 -1.6778075 -1.6977683]
+ [-1.7302456 -1.7352756 -1.7120193]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003433735>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033665608>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00074246305>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007400051>]
+Good Loss
+tf.Tensor(
+[[ 2.430565   2.4290695  2.4365726]
+ [ 1.9805914  1.9921335  1.9735527]
+ [ 1.0221206  1.0325879  1.0238913]
+ ...
+ [-1.4402163 -1.445721  -1.4454787]
+ [-1.6108127 -1.6557324 -1.5837678]
+ [-1.7938209 -1.7911557 -1.8270993]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033017324>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00032361288>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071709644>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072104915>]
+Good Loss
+tf.Tensor(
+[[ 1.869632   1.879019   1.8802669]
+ [ 1.2835692  1.2743771  1.2726434]
+ [ 1.3290694  1.3190652  1.3395569]
+ ...
+ [-1.314592  -1.2386801 -1.3291405]
+ [-1.4663529 -1.5588121 -1.4570856]
+ [-1.7348046 -1.6548145 -1.68694  ]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034028327>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003786948>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007290425>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072131143>]
+Good Loss
+tf.Tensor(
+[[ 2.2507668  2.2524078  2.2640514]
+ [ 1.4602735  1.44835    1.4462879]
+ [ 1.1700253  1.1760157  1.1886595]
+ ...
+ [-1.1016148 -1.0756023 -1.023892 ]
+ [-1.3542267 -1.3641118 -1.231196 ]
+ [-1.6226251 -1.6444628 -1.7586406]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003502175>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000323949>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00066779536>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00075045193>]
+Good Loss
+tf.Tensor(
+[[-2.6816912  -2.6851854  -2.677054  ]
+ [ 0.17972486  0.22092919  0.24028929]
+ [ 1.1673406   1.1605725   1.1230056 ]
+ ...
+ [-1.3713758  -1.5852616  -1.3952619 ]
+ [-1.4383805  -1.2834756  -1.6560569 ]
+ [-1.5172336  -1.5745637  -1.69001   ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034991457>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003465019>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006940855>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006794251>]
+Good Loss
+tf.Tensor(
+[[ 0.12803894  0.10694728  0.16810682]
+ [ 0.48639768  0.4831641   0.45101148]
+ [ 0.76441455  0.77546877  0.77802753]
+ ...
+ [-1.3932735  -1.1833633  -1.4821147 ]
+ [-1.5067722  -1.6532542  -1.4519552 ]
+ [-1.6340111  -1.7679099  -1.5122746 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.000341778>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034676903>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000700845>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070173695>]
+Good Loss
+tf.Tensor(
+[[-3.8613834 -3.8187141 -3.871631 ]
+ [-0.993617  -0.9460777 -0.9228672]
+ [ 0.7524322  0.7880204  0.8119365]
+ ...
+ [-1.3324753 -1.488729  -1.2319301]
+ [-1.402566  -1.3448027 -1.2192396]
+ [-1.5135915 -1.6769073 -1.6378521]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003416949>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003453452>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069758366>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006675989>]
+Good Loss
+tf.Tensor(
+[[-2.9982977  -3.0214884  -3.0212164 ]
+ [ 0.22574636  0.3098556   0.30369198]
+ [ 0.26630983  0.36058772  0.24134868]
+ ...
+ [-1.1647826  -1.148677   -1.0581079 ]
+ [-1.2517886  -1.3137697  -1.415619  ]
+ [-1.3738846  -1.2889268  -1.2979995 ]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003488326>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003460088>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006951853>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006770504>]
+Good Loss
+tf.Tensor(
+[[ 2.0308123  2.0218077  2.0244522]
+ [ 1.7492564  1.739605   1.7409282]
+ [ 1.7236909  1.7314265  1.7257445]
+ ...
+ [-1.6389767 -1.6402315 -1.6659621]
+ [-1.7470337 -1.7559638 -1.7271936]
+ [-1.8173525 -1.8124361 -1.8235116]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035572206>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035023017>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00064879016>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007592919>]
+Good Loss
+tf.Tensor(
+[[ 2.0653358   2.0565941   2.0712867 ]
+ [ 1.8464082   1.845692    1.8445362 ]
+ [ 1.7939979   1.7954149   1.791513  ]
+ ...
+ [ 1.0424681   1.2724416   0.6883703 ]
+ [ 0.30638015 -0.10174058  0.7256792 ]
+ [-1.3488482  -1.1707011  -1.4140495 ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033673414>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004933142>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00073247775>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007491655>]
+Good Loss
+tf.Tensor(
+[[ 2.704072   2.7029235  2.6772788]
+ [ 1.5021691  1.5154339  1.5131652]
+ [ 1.2759941  1.2658896  1.2632592]
+ ...
+ [-1.5880435 -1.6000086 -1.5889966]
+ [-1.6442634 -1.6508157 -1.6530774]
+ [-1.6783736 -1.6727492 -1.6810263]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034333297>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031344141>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00063569477>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007680669>]
+Good Loss
+tf.Tensor(
+[[ 1.8843141  1.890422   1.8802124]
+ [ 1.5465581  1.5466636  1.5388234]
+ [ 1.562336   1.5624721  1.560733 ]
+ ...
+ [-1.4062455 -1.4685974 -1.376699 ]
+ [-1.5419345 -1.52801   -1.5541048]
+ [-1.6762173 -1.6866169 -1.6533837]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034827171>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00039912737>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072431384>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007433821>]
+Good Loss
+tf.Tensor(
+[[-2.3102267  -2.2840023  -2.3120086 ]
+ [-1.0188053  -0.97242916 -0.98912334]
+ [ 0.23328473  0.16039087  0.18675497]
+ ...
+ [-1.3229614  -1.3127011  -1.4123114 ]
+ [-1.3580191  -1.22863    -1.325432  ]
+ [-1.4400133  -1.5083802  -1.4640497 ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033766645>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003484734>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006984697>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068132713>]
+Good Loss
+tf.Tensor(
+[[-2.0057976  -1.9553019  -1.967804  ]
+ [-0.97835594 -0.9971681  -0.92545706]
+ [-0.41580334 -0.41121635 -0.44081342]
+ ...
+ [-1.3494993  -1.4131399  -1.2449167 ]
+ [-1.3855337  -1.3171523  -1.2305071 ]
+ [-1.4503199  -1.4910238  -1.29487   ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003541456>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034701734>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069092447>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068308116>]
+Good Loss
+tf.Tensor(
+[[-1.015804   -1.0359532  -0.9658206 ]
+ [-0.02286396  0.0195462   0.02408237]
+ [ 0.08901458  0.06707677  0.05054292]
+ ...
+ [-1.3983583  -1.4772843  -1.5899062 ]
+ [-1.4884654  -1.3803399  -1.4903349 ]
+ [-1.5638629  -1.5630364  -1.455706  ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034360762>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034701577>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006957352>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007075613>]
+Good Loss
+tf.Tensor(
+[[-3.1867764  -3.2373574  -3.2193794 ]
+ [-0.5550347  -0.567006   -0.5723542 ]
+ [-0.51485604 -0.5811967  -0.53540075]
+ ...
+ [-0.8723559  -0.42298    -0.60905474]
+ [-1.1101471  -1.0160124  -1.3899268 ]
+ [-1.411999   -1.1832248  -1.7495006 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003430554>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034718798>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007002664>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006933346>]
+Good Loss
+tf.Tensor(
+[[ 2.1722598   2.1771035   2.1762998 ]
+ [ 1.8979043   1.8969121   1.9072039 ]
+ [ 1.8190756   1.8293401   1.8241311 ]
+ ...
+ [-0.7482872  -0.79843765 -0.7337846 ]
+ [-1.2051243  -1.3108485  -1.3902725 ]
+ [-1.6265186  -1.4509478  -1.5064044 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034927524>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003324461>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00066319865>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007651216>]
+Good Loss
+tf.Tensor(
+[[ 2.0774298  2.073242   2.0770552]
+ [ 1.7884686  1.793794   1.7958282]
+ [ 1.7424796  1.7460804  1.7333844]
+ ...
+ [-1.4730438 -1.506214  -1.450263 ]
+ [-1.5027134 -1.5084983 -1.4933729]
+ [-1.5421476 -1.5433712 -1.5536137]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034259143>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00038998292>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007198987>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00076165923>]
+Good Loss
+tf.Tensor(
+[[ 2.3557992  2.345166   2.3643353]
+ [ 1.8033409  1.8071944  1.8013909]
+ [ 1.6446409  1.6397768  1.6418653]
+ ...
+ [-1.7427244 -1.7300984 -1.7458827]
+ [-1.8006008 -1.7904111 -1.8070409]
+ [-1.8441547 -1.8707507 -1.8488863]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033122097>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00039305625>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00066587003>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00077451585>]
+Good Loss
+tf.Tensor(
+[[ 1.8507327   1.845169    1.8542708 ]
+ [ 1.6987885   1.7042452   1.696902  ]
+ [ 1.657854    1.6557752   1.6596451 ]
+ ...
+ [-0.15128632 -0.5867318  -0.6216213 ]
+ [-0.45281312 -0.3732244  -0.08957827]
+ [-1.9060181  -1.5677822  -1.8486547 ]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033436393>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035283194>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00062226085>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007908262>]
+Good Loss
+tf.Tensor(
+[[-2.2931807  -2.4135392  -2.3742702 ]
+ [ 0.15948832  0.19973998  0.14159168]
+ [ 0.12450968  0.14880387  0.19011714]
+ ...
+ [-1.2157671  -1.0339596  -1.498987  ]
+ [-1.3320935  -1.2443845  -1.1416811 ]
+ [-1.4601252  -1.3844839  -1.4886783 ]], shape=(10042, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003532455>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003472559>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069442746>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007175687>]
+Good Loss
+tf.Tensor(
+[[-2.713349   -2.6935384  -2.7419763 ]
+ [-0.8120508  -0.8408759  -0.8760154 ]
+ [-0.45488977 -0.53149456 -0.47484675]
+ ...
+ [-1.3885742  -1.3374994  -1.3452623 ]
+ [-1.432168   -1.4125215  -1.3898258 ]
+ [-1.45623    -1.4523202  -1.5254143 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034091796>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034612467>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006918133>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007392613>]
+Good Loss
+tf.Tensor(
+[[-3.71446    -3.7294378  -3.679514  ]
+ [-1.127016   -1.1351272  -1.1104059 ]
+ [-0.39392722 -0.3979535  -0.33733758]
+ ...
+ [-1.5598427  -1.5945697  -1.6532605 ]
+ [-1.5679419  -1.5986073  -1.5126617 ]
+ [-1.5930682  -1.5241528  -1.560456  ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033576373>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034818583>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006828204>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006933266>]
+Good Loss
+tf.Tensor(
+[[-2.8345857  -2.8709753  -2.8192194 ]
+ [-0.5460094  -0.61241186 -0.4814347 ]
+ [-0.54887885 -0.5602233  -0.5997867 ]
+ ...
+ [-1.4165617  -1.3954327  -1.285515  ]
+ [-1.4324241  -1.3495612  -1.3108019 ]
+ [-1.5479513  -1.6530929  -1.7358056 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034449305>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034669877>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006926112>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007655606>]
+Good Loss
+tf.Tensor(
+[[ 2.1729054  2.176138   2.1639059]
+ [ 1.7441952  1.7449061  1.7523397]
+ [ 1.6998315  1.7009315  1.7089664]
+ ...
+ [-1.6651745 -1.652315  -1.6556312]
+ [-1.6922221 -1.692414  -1.6833433]
+ [-1.7113521 -1.7272382 -1.7131094]], shape=(10066, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035275088>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000346585>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007531293>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00078246515>]
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+1
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[ 2.592802   2.5950356  2.6114266]
+ [ 1.5227193  1.5347276  1.5307709]
+ [ 1.2811539  1.27413    1.2656546]
+ ...
+ [-1.7824134 -1.7579399 -1.7346983]
+ [-1.9220096 -1.9239    -1.9588331]
+ [-2.2021642 -2.2121782 -2.2041981]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032643793>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00046608914>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007256876>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00076369056>]
+Good Loss
+tf.Tensor(
+[[ 2.716523   2.6657343  2.7084541]
+ [ 1.3524487  1.3809253  1.3500606]
+ [ 1.2442791  1.2427539  1.2627816]
+ ...
+ [-1.4692391 -1.4723365 -1.4349308]
+ [-1.6333599 -1.6569155 -1.6093745]
+ [-1.6801401 -1.6521106 -1.7010057]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032016324>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00038750865>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007636027>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007709879>]
+Good Loss
+tf.Tensor(
+[[ 2.3534148  2.3579667  2.3547413]
+ [ 1.6389372  1.6417266  1.6290718]
+ [ 1.5801816  1.5683345  1.593989 ]
+ ...
+ [-1.4951746 -1.4970295 -1.4891173]
+ [-1.5728343 -1.5761114 -1.5976775]
+ [-1.6175699 -1.6277233 -1.6126609]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033239546>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035739606>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068966387>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007991315>]
+Good Loss
+tf.Tensor(
+[[ 1.8844098  1.878496   1.8900093]
+ [ 1.7075237  1.7135137  1.7038769]
+ [ 1.6518613  1.6564713  1.6572609]
+ ...
+ [-1.5931162 -1.5680671 -1.594079 ]
+ [-1.6720486 -1.6862096 -1.6512258]
+ [-1.772202  -1.7429082 -1.7796685]], shape=(10065, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035805223>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034060367>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00073790783>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00074963394>]
+Good Loss
+tf.Tensor(
+[[-2.657324  -2.6688669 -2.6578984]
+ [-1.368466  -1.3571352 -1.3628292]
+ [-1.0741193 -1.0843036 -1.0976079]
+ ...
+ [-1.1742977 -1.0439845 -1.3363569]
+ [-1.3135415 -1.4054672 -1.1161257]
+ [-1.3821337 -1.2602401 -1.285462 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035458693>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003461707>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006960555>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00075609447>]
+Good Loss
+tf.Tensor(
+[[-4.4501486  -4.435251   -4.4574404 ]
+ [-2.00868    -2.0482864  -2.004666  ]
+ [-1.4217124  -1.3831854  -1.4033566 ]
+ ...
+ [-0.87137693 -1.2416377  -0.31036475]
+ [-0.9119902  -1.0377284  -1.097928  ]
+ [-1.2544366  -0.89750034 -1.5565705 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036129227>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003474846>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007078701>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008007422>]
+Good Loss
+tf.Tensor(
+[[-2.9800382 -2.964291  -2.9588907]
+ [-1.2359601 -1.2856392 -1.2285712]
+ [-1.2975311 -1.2513777 -1.3067482]
+ ...
+ [-1.4179448 -1.513587  -1.3996803]
+ [-1.4493053 -1.4274608 -1.4857386]
+ [-1.4446539 -1.4452624 -1.4415013]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003384961>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003416831>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069110113>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072922045>]
+Good Loss
+tf.Tensor(
+[[-3.0714002  -3.0916395  -3.0911808 ]
+ [-0.81486815 -0.87629664 -0.8163756 ]
+ [-0.33606857 -0.29181728 -0.27726984]
+ ...
+ [-1.3574075  -1.2871811  -1.2965951 ]
+ [-1.4456339  -1.5159794  -1.4181356 ]
+ [-1.5069636  -1.5090078  -1.4533644 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003631172>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034214865>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007030133>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007385752>]
+Good Loss
+tf.Tensor(
+[[ 2.0050828  1.9989508  2.000464 ]
+ [ 1.8044542  1.7979782  1.7987388]
+ [ 1.6897132  1.6882226  1.6918995]
+ ...
+ [-1.5908358 -1.5560992 -1.6490775]
+ [-1.667367  -1.6793525 -1.6705776]
+ [-1.7715052 -1.815915  -1.738746 ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036055024>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00030268554>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00076806545>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007600808>]
+Good Loss
+tf.Tensor(
+[[ 2.7527487  2.7541475  2.7539594]
+ [ 1.7080836  1.6993556  1.6978599]
+ [ 1.5130297  1.5261828  1.5224283]
+ ...
+ [-1.5314832 -1.5255666 -1.5038046]
+ [-1.6062809 -1.6207972 -1.578835 ]
+ [-1.6519561 -1.6843143 -1.6433916]], shape=(10065, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00038007126>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033231542>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007123896>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007959001>]
+Good Loss
+tf.Tensor(
+[[ 2.4548144  2.4540687  2.4620533]
+ [ 1.2234044  1.2424537  1.2230778]
+ [ 1.435221   1.4020797  1.4221914]
+ ...
+ [-1.7464608 -1.7289444 -1.7382456]
+ [-1.8214679 -1.8156408 -1.8207964]
+ [-1.8881584 -1.8883411 -1.8799317]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037123723>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00024791743>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072629564>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007895603>]
+Good Loss
+tf.Tensor(
+[[ 1.914332   1.9216917  1.9021415]
+ [ 1.7240789  1.7216815  1.7208523]
+ [ 1.7063527  1.7030978  1.7106804]
+ ...
+ [-1.3167528 -1.3153737 -1.3241276]
+ [-1.6699619 -1.6068661 -1.6700057]
+ [-1.8296734 -1.8648684 -1.829703 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003555161>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00026242906>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007167328>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00079356716>]
+Good Loss
+tf.Tensor(
+[[-4.0109634  -3.983598   -4.078548  ]
+ [-0.5972955  -0.6073532  -0.565482  ]
+ [-0.42784753 -0.3880725  -0.4659893 ]
+ ...
+ [-1.2577782  -1.3260171  -1.159461  ]
+ [-1.3652456  -1.4506335  -1.3148218 ]
+ [-1.4507806  -1.3398587  -1.4328877 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003290151>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003468499>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068655465>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007577484>]
+Good Loss
+tf.Tensor(
+[[-4.1922107 -4.2049513 -4.157071 ]
+ [-1.8459749 -1.8104724 -1.9692221]
+ [-1.8435638 -1.8328593 -1.9041672]
+ ...
+ [-1.2982699 -1.1920431 -1.3639138]
+ [-1.3895459 -1.3903012 -1.2588395]
+ [-1.4609996 -1.4155413 -1.4875321]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003281352>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034759575>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070177694>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00084391504>]
+Good Loss
+tf.Tensor(
+[[-3.6224806  -3.5951157  -3.6620147 ]
+ [-1.1944807  -1.1423807  -1.1702721 ]
+ [-1.1153998  -1.1406062  -1.0686482 ]
+ ...
+ [ 0.10638066 -0.92573154  0.4454864 ]
+ [-0.43206614  0.67461306 -1.1596668 ]
+ [-1.206275   -1.0269138  -0.692121  ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032734522>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034787125>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006857818>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008405176>]
+Good Loss
+tf.Tensor(
+[[-3.0543177  -3.037495   -3.0691779 ]
+ [-1.1956685  -1.2014124  -1.1912792 ]
+ [-0.9226099  -0.9432514  -0.93824255]
+ ...
+ [-1.2960023  -1.3295368  -1.2216518 ]
+ [-1.3574985  -1.3099847  -1.3298069 ]
+ [-1.4233292  -1.3705711  -1.2833452 ]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032679617>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034391566>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007072776>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008367957>]
+Good Loss
+tf.Tensor(
+[[ 2.587964   2.5811603  2.5774293]
+ [ 1.4450747  1.4417894  1.4527471]
+ [ 1.1718644  1.1842405  1.1687903]
+ ...
+ [-1.4729304 -1.4547011 -1.4872432]
+ [-1.5019153 -1.4802771 -1.5314391]
+ [-1.5173392 -1.53563   -1.5008708]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003211919>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00042571902>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006645458>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000791539>]
+Good Loss
+tf.Tensor(
+[[ 2.1967416  2.2066083  2.1985376]
+ [ 1.8496535  1.8407242  1.853276 ]
+ [ 1.6566293  1.6562624  1.6570963]
+ ...
+ [-1.7971867 -1.7903259 -1.7973257]
+ [-1.7744929 -1.781126  -1.7648119]
+ [-1.7904195 -1.7856946 -1.7941035]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033409742>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004190344>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006957012>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00077899836>]
+Good Loss
+tf.Tensor(
+[[ 2.21934     2.2268603   2.2076564 ]
+ [ 1.8197353   1.8301547   1.8096844 ]
+ [ 1.6615819   1.6591328   1.671401  ]
+ ...
+ [ 0.3566001   0.52395064  0.5483318 ]
+ [ 1.0068697   0.8756128   0.8547713 ]
+ [-1.3634697  -1.3995634  -1.4031031 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036464693>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00047460134>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00075826695>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007628944>]
+Good Loss
+tf.Tensor(
+[[ 1.8636688  1.868619   1.8663032]
+ [ 1.7084594  1.7085675  1.6993666]
+ [ 1.6849699  1.6889561  1.6896728]
+ ...
+ [-1.4470439 -1.4495171 -1.451488 ]
+ [-1.532774  -1.5119187 -1.5502666]
+ [-1.6154014 -1.6242205 -1.6082753]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034641055>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00048459417>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000723359>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007950714>]
+Good Loss
+tf.Tensor(
+[[-3.744043   -3.6965566  -3.7234912 ]
+ [-0.9443329  -0.9347219  -1.0301974 ]
+ [-0.4667336  -0.37490454 -0.44975612]
+ ...
+ [-1.1436098  -0.99095297 -1.030074  ]
+ [-1.2226188  -1.2145181  -1.1893746 ]
+ [-1.3514181  -1.4628366  -1.2619992 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035723072>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035129176>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007163129>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009303626>]
+Good Loss
+tf.Tensor(
+[[-0.6543739  -0.71583134 -0.6812303 ]
+ [ 1.0114926   1.0199934   0.9886981 ]
+ [ 1.3315436   1.3293082   1.3237855 ]
+ ...
+ [-1.3902507  -1.3793497  -1.3466092 ]
+ [-1.4027566  -1.3606068  -1.3976407 ]
+ [-1.4980453  -1.5188022  -1.5139855 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003164892>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000344102>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069840014>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009095274>]
+Good Loss
+tf.Tensor(
+[[-4.368077   -4.28013    -4.333681  ]
+ [-0.9527588  -1.0447168  -0.97900194]
+ [ 0.34047136  0.40376708  0.30412653]
+ ...
+ [-1.4752401  -1.4103928  -1.3791515 ]
+ [-1.5221937  -1.5564045  -1.4469153 ]
+ [-1.5674833  -1.5390257  -1.6703743 ]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003476489>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003485169>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007084594>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00092105364>]
+Good Loss
+tf.Tensor(
+[[-2.7441165 -2.746326  -2.7454135]
+ [-0.5450335 -0.5376848 -0.5924063]
+ [-0.6460079 -0.6444682 -0.6628771]
+ ...
+ [-1.4534694 -1.4716249 -1.4295735]
+ [-1.5194707 -1.600834  -1.5531764]
+ [-1.5339687 -1.627673  -1.5522857]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003509377>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034378865>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00068523624>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000897541>]
+Good Loss
+tf.Tensor(
+[[ 1.9701277   1.9629337   1.9756256 ]
+ [ 1.7240223   1.7270234   1.725972  ]
+ [ 1.6781071   1.6854877   1.6719534 ]
+ ...
+ [-0.95909286 -1.09264    -0.987319  ]
+ [-1.3729328  -1.2713295  -1.2939202 ]
+ [-1.8753009  -1.8656696  -1.9204159 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037114444>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033374457>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007494217>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007625391>]
+Good Loss
+tf.Tensor(
+[[ 1.9830515  1.9847424  1.99016  ]
+ [ 1.673409   1.6820059  1.6808723]
+ [ 1.6229362  1.6091205  1.6285743]
+ ...
+ [-1.1657552 -1.1392509 -1.2403313]
+ [-1.4163738 -1.4389701 -1.3487264]
+ [-1.6396878 -1.7355572 -1.5307482]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003333547>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004000113>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007765344>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00076737744>]
+Good Loss
+tf.Tensor(
+[[ 2.6403892  2.655029   2.6542473]
+ [ 1.4003394  1.3623405  1.3846399]
+ [ 1.3530091  1.3492662  1.3400239]
+ ...
+ [-1.2670816 -1.3079567 -1.2310114]
+ [-1.434248  -1.4722435 -1.4548124]
+ [-1.8418732 -1.7957779 -1.8202343]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003231784>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00043265254>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00077612785>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007595231>]
+Good Loss
+tf.Tensor(
+[[ 2.47328    2.4823916  2.4764576]
+ [ 1.5351481  1.5180578  1.5408313]
+ [ 1.5551687  1.5395932  1.541129 ]
+ ...
+ [-1.7256808 -1.697294  -1.7234602]
+ [-1.7642308 -1.7342107 -1.7542506]
+ [-1.8796782 -1.8942642 -1.8839571]], shape=(10065, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033461116>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004397748>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00082904135>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007804684>]
+Good Loss
+tf.Tensor(
+[[-3.1040466  -3.0384216  -3.1721966 ]
+ [-0.26337072 -0.28624535 -0.19707854]
+ [-0.18453805 -0.2143384  -0.11789084]
+ ...
+ [-1.4733865  -1.4228364  -1.5390304 ]
+ [-1.5217758  -1.4710696  -1.4995421 ]
+ [-1.5356233  -1.5239788  -1.5020365 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037470303>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034757692>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007205983>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009640994>]
+Good Loss
+tf.Tensor(
+[[ 0.17771964  0.21399786  0.14473622]
+ [ 1.0857124   1.1196455   1.1167619 ]
+ [ 0.9985297   0.9802797   0.995415  ]
+ ...
+ [-1.3217866  -1.0844101  -1.3630168 ]
+ [-1.4489486  -1.6293601  -1.3213319 ]
+ [-1.4868464  -1.5879633  -1.5257291 ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037588386>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003439489>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007291666>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009829862>]
+Good Loss
+tf.Tensor(
+[[-2.5854726  -2.611073   -2.5623672 ]
+ [ 0.07347465 -0.04374159  0.0815316 ]
+ [ 0.27540982  0.30375043  0.32206002]
+ ...
+ [-0.0269676   1.3314763   0.41533545]
+ [-0.6871664  -1.5529267  -1.2046268 ]
+ [-1.3670788  -0.2773955  -1.1747906 ]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00039338818>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000352484>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006971561>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009951722>]
+Good Loss
+tf.Tensor(
+[[ 2.2992167   2.3091295   2.2967954 ]
+ [ 1.7807394   1.7816075   1.7892251 ]
+ [ 1.5866846   1.582665    1.5955164 ]
+ ...
+ [-0.77360195 -0.841301   -0.6387015 ]
+ [-1.5523218  -1.8861506  -1.3867139 ]
+ [-2.5997522  -2.5779817  -2.653977  ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031238902>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00026444905>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070802623>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00079692714>]
+Good Loss
+tf.Tensor(
+[[ 2.6313105  2.6207788  2.6307607]
+ [ 1.6907221  1.6915992  1.7028971]
+ [ 1.5792633  1.592945   1.5773381]
+ ...
+ [-1.8347732 -1.8431535 -1.8284516]
+ [-1.8624692 -1.8750877 -1.8554825]
+ [-1.8964494 -1.8916085 -1.8855318]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032794522>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031956215>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007549765>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007821683>]
+Good Loss
+tf.Tensor(
+[[ 2.1665874  2.163218   2.154061 ]
+ [ 1.7731806  1.7727219  1.7757498]
+ [ 1.7074642  1.6987448  1.7046626]
+ ...
+ [-1.4031416 -1.3965818 -1.4044948]
+ [-1.5958773 -1.5150883 -1.6214294]
+ [-1.7827677 -1.8428113 -1.8220469]], shape=(10069, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035583274>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00024128854>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007867515>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008081616>]
+Good Loss
+tf.Tensor(
+[[ 2.0748043  2.0825706  2.0781121]
+ [ 1.6710302  1.6530752  1.6658758]
+ [ 1.6132329  1.6024649  1.6124934]
+ ...
+ [-1.6574911 -1.6421407 -1.6671036]
+ [-1.6838943 -1.6887211 -1.6935127]
+ [-1.7372714 -1.7219397 -1.7394024]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034098417>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00030550777>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007826573>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00079285033>]
+Good Loss
+tf.Tensor(
+[[-3.3324478  -3.3493156  -3.2984843 ]
+ [-0.85103613 -0.84374833 -0.8297083 ]
+ [-0.5578093  -0.6028063  -0.5812975 ]
+ ...
+ [-1.6306452  -1.6230425  -1.6479845 ]
+ [-1.6603212  -1.6939653  -1.6935414 ]
+ [-1.6713421  -1.6334857  -1.6520324 ]], shape=(10067, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00042689499>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033802917>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070398574>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010166821>]
+Good Loss
+tf.Tensor(
+[[-4.9560957  -4.878299   -4.876876  ]
+ [-0.5697491  -0.57921135 -0.72493297]
+ [ 0.83559304  0.7356957   0.91481256]
+ ...
+ [-1.6432121  -1.7078813  -1.6659198 ]
+ [-1.6325263  -1.577226   -1.6693088 ]
+ [-1.647785   -1.7676905  -1.6705152 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00027808794>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034318515>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006870616>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010222002>]
+Good Loss
+tf.Tensor(
+[[-3.1784003  -3.1122742  -3.1066897 ]
+ [-0.21705414 -0.19260415 -0.23000184]
+ [-0.5579059  -0.62043095 -0.5605402 ]
+ ...
+ [-1.3949716  -1.3484962  -1.3662186 ]
+ [-1.488828   -1.4564357  -1.3709228 ]
+ [-1.5461813  -1.4439291  -1.7210428 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037929215>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035069266>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070251554>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000949913>]
+Good Loss
+tf.Tensor(
+[[-2.6510286  -2.6527135  -2.7072618 ]
+ [-0.60768795 -0.6054144  -0.5677791 ]
+ [-0.49395522 -0.44949973 -0.45467398]
+ ...
+ [-1.4704521  -1.451322   -1.4686509 ]
+ [-1.5277318  -1.5769237  -1.7143726 ]
+ [-1.5567305  -1.4546218  -1.5699795 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036731936>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034336542>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007099193>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010729237>]
+Good Loss
+tf.Tensor(
+[[ 1.9543159  1.956564   1.9412276]
+ [ 1.7348481  1.735381   1.7331512]
+ [ 1.6567318  1.6551327  1.6510569]
+ ...
+ [-1.9733436 -1.9709103 -1.9763957]
+ [-1.9913638 -1.9851025 -1.9876996]
+ [-1.9346198 -1.9267124 -1.9244034]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034259938>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033902342>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008269369>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007692974>]
+Good Loss
+tf.Tensor(
+[[ 2.4674783  2.4699566  2.4652557]
+ [ 1.7678536  1.7619591  1.7628325]
+ [ 1.5255898  1.5304365  1.5409712]
+ ...
+ [-1.7909551 -1.7742847 -1.7950858]
+ [-1.8602098 -1.852673  -1.8799456]
+ [-1.868007  -1.8616788 -1.8371465]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003281828>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00032150137>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00078589364>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000769991>]
+Good Loss
+tf.Tensor(
+[[ 1.9852648   1.975662    1.9895247 ]
+ [ 1.707547    1.6961584   1.7047358 ]
+ [ 1.6962919   1.6985887   1.7015665 ]
+ ...
+ [ 0.2083895   0.43501675  0.9594062 ]
+ [ 0.19648278 -0.19447044  0.20259821]
+ [ 1.1778969   0.85728896  0.9080838 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032583388>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036940858>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00081330154>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00080242543>]
+Good Loss
+tf.Tensor(
+[[ 2.6542025  2.663764   2.670223 ]
+ [ 1.4958906  1.4904891  1.5022755]
+ [ 1.3628297  1.3617972  1.3551425]
+ ...
+ [-1.3374556 -1.2823194 -1.3389839]
+ [-1.5154257 -1.4763362 -1.535713 ]
+ [-2.1326127 -2.137035  -2.168144 ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00032611267>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003353403>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007977239>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00078514393>]
+Good Loss
+tf.Tensor(
+[[-4.9977407  -5.0352826  -4.9752784 ]
+ [-0.8280164  -0.8445517  -0.8804475 ]
+ [ 0.1395397   0.09437676  0.1595501 ]
+ ...
+ [-1.4871376  -1.3867153  -1.5585532 ]
+ [-1.6443348  -1.7197222  -1.6070662 ]
+ [-1.7163985  -1.766553   -1.7479596 ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00027323054>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003518874>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007555393>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011847804>]
+Good Loss
+tf.Tensor(
+[[-4.3925877 -4.4194803 -4.3732715]
+ [-1.7621937 -1.786268  -1.8000116]
+ [-0.5785875 -0.5324034 -0.5424791]
+ ...
+ [-1.1225369 -1.3686842 -1.4487056]
+ [-1.2551427 -1.2275918 -1.4462672]
+ [-1.3861487 -1.1308664 -1.2801204]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035970248>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033912843>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007020236>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010412252>]
+Good Loss
+tf.Tensor(
+[[-4.23907    -4.2271585  -4.1800327 ]
+ [-0.84768873 -0.78592485 -0.79719   ]
+ [-1.0387819  -1.1426467  -1.0948975 ]
+ ...
+ [-1.1222408  -1.0803214  -0.8820186 ]
+ [-1.3322064  -1.2105408  -1.4248813 ]
+ [-1.2948827  -1.5360274  -1.2448088 ]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00027024545>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003570399>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00067436596>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010030526>]
+Good Loss
+tf.Tensor(
+[[-3.3053994  -3.27554    -3.3262844 ]
+ [-0.85433495 -0.86338747 -0.85754937]
+ [-0.23032844 -0.2149682  -0.27143475]
+ ...
+ [-1.4715813  -1.3978704  -1.5533314 ]
+ [-1.5265287  -1.6117944  -1.4369885 ]
+ [-1.6639254  -1.650786   -1.5737956 ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035311555>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035533277>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007084698>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010903226>]
+Good Loss
+tf.Tensor(
+[[ 1.8796768  1.8699063  1.8772286]
+ [ 1.6976331  1.7042658  1.6941639]
+ [ 1.662753   1.6488914  1.6548245]
+ ...
+ [-1.4821361 -1.535273  -1.4986824]
+ [-2.0287297 -2.0454032 -2.0548275]
+ [-2.6336942 -2.5823216 -2.6028705]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003654968>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000346523>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00089267>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00079011545>]
+Good Loss
+tf.Tensor(
+[[ 2.5770326  2.5374885  2.5856023]
+ [ 1.4850185  1.5081354  1.5103791]
+ [ 1.2665508  1.2590518  1.279161 ]
+ ...
+ [-1.5854735 -1.6078612 -1.5832725]
+ [-1.4441451 -1.4175491 -1.4630389]
+ [-1.3362683 -1.3152167 -1.322467 ]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035124726>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005207633>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000905668>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007876178>]
+Good Loss
+tf.Tensor(
+[[ 2.7803435  2.7799237  2.7738926]
+ [ 1.6384882  1.6377459  1.6261414]
+ [ 1.3389297  1.3077552  1.3395479]
+ ...
+ [-1.0875018 -1.1522204 -1.0603502]
+ [-1.5496436 -1.3675276 -1.7111095]
+ [-1.7522377 -1.8219185 -1.6527499]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003565673>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035097805>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008782114>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00080421>]
+Good Loss
+tf.Tensor(
+[[ 2.301308   2.315088   2.2832215]
+ [ 1.5475744  1.5492438  1.546108 ]
+ [ 1.4408562  1.4420472  1.4475143]
+ ...
+ [-1.6298519 -1.6404897 -1.6135575]
+ [-1.6973549 -1.6968662 -1.701551 ]
+ [-1.6705823 -1.6579854 -1.6771841]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00041934088>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00046104973>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009107755>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008383515>]
+Good Loss
+tf.Tensor(
+[[-2.968539   -3.0442886  -2.9111872 ]
+ [-0.46705303 -0.44132307 -0.40963823]
+ [-0.06845183 -0.06587394 -0.11992209]
+ ...
+ [-1.0681578  -1.169325   -1.0090888 ]
+ [-1.0429118  -0.9449507  -1.0116645 ]
+ [-1.08027    -1.1512266  -1.0617604 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035780173>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034254947>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007358211>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001119862>]
+Good Loss
+tf.Tensor(
+[[-5.1069345 -5.1769934 -5.0868325]
+ [-1.8025936 -1.7822124 -1.8402469]
+ [-1.3575337 -1.3798746 -1.3851427]
+ ...
+ [-0.5294092 -1.2237222 -0.9764066]
+ [-1.0574702 -0.3392266 -0.8577241]
+ [-1.3827962 -1.3928229 -1.0724077]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00030282335>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034005305>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072389503>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001132674>]
+Good Loss
+tf.Tensor(
+[[-2.3805332  -2.319435   -2.360012  ]
+ [-0.36333624 -0.39932877 -0.37434703]
+ [-0.44120258 -0.38829136 -0.41795295]
+ ...
+ [-1.2134427  -1.1877733  -1.244625  ]
+ [-1.2089049  -1.289732   -1.2164067 ]
+ [-1.278703   -1.3317146  -1.3463463 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00043339567>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033881568>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007055471>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010609465>]
+Good Loss
+tf.Tensor(
+[[-1.4406275  -1.4008521  -1.407222  ]
+ [ 0.32926503  0.27593488  0.37204412]
+ [ 0.21624674  0.25667658  0.2592035 ]
+ ...
+ [-1.7081462  -1.6567702  -1.6595734 ]
+ [-1.7481477  -1.7038462  -1.7417696 ]
+ [-1.7955813  -1.8638343  -1.8166599 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00040245338>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034954972>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071132125>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011099027>]
+Good Loss
+tf.Tensor(
+[[ 1.8976786  1.8913976  1.8980507]
+ [ 1.6904161  1.6863467  1.6825219]
+ [ 1.6668742  1.6671548  1.667209 ]
+ ...
+ [-1.3517598 -1.3351061 -1.3494835]
+ [-1.374271  -1.3602421 -1.374005 ]
+ [-1.4019682 -1.3872424 -1.3863963]], shape=(10068, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00038797487>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035814446>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010572606>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008025716>]
+Good Loss
+tf.Tensor(
+[[ 2.8079865  2.823333   2.8125494]
+ [ 1.4596266  1.4431776  1.437788 ]
+ [ 1.1425052  1.137754   1.1590964]
+ ...
+ [-1.5962104 -1.6108618 -1.6040223]
+ [-1.6414425 -1.6547334 -1.6573457]
+ [-1.6760669 -1.6612192 -1.6741699]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035147966>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031166154>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009627197>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008359183>]
+Good Loss
+tf.Tensor(
+[[ 1.7673973   1.7724423   1.7667239 ]
+ [ 1.6419396   1.6358453   1.648461  ]
+ [ 1.626412    1.6253287   1.6244619 ]
+ ...
+ [-1.4293826  -1.3587737  -1.483228  ]
+ [-1.486642   -1.4447436  -1.4736434 ]
+ [-0.95429814 -0.92877597 -0.983568  ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031493176>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004468071>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010491253>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00084400695>]
+Good Loss
+tf.Tensor(
+[[ 2.62953    2.6362188  2.6455495]
+ [ 1.4610307  1.4676064  1.4722389]
+ [ 1.3902534  1.3981943  1.3976692]
+ ...
+ [-1.8416164 -1.8555361 -1.8567649]
+ [-2.0901515 -2.092318  -2.0906057]
+ [-2.2073536 -2.195552  -2.187323 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00029474703>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00023992076>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009610786>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00085968914>]
+Good Loss
+tf.Tensor(
+[[-2.8550797  -2.836572   -2.8103142 ]
+ [-0.38139945 -0.39800277 -0.3952272 ]
+ [ 0.8633012   0.8265682   0.91017216]
+ ...
+ [-1.2445014  -1.7229435  -1.0015308 ]
+ [-1.2011191  -0.70384115 -1.1266855 ]
+ [-1.3310126  -0.81248355 -1.3297627 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003489672>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034555246>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069416105>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011074647>]
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+2
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[-3.5893404  -3.5625625  -3.6174917 ]
+ [-0.9151069  -0.92079854 -0.93242615]
+ [-1.0459505  -1.0013916  -0.98960274]
+ ...
+ [-1.4159404  -1.2997087  -1.4133693 ]
+ [-1.5203078  -1.3927953  -1.6419835 ]
+ [-1.6414417  -1.780046   -1.6872429 ]], shape=(10066, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035240536>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034544885>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072462717>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001095865>]
+Good Loss
+tf.Tensor(
+[[-0.9208401  -0.87176704 -0.9433293 ]
+ [ 0.45204896  0.5000042   0.48379958]
+ [ 0.5620748   0.53327465  0.5539174 ]
+ ...
+ [-1.2073642  -1.173605   -1.221419  ]
+ [-1.2266809  -1.1929016  -1.2181944 ]
+ [-1.2547098  -1.273597   -1.2229322 ]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035104147>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035027295>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00074057933>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009926114>]
+Good Loss
+tf.Tensor(
+[[-1.2055346  -1.2202752  -1.1638402 ]
+ [ 0.24140202  0.2837024   0.220283  ]
+ [ 0.13259116  0.17543794  0.10762434]
+ ...
+ [-1.3278437  -1.2849152  -1.361946  ]
+ [-1.3489558  -1.4011018  -1.3403888 ]
+ [-1.4973899  -1.5182314  -1.5460793 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034473423>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003493311>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007601611>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010961952>]
+Good Loss
+tf.Tensor(
+[[-0.13999504 -0.11243819 -0.10676645]
+ [ 0.9663972   0.9518448   0.9255509 ]
+ [ 0.95350593  0.96143734  0.9487606 ]
+ ...
+ [-1.6289518  -1.5600271  -1.68062   ]
+ [-1.6422367  -1.7150618  -1.6735386 ]
+ [-1.6654174  -1.6445282  -1.6829882 ]], shape=(10065, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003322752>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035223117>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00075907586>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009377119>]
+Good Loss
+tf.Tensor(
+[[ 2.1393635   2.1375628   2.1423278 ]
+ [ 1.7227155   1.726677    1.733966  ]
+ [ 1.6552423   1.6632171   1.6534078 ]
+ ...
+ [-0.5822194  -0.5865847  -0.58465415]
+ [-0.76765764 -0.72150725 -0.7881674 ]
+ [-0.91164005 -0.9546662  -0.9279358 ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00038113134>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035501795>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010654725>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00081221206>]
+Good Loss
+tf.Tensor(
+[[ 1.9450179  1.93559    1.9410098]
+ [ 1.7515236  1.7523787  1.7578228]
+ [ 1.6937782  1.6904517  1.694273 ]
+ ...
+ [-1.48498   -1.4758747 -1.4919914]
+ [-1.6175498 -1.6419934 -1.6188127]
+ [-1.7584583 -1.7579541 -1.7704923]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00040531112>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005348155>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011319612>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008654218>]
+Good Loss
+tf.Tensor(
+[[ 1.7712127   1.7612613   1.7719752 ]
+ [ 1.6569831   1.6552684   1.6606406 ]
+ [ 1.6462193   1.6441678   1.6468817 ]
+ ...
+ [-0.4250947  -0.41485253 -0.22892436]
+ [-1.3399029  -1.0288785  -1.6709653 ]
+ [-1.2406344  -1.3788031  -1.1299456 ]], shape=(10066, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.000285049>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00045330782>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001108092>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008999835>]
+Good Loss
+tf.Tensor(
+[[ 2.1942842  2.2091215  2.1965322]
+ [ 1.7352345  1.7328368  1.7287897]
+ [ 1.6516281  1.6448056  1.6644858]
+ ...
+ [-1.2904352 -1.2765096 -1.2237785]
+ [-1.4766519 -1.4146492 -1.4236104]
+ [-1.6081169 -1.6211374 -1.6403028]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003216973>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00013781898>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011315176>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008952009>]
+Good Loss
+tf.Tensor(
+[[-5.499004  -5.5202136 -5.4605837]
+ [-1.3383751 -1.2740535 -1.4139352]
+ [-1.2433594 -1.2828124 -1.4182869]
+ ...
+ [-1.6612405 -1.6000341 -1.6979917]
+ [-1.7034744 -1.7207131 -1.6620708]
+ [-1.7317188 -1.6993825 -1.7858138]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036535438>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003458533>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071963185>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007001768>]
+Good Loss
+tf.Tensor(
+[[-4.0796275 -4.1021004 -4.092509 ]
+ [-1.3455182 -1.3034613 -1.3516498]
+ [-1.3142315 -1.302022  -1.2704334]
+ ...
+ [-1.5531154 -1.5355681 -1.5867352]
+ [-1.6400182 -1.6117027 -1.6307855]
+ [-1.7565904 -1.7649113 -1.7167804]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035101455>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033989226>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00067983195>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069042103>]
+Good Loss
+tf.Tensor(
+[[-4.343479  -4.3533177 -4.2808414]
+ [-1.3740236 -1.4256423 -1.3711847]
+ [-1.3890488 -1.3881584 -1.3672018]
+ ...
+ [-1.209782  -1.1557231 -1.2004778]
+ [-1.2381929 -1.1569788 -1.2555318]
+ [-1.2221245 -1.1502807 -1.2850174]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037114165>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035314815>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007612311>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00065960933>]
+Good Loss
+tf.Tensor(
+[[-2.34646    -2.3843215  -2.2590373 ]
+ [ 0.26271874  0.3218822   0.27712855]
+ [ 0.659493    0.61524224  0.6990952 ]
+ ...
+ [-1.1186105  -1.2337716  -1.1160846 ]
+ [-1.0200318  -1.0563753  -0.9709572 ]
+ [-0.9741017  -0.96967924 -0.9295787 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00042716836>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003482035>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007169581>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006117874>]
+Good Loss
+tf.Tensor(
+[[ 1.9288325  1.9258735  1.9198396]
+ [ 1.695761   1.6911596  1.6860042]
+ [ 1.6648622  1.6559143  1.6681045]
+ ...
+ [-1.4992487 -1.4856188 -1.4926261]
+ [-1.5756658 -1.5604904 -1.552475 ]
+ [ 0.         0.         0.       ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036445234>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005839532>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011614236>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000833548>]
+Good Loss
+tf.Tensor(
+[[ 2.4248116  2.4204965  2.4203835]
+ [ 1.8497977  1.8679433  1.8414189]
+ [ 1.661468   1.6611736  1.6762186]
+ ...
+ [-1.8602407 -1.8730007 -1.8582572]
+ [-1.9133048 -1.8886634 -1.8904959]
+ [-1.762194  -1.8184206 -1.7700897]], shape=(10065, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034118813>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003534159>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012022554>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007923215>]
+Good Loss
+tf.Tensor(
+[[ 2.0302987   2.0369549   2.0226774 ]
+ [ 1.5994916   1.6080921   1.589349  ]
+ [ 1.5273317   1.5220358   1.5367693 ]
+ ...
+ [ 1.2050215   1.4637789   1.2192811 ]
+ [ 0.6564789   0.36352685  0.6413887 ]
+ [-0.07694767 -0.06444637  0.10673551]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031408423>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00021023743>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010997105>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008216571>]
+Good Loss
+tf.Tensor(
+[[ 2.283568   2.2969208  2.2850094]
+ [ 1.6291951  1.6255603  1.6306775]
+ [ 1.5345719  1.5384303  1.5421374]
+ ...
+ [-2.3025904 -2.2967913 -2.2917354]
+ [-2.445323  -2.4496458 -2.4345295]
+ [-2.4319797 -2.4274058 -2.4252136]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033552665>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00042700605>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010500698>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00084622175>]
+Good Loss
+tf.Tensor(
+[[-3.7857454 -3.7814329 -3.7364278]
+ [-1.2263237 -1.1861657 -1.2160585]
+ [-1.0512571 -0.9827516 -1.0225426]
+ ...
+ [-1.5892701 -1.5222684 -1.7039603]
+ [-1.6432164 -1.6017305 -1.7281383]
+ [-1.5733496 -1.6868442 -1.5389433]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035267093>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036406284>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00073291396>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005932047>]
+Good Loss
+tf.Tensor(
+[[-2.2934027  -2.2568238  -2.3246896 ]
+ [-0.10481874 -0.11082292 -0.0847309 ]
+ [-0.08769874 -0.05827283 -0.11900167]
+ ...
+ [-1.5446973  -1.3468355  -1.5266944 ]
+ [-1.7427324  -1.6751858  -1.887532  ]
+ [-1.6237451  -1.4177268  -1.5779392 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.000495787>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000353749>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00070489635>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00048456324>]
+Good Loss
+tf.Tensor(
+[[-3.0229118  -3.0001993  -3.012087  ]
+ [-0.8896774  -0.90406376 -0.884328  ]
+ [-0.900945   -0.8601691  -0.9141324 ]
+ ...
+ [-1.6759164  -1.5973766  -1.5671327 ]
+ [-1.7248747  -1.8761529  -1.8106936 ]
+ [-1.7131323  -1.6347408  -1.6883055 ]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00030966362>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033864472>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006858286>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00048195868>]
+Good Loss
+tf.Tensor(
+[[-2.254754   -2.2727585  -2.3273973 ]
+ [ 0.07819739  0.0707176   0.05239278]
+ [ 0.14357765  0.21066089  0.13043498]
+ ...
+ [-0.9424694  -0.9235534  -0.85906255]
+ [-1.0059345  -0.86818993 -1.0870959 ]
+ [-1.0716431  -1.0259869  -1.174716  ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0005136744>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036210008>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069536426>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00043651182>]
+Good Loss
+tf.Tensor(
+[[ 2.2882085  2.2781186  2.2987084]
+ [ 1.8038491  1.8035319  1.7961026]
+ [ 1.6260922  1.6315565  1.616566 ]
+ ...
+ [-1.7290219 -1.7084235 -1.7111948]
+ [-1.9515877 -1.9734111 -1.9558989]
+ [-2.1256077 -2.1052468 -2.1073484]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00038831582>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006774059>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011443192>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00082558714>]
+Good Loss
+tf.Tensor(
+[[ 2.4668577  2.4564047  2.486804 ]
+ [ 1.6380562  1.6435015  1.6117682]
+ [ 1.58352    1.6016513  1.5868101]
+ ...
+ [-1.7580765 -1.757139  -1.7516155]
+ [-2.0023131 -1.9993595 -2.0118055]
+ [-2.0585241 -2.058361  -2.043883 ]], shape=(10066, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0004391265>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00038298848>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012412227>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008516358>]
+Good Loss
+tf.Tensor(
+[[ 2.1398368  2.140519   2.141229 ]
+ [ 1.694795   1.6948348  1.6883049]
+ [ 1.657635   1.666756   1.6533306]
+ ...
+ [-2.171304  -2.1938434 -2.2262232]
+ [-2.3075936 -2.245694  -2.3084526]
+ [-2.609906  -2.6159341 -2.6110868]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031215735>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00037188566>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011130748>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008978683>]
+Good Loss
+tf.Tensor(
+[[ 2.2536597  2.257431   2.2350385]
+ [ 1.7426718  1.7502339  1.73216  ]
+ [ 1.6792716  1.6722089  1.6830059]
+ ...
+ [-2.400274  -2.3593488 -2.3637676]
+ [-2.5113351 -2.5009217 -2.5599248]
+ [-2.6057932 -2.6609135 -2.572035 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00041744768>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00026264283>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010618723>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009185552>]
+Good Loss
+tf.Tensor(
+[[-3.8965526 -3.8662937 -3.8683746]
+ [-1.5500022 -1.5846341 -1.5208758]
+ [-1.5575718 -1.5262034 -1.5502826]
+ ...
+ [-1.5395063 -1.5392648 -1.5267314]
+ [-1.4293778 -1.4214166 -1.3745655]
+ [-1.2951269 -1.313818  -1.3008623]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00039764415>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034019255>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007243175>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00027439324>]
+Good Loss
+tf.Tensor(
+[[-3.560848   -3.5203521  -3.5676534 ]
+ [ 0.0155918  -0.01788765  0.00784738]
+ [ 0.20163624  0.23519397  0.21033967]
+ ...
+ [-0.94001657 -0.87448007 -0.90597326]
+ [-1.1397687  -1.264149   -1.1251682 ]
+ [-1.1756015  -1.2352757  -1.2519622 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00039879174>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035995297>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071642024>, <tf.Tensor: shape=(), dtype=float32, numpy=-4.8893387e-05>]
+Good Loss
+tf.Tensor(
+[[-2.529858   -2.584835   -2.5131254 ]
+ [ 0.3626691   0.45110685  0.33644667]
+ [ 0.60092574  0.59358346  0.6215376 ]
+ ...
+ [-1.1353455  -0.9879774  -1.1147206 ]
+ [-1.2125357  -1.2632002  -1.2992562 ]
+ [-1.2961903  -1.2137114  -1.4131271 ]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00028974185>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034803106>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000705458>, <tf.Tensor: shape=(), dtype=float32, numpy=8.0910046e-05>]
+Good Loss
+tf.Tensor(
+[[ 3.4820278   3.4866476   3.494297  ]
+ [ 1.1130006   1.1238947   1.0979497 ]
+ [ 0.89111966  0.884578    0.9005005 ]
+ ...
+ [-1.6936383  -1.684984   -1.6788106 ]
+ [-1.6789812  -1.6795026  -1.6778892 ]
+ [-1.587726   -1.5846684  -1.5795519 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00028745204>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00020744228>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014077437>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010704299>]
+Good Loss
+tf.Tensor(
+[[ 2.1188633  2.123632   2.1143918]
+ [ 1.6532346  1.6561389  1.6604732]
+ [ 1.6058584  1.5953124  1.6170458]
+ ...
+ [-1.1775715 -1.1823434 -1.1615018]
+ [-1.298478  -1.2756847 -1.3062911]
+ [-1.347599  -1.324766  -1.3625249]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00039016388>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00047980947>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001409969>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011396619>]
+Good Loss
+tf.Tensor(
+[[ 1.9313802  1.941675   1.9298648]
+ [ 1.6633505  1.6549911  1.660102 ]
+ [ 1.6307027  1.634796   1.6307197]
+ ...
+ [-1.4620291 -1.363695  -1.3580109]
+ [-1.7359444 -1.8550847 -1.8672001]
+ [-2.3006234 -2.2034912 -2.3678777]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031857096>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036897403>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013294017>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011789603>]
+Good Loss
+tf.Tensor(
+[[ 1.7736646  1.7724303  1.7774782]
+ [ 1.5752455  1.5798075  1.573243 ]
+ [ 1.5530367  1.5386302  1.5510042]
+ ...
+ [-1.3432826 -1.3653092 -1.3164918]
+ [-1.40684   -1.4069252 -1.3812863]
+ [-1.3499187 -1.341821  -1.3620186]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003360285>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0001367466>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0016163413>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001247791>]
+Good Loss
+tf.Tensor(
+[[-0.8498454  -0.7994854  -0.8234911 ]
+ [ 0.5911088   0.63602793  0.57348794]
+ [ 0.94614583  0.9897244   0.9598916 ]
+ ...
+ [-1.9123765  -1.9003484  -1.8821622 ]
+ [-1.8837144  -1.9062613  -1.8879925 ]
+ [-2.106491   -2.0627496  -2.0765254 ]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037359085>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00037369505>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00071592943>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00032281142>]
+Good Loss
+tf.Tensor(
+[[-3.0090046  -3.030457   -3.0243144 ]
+ [-0.8241047  -0.8216955  -0.808429  ]
+ [-0.71612275 -0.6975589  -0.7064138 ]
+ ...
+ [-1.2375731  -1.1738727  -1.255812  ]
+ [-1.3772782  -1.3211923  -1.4258606 ]
+ [-1.2932538  -1.2368602  -1.2951287 ]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00034900656>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036480362>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00069517223>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004897128>]
+Good Loss
+tf.Tensor(
+[[-0.4435759  -0.41955397 -0.4218357 ]
+ [ 0.72052974  0.75904375  0.6791337 ]
+ [ 0.74018043  0.74689424  0.7262615 ]
+ ...
+ [-1.6320806  -1.5829095  -1.6119446 ]
+ [-1.6845064  -1.6700552  -1.6682851 ]
+ [-1.676781   -1.6097889  -1.640801  ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00020081116>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034985473>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00067207945>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00045607158>]
+Good Loss
+tf.Tensor(
+[[-2.0749192  -2.0940418  -2.034641  ]
+ [-0.2883437  -0.3195459  -0.2850051 ]
+ [-0.2644073  -0.26939893 -0.26750007]
+ ...
+ [-0.4238157  -0.4731519  -0.02450306]
+ [-1.0817655  -1.5849533  -1.181099  ]
+ [-1.6007137  -1.1567134  -1.671448  ]], shape=(10065, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00045393797>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031785923>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005758856>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00090432086>]
+Good Loss
+tf.Tensor(
+[[ 2.5070467   2.4781752   2.5235283 ]
+ [ 1.6603074   1.655158    1.6400778 ]
+ [ 1.48534     1.4809716   1.4791509 ]
+ ...
+ [ 0.2007371   0.2288434   0.21536691]
+ [-0.19989903 -0.00474593 -0.09824742]
+ [-0.728218   -0.90962785 -0.6907637 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00044038997>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0002745631>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001495715>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012212778>]
+Good Loss
+tf.Tensor(
+[[ 1.9610945  1.9708579  1.9559492]
+ [ 1.6492611  1.6389395  1.6453104]
+ [ 1.6014289  1.5954788  1.6058301]
+ ...
+ [-2.2877164 -2.3028371 -2.2876036]
+ [-2.1622036 -2.148292  -2.1721008]
+ [-2.1449406 -2.140868  -2.143365 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031393496>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00021497907>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00140767>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012181484>]
+Good Loss
+tf.Tensor(
+[[ 1.6133677   1.6109755   1.6133672 ]
+ [ 1.5445689   1.545329    1.5507808 ]
+ [ 1.5247077   1.5297961   1.525981  ]
+ ...
+ [-0.61597854 -0.7132725  -0.6129704 ]
+ [-0.56297296 -0.53304446 -0.551296  ]
+ [-0.40304005 -0.40923762 -0.41098365]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00041568564>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00032315965>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014644518>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012145387>]
+Good Loss
+tf.Tensor(
+[[2.411439   2.3838642  2.4048204 ]
+ [1.7374038  1.7343847  1.756756  ]
+ [1.6480416  1.66259    1.6480381 ]
+ ...
+ [1.116128   0.9398718  1.1192149 ]
+ [0.8004975  0.8763379  0.9183335 ]
+ [0.1084272  0.21125785 0.15156029]], shape=(10064, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00030408535>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003175986>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014077976>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012130113>]
+Good Loss
+tf.Tensor(
+[[-3.867768   -3.8877306  -3.8437617 ]
+ [-0.17161936 -0.283444   -0.16084807]
+ [-0.07039391 -0.16641602 -0.0281951 ]
+ ...
+ [-0.12372271 -0.26037106 -0.09529241]
+ [-1.         -1.         -1.        ]
+ [ 1.          1.          1.        ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036378304>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000338428>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00061211584>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0010502136>]
+Good Loss
+tf.Tensor(
+[[-3.467119   -3.4598982  -3.4592519 ]
+ [-1.269347   -1.2758836  -1.3050985 ]
+ [-0.8133484  -0.8092599  -0.7882368 ]
+ ...
+ [ 0.04306561 -0.07095999  0.12314536]
+ [-1.3244916  -0.9027165  -1.2862083 ]
+ [-1.5557165  -1.7418919  -1.5004987 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00038351986>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035850194>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006943927>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006061628>]
+Good Loss
+tf.Tensor(
+[[-3.3304358 -3.3523102 -3.3309612]
+ [-1.2955885 -1.3046764 -1.3091111]
+ [-1.2015076 -1.158693  -1.181493 ]
+ ...
+ [-1.3318357 -1.2992444 -1.2760257]
+ [-1.3960359 -1.4283165 -1.4107753]
+ [-1.4442623 -1.4074024 -1.3868473]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0002562273>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033712035>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006296378>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00082151196>]
+Good Loss
+tf.Tensor(
+[[-4.125031  -4.116833  -4.1351967]
+ [-1.3088124 -1.3155771 -1.3131478]
+ [-1.2566601 -1.2579422 -1.2499088]
+ ...
+ [-1.596165  -1.5469381 -1.658388 ]
+ [-1.6045022 -1.6480689 -1.6877358]
+ [-1.2703738 -1.2587376 -1.257857 ]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0004767634>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033652215>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00064792886>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0013424439>]
+Good Loss
+tf.Tensor(
+[[ 2.5017567  2.4963944  2.5018697]
+ [ 1.7830902  1.7925254  1.7607098]
+ [ 1.5808376  1.5778528  1.5927888]
+ ...
+ [-1.136553  -1.1859231 -1.1194353]
+ [-1.257476  -1.2278066 -1.2820154]
+ [-1.3228332 -1.3637913 -1.3431635]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.000499365>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000290818>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013013559>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011757747>]
+Good Loss
+tf.Tensor(
+[[ 1.5737655   1.5788753   1.5764164 ]
+ [ 1.4961915   1.5025184   1.5026066 ]
+ [ 1.4714578   1.4750944   1.4755454 ]
+ ...
+ [-1.2498503  -1.076518   -1.0710248 ]
+ [-0.7942888  -1.0816922  -0.75652605]
+ [-0.27868646 -0.13097516 -0.30205986]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0004090262>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003381244>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014143707>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011824659>]
+Good Loss
+tf.Tensor(
+[[ 1.6331197  1.6318198  1.6352998]
+ [ 1.563488   1.5641248  1.5663679]
+ [ 1.5467842  1.5459911  1.5498403]
+ ...
+ [-1.1616075 -1.1784267 -1.1783016]
+ [-1.4690806 -1.4537526 -1.4770904]
+ [ 0.         0.         0.       ]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00044457358>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00022223055>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001373549>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011534849>]
+Good Loss
+tf.Tensor(
+[[ 1.8778197   1.8767625   1.8784206 ]
+ [ 1.6241916   1.6167538   1.6272024 ]
+ [ 1.5578676   1.5549792   1.5529234 ]
+ ...
+ [-0.76147604 -0.9331621  -0.76595014]
+ [-0.8693592  -0.8254456  -0.8417366 ]
+ [-1.3580203  -1.3639854  -1.3767916 ]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0004713412>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00041153404>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010341774>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010764434>]
+Good Loss
+tf.Tensor(
+[[ 1.8492862  1.8491414  1.8422117]
+ [ 1.6021125  1.6040748  1.603052 ]
+ [ 1.5688792  1.5690676  1.5604651]
+ ...
+ [-1.955321  -1.9563075 -1.9644238]
+ [-1.9069699 -1.8902802 -1.914552 ]
+ [-2.0096161 -1.9928648 -2.0092394]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003399382>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00040027406>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011378429>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011037816>]
+Good Loss
+tf.Tensor(
+[[-2.210152   -2.2568843  -2.1497972 ]
+ [-0.09198876 -0.03240889 -0.06902821]
+ [ 0.524459    0.57699513  0.50793636]
+ ...
+ [-0.89841664 -0.7544102  -0.9420764 ]
+ [-1.2515692  -1.1170607  -1.2041966 ]
+ [-1.5959649  -1.5995872  -1.5288479 ]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00018780176>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003437739>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006352605>, <tf.Tensor: shape=(), dtype=float32, numpy=0.001583872>]
+Good Loss
+tf.Tensor(
+[[-3.1631339  -3.1884363  -3.102303  ]
+ [-0.5980296  -0.53076786 -0.57351214]
+ [ 0.62452304  0.6862732   0.5910491 ]
+ ...
+ [-1.7186007  -1.5463017  -1.744408  ]
+ [-1.8180791  -2.039339   -1.7497796 ]
+ [-1.5887414  -1.8272382  -1.6572862 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031915796>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003722927>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005573736>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0018830206>]
+Good Loss
+tf.Tensor(
+[[-3.5097697  -3.630543   -3.4533043 ]
+ [-0.5329894  -0.47995    -0.5551302 ]
+ [ 0.0579722   0.13586216  0.0714913 ]
+ ...
+ [-1.6994355  -1.7356979  -1.7169809 ]
+ [-1.8272927  -1.8156     -1.8337576 ]
+ [-1.9396323  -1.976883   -2.049715  ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00027310004>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003526783>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00064444105>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0015488772>]
+Good Loss
+tf.Tensor(
+[[-0.944222   -0.8919194  -0.94316727]
+ [ 0.47613478  0.4607356   0.4973993 ]
+ [ 0.41008896  0.41131985  0.38850874]
+ ...
+ [-1.1231434  -1.1730922  -1.1053665 ]
+ [-0.99369335 -1.0240395  -0.96739674]
+ [-1.05372    -1.0807078  -1.0704416 ]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0005773143>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00037875277>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007116264>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0014460598>]
+Good Loss
+tf.Tensor(
+[[ 1.8647622  1.8656834  1.8716807]
+ [ 1.7163324  1.7146522  1.7204316]
+ [ 1.7095422  1.7145022  1.7078063]
+ ...
+ [-0.9533497 -0.9978426 -0.9337114]
+ [-1.0510521 -1.0165364 -1.030131 ]
+ [-1.1219041 -1.1270347 -1.1217159]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00037048894>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036724375>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012459547>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011409458>]
+Good Loss
+tf.Tensor(
+[[ 1.5697732  1.5717491  1.5761138]
+ [ 1.4671413  1.4690055  1.4662415]
+ [ 1.4456325  1.451712   1.4483653]
+ ...
+ [-1.03967   -1.0141535 -1.0565847]
+ [-0.9759687 -0.9940007 -0.9529063]
+ [-0.7895717 -0.8056191 -0.7847458]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033184775>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003990503>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00092747365>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010572555>]
+Good Loss
+tf.Tensor(
+[[ 1.7891188   1.7930831   1.7925661 ]
+ [ 1.6107595   1.6189505   1.6158849 ]
+ [ 1.6373972   1.6385572   1.641769  ]
+ ...
+ [-0.26469812 -0.29578638 -0.24558648]
+ [-0.0726968  -0.05123986 -0.0625933 ]
+ [ 0.22386119  0.23875518  0.21485233]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.000530652>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034972612>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013451509>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011210473>]
+Good Loss
+tf.Tensor(
+[[ 2.2292345  2.198935   2.1754348]
+ [ 1.176243   1.1938874  1.1874943]
+ [ 1.0115     1.015952   0.9925542]
+ ...
+ [-1.9498785 -2.0506704 -1.9754584]
+ [-1.9795516 -1.9389135 -2.00531  ]
+ [-2.5384262 -2.552944  -2.521683 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0003370615>, <tf.Tensor: shape=(), dtype=float32, numpy=3.6237747e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011480437>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011235966>]
+Good Loss
+tf.Tensor(
+[[-0.98477805 -0.92919785 -0.96736   ]
+ [ 0.59288454  0.61622113  0.5587702 ]
+ [ 0.6528137   0.6239278   0.67556435]
+ ...
+ [-1.0881588  -1.1735636  -1.0421736 ]
+ [-1.4232724  -1.6598964  -1.5545838 ]
+ [-1.7007803  -1.7955579  -1.6529801 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00053184887>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003126944>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00062285014>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0022149961>]
+Good Loss
+tf.Tensor(
+[[-0.5331938  -0.55440044 -0.49974632]
+ [ 1.02271     1.0268058   1.021727  ]
+ [ 0.97242635  1.0083051   0.9569206 ]
+ ...
+ [-1.7169219  -1.6540657  -1.6957475 ]
+ [-1.7482073  -1.7959679  -1.7238226 ]
+ [-1.7875453  -1.7558055  -1.7633089 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035978417>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034696393>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006285916>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0020241067>]
+Good Loss
+tf.Tensor(
+[[-2.1111352  -2.061917   -2.106941  ]
+ [ 0.09322801  0.10193878  0.12154105]
+ [ 0.5911458   0.59495115  0.5722426 ]
+ ...
+ [-1.7297469  -1.6525017  -1.7151206 ]
+ [-2.0585735  -2.0228243  -2.0388439 ]
+ [-2.2786553  -2.2901828  -2.357189  ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0005774364>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033817624>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006956836>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0021939874>]
+Good Loss
+tf.Tensor(
+[[-1.9473003 -1.895506  -1.9064995]
+ [ 0.7336396  0.7935203  0.7001291]
+ [ 1.4113762  1.4410874  1.4116014]
+ ...
+ [-1.6133852 -1.4639834 -1.6098224]
+ [-1.740732  -1.5875691 -1.7314199]
+ [-1.8402967 -2.0248597 -1.82281  ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00043940864>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031290486>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00064360304>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0030726108>]
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+3
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[ 0.9684649  0.9233605  0.9545236]
+ [ 1.3577896  1.3726336  1.3724076]
+ [ 1.361169   1.3809294  1.3616489]
+ ...
+ [-1.5953788 -1.6066779 -1.6173117]
+ [-1.5996076 -1.6380514 -1.6266155]
+ [-1.6806309 -1.6645986 -1.6780835]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00022640514>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00033982683>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00040808783>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0025953925>]
+Good Loss
+tf.Tensor(
+[[ 1.8974717  1.8890039  1.907844 ]
+ [ 1.6062592  1.6146206  1.6010678]
+ [ 1.5661056  1.5741498  1.5643651]
+ ...
+ [-2.3588936 -2.377961  -2.3512058]
+ [-2.4029694 -2.3808439 -2.3975456]
+ [-2.28003   -2.2579124 -2.2873995]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00029382462>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00028545043>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011765428>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011172316>]
+Good Loss
+tf.Tensor(
+[[ 1.7648617  1.772443   1.762399 ]
+ [ 1.635569   1.6300282  1.6397421]
+ [ 1.6046741  1.6078985  1.6061034]
+ ...
+ [-1.172807  -1.1530892 -1.1791785]
+ [-1.2531631 -1.2908003 -1.2579731]
+ [-1.0781846 -1.0903387 -1.0698422]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00045744563>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00039389875>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001265144>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012099553>]
+Good Loss
+tf.Tensor(
+[[ 2.4348445   2.4273143   2.4598906 ]
+ [ 1.6598804   1.6862255   1.6695955 ]
+ [ 1.5658554   1.5728768   1.5732937 ]
+ ...
+ [ 0.15586562  0.16043101  0.1601096 ]
+ [-0.26306465 -0.24238777 -0.26361346]
+ [-0.43364635 -0.41312182 -0.44523078]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035467002>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00029227685>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00208816>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014311201>]
+Good Loss
+tf.Tensor(
+[[ 1.7226356  1.71528    1.7214893]
+ [ 1.543319   1.5356653  1.5516863]
+ [ 1.5397012  1.5441886  1.5460849]
+ ...
+ [-1.2257948 -1.205706  -1.2363275]
+ [-1.4315724 -1.4115137 -1.4472277]
+ [-1.3050951 -1.2923234 -1.3001556]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00044589327>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004767362>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0019731892>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013748114>]
+Good Loss
+tf.Tensor(
+[[-1.16224    -1.1505395  -1.1956515 ]
+ [ 0.2743253   0.21609662  0.28270784]
+ [ 0.2886187   0.33943585  0.3113429 ]
+ ...
+ [-1.0406867  -0.90863645 -1.337943  ]
+ [-1.098573   -0.9963783  -1.2281091 ]
+ [-1.2385119  -1.1465805  -1.3000939 ]], shape=(10063, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00019659597>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00037936555>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00062008156>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0025032833>]
+Good Loss
+tf.Tensor(
+[[-2.9839265  -2.969072   -2.9906883 ]
+ [-0.3776325  -0.32566902 -0.3818328 ]
+ [-0.47024882 -0.52683634 -0.4841056 ]
+ ...
+ [-1.7826775  -1.7676477  -1.7457095 ]
+ [-1.9218909  -1.9558374  -1.967489  ]
+ [-2.0870993  -2.0953119  -2.057274  ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00016276458>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000314337>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00042206718>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0029712282>]
+Good Loss
+tf.Tensor(
+[[ 0.9159366   0.9148767   0.86926186]
+ [ 1.2894145   1.2881157   1.2862291 ]
+ [ 1.4052455   1.413354    1.4041669 ]
+ ...
+ [-1.0156828  -0.9062998  -0.9343208 ]
+ [-1.2241642  -1.1979189  -1.2089553 ]
+ [-0.90953386 -0.84518385 -0.8120363 ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00028137173>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034755317>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00061845046>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0032635378>]
+Good Loss
+tf.Tensor(
+[[ 0.27225578  0.29177645  0.2241515 ]
+ [ 1.2914909   1.2490288   1.3015872 ]
+ [ 1.2665879   1.273244    1.2754604 ]
+ ...
+ [-0.8466438  -0.7573556  -0.8273558 ]
+ [-0.9266523  -0.8620071  -0.91024214]
+ [-0.68723416 -0.7074383  -0.63478994]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00030837161>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031169693>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00047225814>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0024328313>]
+Good Loss
+tf.Tensor(
+[[-1.9388568  -1.8695099  -1.8997016 ]
+ [ 0.2639546   0.19986898  0.25611985]
+ [ 0.27285132  0.32438818  0.26284194]
+ ...
+ [-1.8243159  -1.9277018  -1.7596263 ]
+ [-1.8735712  -1.8657125  -1.8769836 ]
+ [-1.8204954  -1.7448778  -1.7575799 ]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00049159786>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00032147326>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005678829>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0039925203>]
+Good Loss
+tf.Tensor(
+[[2.7538393  2.7426143  2.7209556 ]
+ [1.452128   1.443198   1.4251629 ]
+ [1.2895595  1.2601131  1.2893282 ]
+ ...
+ [1.0178602  1.0365969  0.9389243 ]
+ [0.4531219  0.43375483 0.44021735]
+ [0.04257405 0.10809074 0.0397226 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00044695544>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00072703196>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002181394>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013915304>]
+Good Loss
+tf.Tensor(
+[[ 1.5753248  1.5712905  1.5754287]
+ [ 1.5601315  1.5589583  1.5548015]
+ [ 1.5439106  1.5450556  1.5417525]
+ ...
+ [-2.1090615 -2.0848103 -2.0820155]
+ [-2.3647373 -2.437616  -2.366303 ]
+ [-2.153165  -2.1468694 -2.1466947]], shape=(10039, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0006439325>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00064623106>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0018426004>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001247187>]
+Good Loss
+tf.Tensor(
+[[ 1.6993403   1.7009318   1.6951418 ]
+ [ 1.4170419   1.4011116   1.422654  ]
+ [ 1.3972937   1.3868809   1.3903805 ]
+ ...
+ [-0.43625677 -0.39872947 -0.43722755]
+ [-0.5951955  -0.6953703  -0.61739755]
+ [-0.10412589 -0.13751873 -0.11827178]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00048692583>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00040713052>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002279134>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014035755>]
+Good Loss
+tf.Tensor(
+[[ 2.3472958   2.3303728   2.3449748 ]
+ [ 1.8434973   1.8464751   1.8640712 ]
+ [ 1.775017    1.7940286   1.7663721 ]
+ ...
+ [-0.60916036 -0.6538701  -0.6230237 ]
+ [-0.59517664 -0.59564424 -0.58945304]
+ [-0.6953572  -0.66707957 -0.71269816]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0006894927>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005960775>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002807164>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015132425>]
+Good Loss
+tf.Tensor(
+[[-3.7036953  -3.6584008  -3.652744  ]
+ [-0.37547827 -0.39683414 -0.38322246]
+ [-0.18895148 -0.23212044 -0.15260167]
+ ...
+ [-0.9101204  -0.1447579  -0.95608765]
+ [-1.1625402  -0.41067487 -1.226858  ]
+ [-2.0032728  -2.5213947  -2.0468774 ]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0004257143>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036518817>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004962407>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0035304173>]
+Good Loss
+tf.Tensor(
+[[-1.7821392e+00 -1.8127707e+00 -1.7902545e+00]
+ [-4.5465510e-03  1.0415677e-03 -6.4799725e-03]
+ [ 2.4906332e-02  3.7078261e-02  3.4470949e-02]
+ ...
+ [-1.6596360e+00 -1.6840340e+00 -1.7154402e+00]
+ [-1.6733403e+00 -1.6158367e+00 -1.6683860e+00]
+ [-1.7447200e+00 -1.7282106e+00 -1.7229375e+00]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00023675282>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034312022>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00043103367>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0037308522>]
+Good Loss
+tf.Tensor(
+[[-2.4667404  -2.5506036  -2.408744  ]
+ [ 0.14031233  0.08260551  0.11943056]
+ [ 0.24371524  0.31308725  0.21783492]
+ ...
+ [ 1.0192091   0.73057383  1.103882  ]
+ [ 1.1207294   1.2152339   1.2774752 ]
+ [ 0.88127154  1.0227159   0.8925551 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0001319748>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036336202>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00059378956>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0042949324>]
+Good Loss
+tf.Tensor(
+[[-1.9549013  -1.9777564  -1.9219447 ]
+ [ 0.06789522  0.02343021  0.0906589 ]
+ [ 0.25824773  0.24747805  0.26357234]
+ ...
+ [-0.6984128  -0.62347853 -0.6256379 ]
+ [-0.8773583  -1.0108572  -0.8993274 ]
+ [-0.34776053 -0.22481138 -0.33455622]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00019185469>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031519844>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00046599295>, <tf.Tensor: shape=(), dtype=float32, numpy=0.004145447>]
+Good Loss
+tf.Tensor(
+[[ 1.4886538   1.4922041   1.4991977 ]
+ [ 1.3357236   1.3483977   1.3344544 ]
+ [ 1.3052821   1.3031129   1.3046476 ]
+ ...
+ [ 0.74289715  0.754017    0.7033383 ]
+ [ 0.3697099   0.32220173  0.332466  ]
+ [ 0.04677971 -0.06669764  0.08022869]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00051543757>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00055775594>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002360425>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013428517>]
+Good Loss
+tf.Tensor(
+[[2.10222   2.1032784 2.107656 ]
+ [1.5579613 1.548579  1.5450011]
+ [1.52229   1.5325047 1.5334507]
+ ...
+ [1.835819  1.8519329 1.8513823]
+ [1.6767316 1.6619493 1.6806715]
+ [1.6439155 1.6508706 1.6181892]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00063158915>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00046179796>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0026682282>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014239097>]
+Good Loss
+tf.Tensor(
+[[ 1.7433766  1.7454909  1.738762 ]
+ [ 1.5754718  1.5782117  1.5804806]
+ [ 1.5445651  1.5466692  1.5490113]
+ ...
+ [-1.5588099 -1.5136379 -1.5410587]
+ [-2.2478595 -2.18046   -2.2148335]
+ [-2.8601065 -2.9241753 -2.8781555]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00043200195>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006876809>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0029221496>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014758167>]
+Good Loss
+tf.Tensor(
+[[ 1.4968418  1.4888072  1.4939591]
+ [ 1.463948   1.4613255  1.4632962]
+ [ 1.4969224  1.4984767  1.5014879]
+ ...
+ [-1.2179066 -1.2075007 -1.2286065]
+ [-1.2544744 -1.2524608 -1.2676982]
+ [-1.3205742 -1.3569232 -1.3258643]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036082682>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00010540396>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0030060979>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014196407>]
+Good Loss
+tf.Tensor(
+[[-1.488452   -1.4827348  -1.4891535 ]
+ [ 0.45579496  0.5182766   0.47543424]
+ [ 0.4520519   0.4943579   0.4747224 ]
+ ...
+ [-1.346624   -1.3814168  -1.3298769 ]
+ [-1.2766148  -1.2197821  -1.2561184 ]
+ [-1.2993264  -1.3292593  -1.2719902 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00027583053>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035120032>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00048072712>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0044180322>]
+Good Loss
+tf.Tensor(
+[[-1.0788063  -1.05845    -1.1033697 ]
+ [ 0.40739286  0.40463802  0.41050473]
+ [ 0.4120901   0.38017356  0.40414912]
+ ...
+ [-1.4385339  -1.3543783  -1.4641953 ]
+ [-1.1840806  -1.1207838  -1.1729813 ]
+ [-1.2421939  -1.1328303  -1.2401954 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035494953>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00038165093>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005154121>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0045792256>]
+Good Loss
+tf.Tensor(
+[[-4.810058   -4.7332773  -4.8289995 ]
+ [ 0.39008015  0.34674805  0.41160467]
+ [ 0.28217152  0.4288225   0.3320857 ]
+ ...
+ [ 1.3834722   1.3854346   1.3122201 ]
+ [ 1.2510588   1.1213406   1.1439276 ]
+ [ 0.9123963   1.0054272   0.83275425]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-2.2276217e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034861718>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00052698096>, <tf.Tensor: shape=(), dtype=float32, numpy=0.006088765>]
+Good Loss
+tf.Tensor(
+[[-1.3642012  -1.3272479  -1.3267342 ]
+ [ 0.4332206   0.40656215  0.44537973]
+ [ 0.46146798  0.520595    0.46130773]
+ ...
+ [-0.4018778  -0.4245379  -0.37432534]
+ [-0.685289   -0.6342208  -0.68686324]
+ [-0.83103997 -0.82279956 -0.8675097 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0006293239>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031452146>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00053441286>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0056734523>]
+Good Loss
+tf.Tensor(
+[[ 2.713406    2.7148411   2.6699831 ]
+ [ 1.5634803   1.5648984   1.5896075 ]
+ [ 1.3950796   1.4021748   1.4182454 ]
+ ...
+ [ 0.20999241  0.259377    0.15593486]
+ [-0.06434146 -0.0690014  -0.10700125]
+ [-0.196451   -0.15315251 -0.25033474]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0002772806>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00020365848>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.003077842>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015409498>]
+Good Loss
+tf.Tensor(
+[[ 1.4382713   1.4508741   1.4377799 ]
+ [ 1.3702921   1.371467    1.3726553 ]
+ [ 1.343803    1.3458151   1.3390831 ]
+ ...
+ [-0.8913093  -0.8635732  -0.8916673 ]
+ [-0.9580978  -0.9686958  -0.96526045]
+ [-0.536657   -0.54996955 -0.546238  ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00056694937>, <tf.Tensor: shape=(), dtype=float32, numpy=0.000292583>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002714564>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014576468>]
+Good Loss
+tf.Tensor(
+[[ 1.463566   1.4730437  1.474621 ]
+ [ 1.3064635  1.302442   1.3063463]
+ [ 1.2894518  1.2941449  1.3006827]
+ ...
+ [-1.2129673 -1.216423  -1.250405 ]
+ [-1.3030332 -1.282881  -1.3054096]
+ [-2.5983992 -2.5915823 -2.586058 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0005886237>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00058501295>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0027346532>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014915535>]
+Good Loss
+tf.Tensor(
+[[ 1.5871438   1.5846509   1.600964  ]
+ [ 1.3488894   1.3378971   1.3544368 ]
+ [ 1.2931803   1.3006595   1.3032626 ]
+ ...
+ [ 0.31062368  0.33784205  0.28840223]
+ [ 0.09746145  0.13973226  0.07623507]
+ [-0.25996718 -0.31439272 -0.28503168]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00026146785>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00019783134>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0031690977>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0017088243>]
+Good Loss
+tf.Tensor(
+[[1.3729547  1.3602328  1.3723406 ]
+ [1.0126641  1.0109638  1.0070196 ]
+ [0.94508994 0.95736057 0.9426198 ]
+ ...
+ [2.4083433  2.3760936  2.3680341 ]
+ [0.83030033 0.9331906  0.8581552 ]
+ [0.5689382  0.59706336 0.52395725]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00048117753>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0003898125>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0024741725>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015273301>]
+Good Loss
+tf.Tensor(
+[[ 0.11664168  0.06422271  0.06666104]
+ [ 0.84117854  0.8509603   0.84512824]
+ [ 0.89874506  0.8987959   0.9122982 ]
+ ...
+ [-1.851031   -1.7926213  -1.8964051 ]
+ [-1.4157825  -1.4034085  -1.4146234 ]
+ [-1.8064878  -1.8030499  -1.7070752 ]], shape=(10039, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0002553704>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00041592258>, <tf.Tensor: shape=(), dtype=float32, numpy=-5.5200828e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0054805977>]
+Good Loss
+tf.Tensor(
+[[ 0.34138733  0.31232184  0.35554254]
+ [ 0.8993559   0.92687935  0.88862693]
+ [ 0.89052886  0.87485397  0.8945641 ]
+ ...
+ [-0.21806769 -0.29637283 -0.20502184]
+ [ 0.37149864  0.34148383  0.38623512]
+ [ 1.1628157   1.1720337   1.1855465 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00033532502>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035087086>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00018400818>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0053112684>]
+Good Loss
+tf.Tensor(
+[[-3.64135    -3.595437   -3.6370392 ]
+ [-1.3199788  -1.3722291  -1.3720993 ]
+ [-0.79067475 -0.8084732  -0.79110247]
+ ...
+ [-0.41424423 -0.38505873 -0.38779074]
+ [-0.468668   -0.43412474 -0.44816875]
+ [-0.71784085 -0.6457472  -0.7007472 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00024125286>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003595981>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00017430735>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00640693>]
+Good Loss
+tf.Tensor(
+[[-3.806796   -3.7861276  -3.7974732 ]
+ [-0.9686057  -1.0571928  -0.98592764]
+ [-0.169924   -0.17964837 -0.15573238]
+ ...
+ [-1.5065236  -1.1966965  -1.5506088 ]
+ [-1.6470432  -1.4939421  -1.661274  ]
+ [-2.0710368  -2.1450083  -2.046945  ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00019088518>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00028480543>, <tf.Tensor: shape=(), dtype=float32, numpy=9.860634e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0056998464>]
+Good Loss
+tf.Tensor(
+[[ 2.0426161  2.0488608  2.0452626]
+ [ 1.6975788  1.6851453  1.6920996]
+ [ 1.6366378  1.6273528  1.6545426]
+ ...
+ [-2.2530158 -2.3338702 -2.278608 ]
+ [-2.7062347 -2.6987317 -2.673266 ]
+ [-2.7902505 -2.745904  -2.8467045]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00036443616>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006356457>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002134498>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014927762>]
+Good Loss
+tf.Tensor(
+[[ 1.9527829  1.9336541  1.966054 ]
+ [ 1.7246989  1.7218152  1.7159685]
+ [ 1.677747   1.6749961  1.6784658]
+ ...
+ [-1.5908427 -1.6261388 -1.5930958]
+ [-1.6509959 -1.677663  -1.6694123]
+ [-1.511925  -1.5128548 -1.493563 ]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00030413867>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00090645446>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014837424>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013108613>]
+Good Loss
+tf.Tensor(
+[[ 1.4068022   1.414551    1.4183179 ]
+ [ 1.1740803   1.1815375   1.1772118 ]
+ [ 1.1235672   1.1133132   1.1177957 ]
+ ...
+ [-0.2879996  -0.27058363 -0.2849591 ]
+ [-0.64803505 -0.510946   -0.5341486 ]
+ [-1.0206907  -1.1926439  -0.9797061 ]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00044133494>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00014477009>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0022301986>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015401228>]
+Good Loss
+tf.Tensor(
+[[2.981489   3.0220127  2.937717  ]
+ [1.4223962  1.3450055  1.4260929 ]
+ [1.1075398  1.1243271  1.1221966 ]
+ ...
+ [0.06082105 0.14482304 0.09038366]
+ [0.29537356 0.3020382  0.24744052]
+ [1.4639482  1.4206955  1.4925542 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0006930245>, <tf.Tensor: shape=(), dtype=float32, numpy=0.000532149>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001803672>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014742404>]
+Good Loss
+tf.Tensor(
+[[-2.9219391  -2.866298   -2.9507759 ]
+ [ 0.3275516   0.29033095  0.28873584]
+ [ 0.38820407  0.45945275  0.4096897 ]
+ ...
+ [-0.10585991 -0.04458235 -0.0814598 ]
+ [ 0.03549992  0.08200055  0.05025074]
+ [ 0.41260275  0.41734156  0.41978037]], shape=(10042, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=8.9174486e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003931503>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00036552013>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0062698764>]
+Good Loss
+tf.Tensor(
+[[-4.0486646  -4.0043736  -4.0094757 ]
+ [-0.77057624 -0.801963   -0.7767672 ]
+ [ 0.04974093  0.13473317  0.07015082]
+ ...
+ [-1.3814142  -1.3557434  -1.4644078 ]
+ [-1.7778118  -1.7255056  -1.8275758 ]
+ [-1.9917225  -1.9405495  -2.0033212 ]], shape=(10056, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=6.834799e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035911638>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00013329013>, <tf.Tensor: shape=(), dtype=float32, numpy=0.005948225>]
+Good Loss
+tf.Tensor(
+[[-3.810713   -3.8027382  -3.7873166 ]
+ [-1.0322964  -0.9687912  -1.0134315 ]
+ [-0.98127437 -1.0224142  -0.96804106]
+ ...
+ [-1.6210922  -1.6577542  -1.570546  ]
+ [-1.4774739  -1.4330788  -1.4441367 ]
+ [-0.8522077  -0.8071215  -0.8221372 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00028090295>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035847272>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00027172535>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0069064875>]
+Good Loss
+tf.Tensor(
+[[-0.18333258 -0.14823271 -0.16215596]
+ [ 1.0515236   1.0631602   1.0260098 ]
+ [ 1.0864818   1.0592277   1.0920259 ]
+ ...
+ [-2.089566   -2.1946704  -2.0845437 ]
+ [-2.1773021  -2.1663194  -2.138083  ]
+ [-2.25239    -2.170032   -2.187528  ]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00026326408>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003042484>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0002912277>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0064609507>]
+Good Loss
+tf.Tensor(
+[[-3.3608708  -3.3229485  -3.3756957 ]
+ [-1.2565726  -1.2341369  -1.2546583 ]
+ [-0.749399   -0.72525895 -0.7301728 ]
+ ...
+ [-1.0557417  -1.0815837  -1.1160328 ]
+ [-1.125224   -1.0610332  -1.1085477 ]
+ [-1.4110464  -1.3945005  -1.4087372 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0001587107>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005050589>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00020843587>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00779522>]
+Good Loss
+tf.Tensor(
+[[ 1.6689682  1.6663677  1.6661319]
+ [ 1.596976   1.5854126  1.5942096]
+ [ 1.6751192  1.6705027  1.6739945]
+ ...
+ [-1.2705843 -1.2755202 -1.2606022]
+ [-1.397889  -1.4389973 -1.4352237]
+ [-1.4254428 -1.4061136 -1.4327152]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00031378298>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0007589517>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0018657199>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014796098>]
+Good Loss
+tf.Tensor(
+[[ 1.2468102  1.2501366  1.2412167]
+ [ 1.0993798  1.0976918  1.1020303]
+ [ 1.0491565  1.0618728  1.0449963]
+ ...
+ [-0.9046304 -0.9238832 -0.8539586]
+ [-0.9732677 -1.0067625 -0.9225592]
+ [-2.1322641 -2.1317604 -2.108021 ]], shape=(10066, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0007408388>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0003380863>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0018648865>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015748176>]
+Good Loss
+tf.Tensor(
+[[ 0.94149756  0.9426327   0.95755196]
+ [ 0.7766372   0.7795955   0.77605927]
+ [ 0.7328742   0.7428449   0.7305348 ]
+ ...
+ [-1.5473863  -1.562401   -1.5156205 ]
+ [-1.2649598  -1.2758994  -1.3041403 ]
+ [-0.75325316 -0.71502864 -0.75634605]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00013954859>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0002891238>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010221053>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013429868>]
+Good Loss
+tf.Tensor(
+[[ 1.1708977   1.1662524   1.173885  ]
+ [ 1.162407    1.163792    1.1593168 ]
+ [ 1.1389523   1.1408863   1.1486305 ]
+ ...
+ [ 0.70852107  0.76432705  0.68570423]
+ [-0.46449813 -0.41387367 -0.47240183]
+ [-0.18158816 -0.15900211 -0.19489756]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-6.590062e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00056458823>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0016531983>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0017197627>]
+Good Loss
+tf.Tensor(
+[[-3.9507701  -3.8898265  -3.9476895 ]
+ [-0.33673775 -0.28218535 -0.338572  ]
+ [-0.3357015  -0.41288543 -0.30969387]
+ ...
+ [-1.7500602  -1.669489   -1.7793347 ]
+ [-2.5417302  -2.1677458  -2.5535483 ]
+ [-3.9336784  -4.437566   -3.9160268 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00027698037>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00041490805>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00033393962>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008807463>]
+Good Loss
+tf.Tensor(
+[[-1.4504445  -1.4082143  -1.4676164 ]
+ [ 0.18436322  0.18296231  0.17287627]
+ [ 0.20953944  0.25565526  0.21713103]
+ ...
+ [ 0.19884981  0.169476    0.19524628]
+ [ 0.36825538  0.24204113  0.37374917]
+ [ 0.47876933  0.51955855  0.48754248]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0009992493>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003792104>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004346114>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0065882006>]
+Good Loss
+tf.Tensor(
+[[-1.5382738  -1.5795336  -1.559753  ]
+ [-0.05756316 -0.00952953 -0.06882323]
+ [ 0.24340157  0.28149778  0.24765567]
+ ...
+ [-0.89110494 -0.89759296 -0.87722474]
+ [-1.0415094  -1.0254079  -1.0324094 ]
+ [-1.1571444  -0.95038074 -1.1969286 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0006893787>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004010027>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004939405>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008018861>]
+Good Loss
+tf.Tensor(
+[[-2.0724936  -2.0986755  -2.041287  ]
+ [ 0.10981213  0.16293351  0.08018299]
+ [ 0.7506798   0.71785545  0.74688405]
+ ...
+ [-2.703548   -2.668663   -2.7272542 ]
+ [-2.3167274  -2.2261202  -2.3664136 ]
+ [-2.2122476  -2.12279    -2.1853724 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00038138012>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00037486613>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00047563988>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0095966095>]
+Good Loss
+tf.Tensor(
+[[ 0.6432701   0.62661594  0.6413645 ]
+ [ 0.42099324  0.4188586   0.437109  ]
+ [ 0.35966846  0.34404814  0.37050602]
+ ...
+ [-0.66223794 -0.64888203 -0.6708152 ]
+ [-0.98261774 -0.9826155  -0.9711177 ]
+ [-0.8675803  -0.87348354 -0.8719707 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00013061662>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0002888047>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001010153>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013696153>]
+Good Loss
+tf.Tensor(
+[[-0.5742627  -0.5822541  -0.5852562 ]
+ [-1.9813056  -2.0014982  -2.0084708 ]
+ [-1.8065213  -1.804462   -1.7892251 ]
+ ...
+ [-0.671636   -0.64131397 -0.64446366]
+ [-2.1878085  -2.2272444  -2.1795313 ]
+ [-2.7968576  -2.7358768  -2.8198323 ]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0005371944>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00036838267>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012424993>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001480305>]
+Good Loss
+tf.Tensor(
+[[1.2900712  1.2902788  1.3068893 ]
+ [0.94403124 0.92874974 0.94031805]
+ [0.87461    0.8830176  0.8763408 ]
+ ...
+ [0.73810834 0.7390258  0.7639428 ]
+ [0.6610394  0.66192305 0.64117646]
+ [1.0215087  1.0431153  0.9790641 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00064957363>, <tf.Tensor: shape=(), dtype=float32, numpy=2.7545058e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00086405396>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013986591>]
+Good Loss
+tf.Tensor(
+[[ 1.7444127   1.7448616   1.7428945 ]
+ [ 1.6373734   1.6459565   1.6384008 ]
+ [ 1.6023132   1.6078762   1.6066833 ]
+ ...
+ [ 0.04932008  0.07295309  0.04993635]
+ [-0.2575068  -0.23416325 -0.24380003]
+ [ 0.35511717  0.3773755   0.34071696]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-8.824204e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00043823384>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001126247>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015222491>]
+Good Loss
+tf.Tensor(
+[[-0.50083804 -0.48678914 -0.5245341 ]
+ [ 0.5622957   0.60221565  0.56703746]
+ [ 0.75163585  0.73944473  0.75298476]
+ ...
+ [-1.6357803  -1.6518627  -1.6237338 ]
+ [-1.5771688  -1.5716932  -1.5840778 ]
+ [-1.5211811  -1.470791   -1.5676608 ]], shape=(10039, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00014959768>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034283407>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006940408>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008375474>]
+Good Loss
+tf.Tensor(
+[[-2.5941925  -2.610474   -2.6036282 ]
+ [-0.6388441  -0.6669925  -0.64366513]
+ [-0.6133101  -0.6668805  -0.615672  ]
+ ...
+ [-2.2008657  -2.3114662  -2.2271013 ]
+ [-2.4210987  -2.4105253  -2.432259  ]
+ [-2.6706583  -2.623654   -2.6893108 ]], shape=(10039, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0004306096>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003956117>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005587199>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00763975>]
+Good Loss
+tf.Tensor(
+[[-2.448907   -2.466463   -2.4726868 ]
+ [-0.41021326 -0.4167927  -0.42021334]
+ [-0.39948162 -0.40114772 -0.38616973]
+ ...
+ [-0.58550817 -0.59771657 -0.5682362 ]
+ [-0.1746991  -0.18922366 -0.15443942]
+ [-0.36720407 -0.33506545 -0.34949663]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00057757675>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003510778>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005670027>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009746036>]
+Good Loss
+tf.Tensor(
+[[-4.022787   -3.9477158  -4.099513  ]
+ [-1.0658046  -1.0431502  -1.066422  ]
+ [-0.87974995 -0.8029334  -0.86885774]
+ ...
+ [-1.942804   -1.84392    -1.9371965 ]
+ [-1.3259346  -1.1910243  -1.3078536 ]
+ [-0.7196681  -0.54935044 -0.6815092 ]], shape=(10038, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-9.92438e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00028166507>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00082972326>, <tf.Tensor: shape=(), dtype=float32, numpy=0.010172817>]
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+4
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[-1.1070839  -1.1283127  -1.0907831 ]
+ [ 0.05176472  0.08336271  0.05859288]
+ [ 0.08376301  0.04354655  0.08728524]
+ ...
+ [ 0.84330535  0.6002867   0.78022367]
+ [ 1.0891206   0.90446824  1.059993  ]
+ [ 1.545257    1.7044392   1.5756507 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00014468585>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00041063334>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004671166>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008629333>]
+Good Loss
+tf.Tensor(
+[[-0.22654727 -0.29905486 -0.21681073]
+ [ 0.99850667  1.0090148   0.98507977]
+ [ 1.0098127   0.9793026   1.0105475 ]
+ ...
+ [-0.03751834 -0.00970465 -0.02871823]
+ [ 0.3199448   0.32447806  0.3274278 ]
+ [ 0.2918288   0.27306923  0.29797664]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0015448083>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035564654>, <tf.Tensor: shape=(), dtype=float32, numpy=0.000690341>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009545378>]
+Good Loss
+tf.Tensor(
+[[0.9711564  0.9791017  0.9756846 ]
+ [1.0395902  1.0423229  1.0448511 ]
+ [1.0249379  1.0225995  1.0280848 ]
+ ...
+ [0.72437346 0.74190897 0.7550536 ]
+ [0.6980367  0.691128   0.64510846]
+ [0.28287807 0.26966494 0.30825976]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0001555546>, <tf.Tensor: shape=(), dtype=float32, numpy=0.000905493>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00043606665>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012831424>]
+Good Loss
+tf.Tensor(
+[[ 0.943421    0.94249904  0.9503917 ]
+ [ 1.0643482   1.066514    1.0657492 ]
+ [ 1.1626463   1.1729132   1.1626348 ]
+ ...
+ [ 0.3433952   0.35115     0.34523967]
+ [ 0.23385963  0.27046248  0.27169508]
+ [-0.02452026 -0.00614111 -0.00230673]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.000106206666>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004027094>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005290394>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013308394>]
+Good Loss
+tf.Tensor(
+[[ 0.82485574  0.81866497  0.82824844]
+ [ 0.6913997   0.69873035  0.70780337]
+ [ 0.6577501   0.66765594  0.67561674]
+ ...
+ [-0.33103102 -0.36681023 -0.35451794]
+ [ 0.7283966   0.69949466  0.7674158 ]
+ [ 0.65205616  0.65763867  0.6585243 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00035938417>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004008785>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00015131061>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012575322>]
+Good Loss
+tf.Tensor(
+[[0.9065608  0.92265385 0.89544106]
+ [0.79518944 0.798123   0.79626954]
+ [0.75373185 0.7390022  0.75174475]
+ ...
+ [1.7880565  1.7656312  1.7880117 ]
+ [2.4799128  2.4317565  2.4785516 ]
+ [2.7097676  2.7325065  2.6924458 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0002372099>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009589935>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00028944292>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013861588>]
+Good Loss
+tf.Tensor(
+[[-2.79351   -2.8007123 -2.806658 ]
+ [-1.1150153 -1.1088445 -1.1254648]
+ [-1.0687144 -1.086603  -1.0619364]
+ ...
+ [-2.0439265 -2.0857391 -2.1319587]
+ [-1.6667376 -1.6494617 -1.6879911]
+ [-1.6044675 -1.569583  -1.582629 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00027628138>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00032804222>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004218294>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008249098>]
+Good Loss
+tf.Tensor(
+[[-3.743101   -3.7323575  -3.7434945 ]
+ [-1.2972115  -1.2872305  -1.3097512 ]
+ [-0.7212119  -0.84014773 -0.7161824 ]
+ ...
+ [-2.663272   -2.6149645  -2.6160657 ]
+ [-2.7742848  -2.7647574  -2.7493048 ]
+ [-2.8446772  -2.8178587  -2.7937446 ]], shape=(10038, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00015165523>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004347848>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00058901333>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008454985>]
+Good Loss
+tf.Tensor(
+[[-0.5132204  -0.48866823 -0.5094528 ]
+ [ 0.9650651   0.90438616  0.96707356]
+ [ 0.9170209   0.97395414  0.9277973 ]
+ ...
+ [-1.7554418  -1.6416447  -1.7831231 ]
+ [-0.94409484 -1.1662773  -0.9201353 ]
+ [-0.48514068 -0.380555   -0.48851305]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00058734464>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00031728018>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009174859>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008340007>]
+Good Loss
+tf.Tensor(
+[[-0.6766895  -0.6436842  -0.6631499 ]
+ [ 0.4704544   0.51034606  0.4791057 ]
+ [ 0.4593232   0.4523668   0.45455116]
+ ...
+ [ 1.5327436   1.559856    1.5303906 ]
+ [ 1.5580027   1.5497559   1.5558271 ]
+ [ 0.9972455   0.94967395  0.9968505 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0005717742>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00047493677>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00087771704>, <tf.Tensor: shape=(), dtype=float32, numpy=0.007542072>]
+Good Loss
+tf.Tensor(
+[[1.3214061  1.3166113  1.3271081 ]
+ [1.2870041  1.2839409  1.2871345 ]
+ [1.2691985  1.2726314  1.2575153 ]
+ ...
+ [1.3710908  1.3842347  1.3756626 ]
+ [0.978669   0.9545599  0.96827185]
+ [0.95284057 0.9447499  0.9517997 ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-5.9438622e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006346653>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0002624479>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001360917>]
+Good Loss
+tf.Tensor(
+[[0.76199174 0.7729067  0.7567082 ]
+ [0.12152555 0.12755136 0.12778655]
+ [0.7589515  0.73061395 0.7709248 ]
+ ...
+ [1.9477953  1.9807307  1.9494387 ]
+ [1.9786607  1.958854   1.9622809 ]
+ [0.9425827  0.9610161  0.94544786]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0002954833>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004887376>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00026924364>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.001381081>]
+Good Loss
+tf.Tensor(
+[[ 1.2121868   1.2090173   1.2047862 ]
+ [ 1.1839203   1.1960133   1.1995382 ]
+ [ 1.146471    1.1554271   1.1448926 ]
+ ...
+ [-1.2741575  -1.2691301  -1.2756358 ]
+ [-1.1142074  -1.1054476  -1.1190249 ]
+ [-1.0016432  -0.98272103 -0.99119085]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=2.1554195e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-1.943349e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00026660156>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010062151>]
+Good Loss
+tf.Tensor(
+[[ 2.2053315e-01  2.2239107e-01  2.2720209e-01]
+ [ 8.1980012e-02  6.6253483e-02  9.6410066e-02]
+ [ 3.2043431e-02  3.2304402e-02  3.4900993e-02]
+ ...
+ [-3.6121395e-01 -3.6412922e-01 -3.5164118e-01]
+ [-1.1020759e-02 -1.4242448e-02 -8.9751097e-04]
+ [ 1.5645447e+00  1.5667969e+00  1.5572484e+00]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00079542387>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00039718088>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00018085353>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012354351>]
+Good Loss
+tf.Tensor(
+[[ 0.6827799   0.6784193   0.6736598 ]
+ [ 0.6942862   0.7003307   0.6969595 ]
+ [ 0.82404715  0.8226913   0.829978  ]
+ ...
+ [-0.49111062 -0.48563874 -0.51185006]
+ [-1.1300684  -1.127079   -1.1420078 ]
+ [-1.1888298  -1.1959344  -1.1914586 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00030302227>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005382342>, <tf.Tensor: shape=(), dtype=float32, numpy=2.7654372e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010423426>]
+Good Loss
+tf.Tensor(
+[[-2.7651331  -2.718391   -2.7250957 ]
+ [-0.8413408  -0.7927334  -0.8237767 ]
+ [-0.83856606 -0.84482217 -0.81508416]
+ ...
+ [-1.1706268  -1.2578571  -1.1622859 ]
+ [-0.87121063 -0.7610835  -0.8630122 ]
+ [-0.19283813 -0.12271998 -0.1879386 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00045816466>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004470487>, <tf.Tensor: shape=(), dtype=float32, numpy=0.000954576>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009062079>]
+Good Loss
+tf.Tensor(
+[[ 0.51200825  0.52378434  0.48780265]
+ [ 0.93677187  0.89499676  0.93460333]
+ [ 0.9279091   0.90862465  0.92751443]
+ ...
+ [-1.0298803  -1.1072998  -1.06435   ]
+ [-0.7675647  -0.74975336 -0.8060498 ]
+ [-0.17862643 -0.32638267 -0.41083762]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00060247275>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0004340193>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0010829284>, <tf.Tensor: shape=(), dtype=float32, numpy=0.007895175>]
+Good Loss
+tf.Tensor(
+[[-9.9767584e-01 -1.0343475e+00 -9.8682618e-01]
+ [ 7.0741110e-02  3.8500566e-02  7.4603863e-02]
+ [ 5.6450641e-01  5.9662074e-01  5.7013905e-01]
+ ...
+ [ 5.5203322e-02 -7.6414866e-04  2.4582721e-02]
+ [-6.4792764e-01 -6.7475241e-01 -6.1598170e-01]
+ [-6.7283101e-02 -1.8384014e-01 -4.6049628e-02]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0008223479>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003587074>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005821908>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008311961>]
+Good Loss
+tf.Tensor(
+[[-1.0394145  -1.0458639  -1.021088  ]
+ [ 0.23675878  0.2698657   0.21929972]
+ [ 0.25387943  0.22443493  0.26560423]
+ ...
+ [ 0.2972464   0.2896968   0.28945914]
+ [-0.8152804  -0.76481676 -0.80550534]
+ [-1.0151777  -1.1115506  -1.0348421 ]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001182693>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00034839674>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0007544854>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008697908>]
+Good Loss
+tf.Tensor(
+[[0.30398497 0.29339573 0.3087105 ]
+ [0.01711427 0.0266632  0.03186549]
+ [0.27414256 0.2895861  0.27597842]
+ ...
+ [2.570122   2.5483193  2.561055  ]
+ [2.7834058  2.8088202  2.7742615 ]
+ [2.8571577  2.840672   2.854271  ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=3.086106e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0007309279>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006132126>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009138914>]
+Good Loss
+tf.Tensor(
+[[1.3865736  1.3846318  1.3822416 ]
+ [1.285753   1.27428    1.2820743 ]
+ [1.2411058  1.2372371  1.2401944 ]
+ ...
+ [0.20750758 0.2244726  0.20836204]
+ [0.6122168  0.62405854 0.6036664 ]
+ [0.9662414  0.9391908  0.9736554 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00059392623>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00015920112>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005631038>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008109676>]
+Good Loss
+tf.Tensor(
+[[ 0.5849041   0.57183355  0.6048131 ]
+ [ 0.5308004   0.5335412   0.5231012 ]
+ [ 0.49777418  0.49842453  0.51188636]
+ ...
+ [-1.5640794  -1.6024878  -1.5681008 ]
+ [-1.7989912  -1.8162493  -1.8037672 ]
+ [-1.4548635  -1.4365356  -1.4502443 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.00019323795>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0003765527>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00022859639>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010113432>]
+Good Loss
+tf.Tensor(
+[[ 0.5790688   0.5267876   0.57094526]
+ [ 0.48656145  0.49249068  0.49612364]
+ [ 0.40508643  0.4042798   0.40609258]
+ ...
+ [-0.11954989 -0.09444609 -0.13108723]
+ [-0.4203658  -0.39472768 -0.39908484]
+ [-1.1174484  -1.0905721  -1.136393  ]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-5.457613e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005086075>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00014179293>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011035281>]
+Good Loss
+tf.Tensor(
+[[ 1.3179255   1.3121797   1.3154061 ]
+ [ 1.3267294   1.3321472   1.3170147 ]
+ [ 1.2902185   1.2818433   1.2901746 ]
+ ...
+ [-0.2657344  -0.2830127  -0.25808948]
+ [-0.306811   -0.2945958  -0.31592947]
+ [-0.72967386 -0.73226875 -0.7281528 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-4.0265106e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=-8.126491e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005853919>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000584311>]
+Good Loss
+tf.Tensor(
+[[-1.1616421  -1.1633455  -1.143627  ]
+ [ 0.1865436   0.18920876  0.195727  ]
+ [ 0.18667443  0.21138063  0.18292952]
+ ...
+ [ 0.23327546  0.24622484  0.23148853]
+ [-0.88401216 -0.87173915 -0.8743043 ]
+ [-0.90170616 -0.9106117  -0.9081927 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0010285561>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003267299>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00087882584>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0069009764>]
+Good Loss
+tf.Tensor(
+[[-0.03309291 -0.00460282 -0.03280746]
+ [ 0.43374342  0.4226099   0.42473045]
+ [ 0.43870074  0.42529953  0.44042945]
+ ...
+ [ 1.3294137   1.4836211   1.3273603 ]
+ [ 1.1834877   0.7363989   1.1819246 ]
+ [ 1.0709314   1.2253363   1.0709286 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0005615422>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003515069>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009999939>, <tf.Tensor: shape=(), dtype=float32, numpy=0.010146514>]
+Good Loss
+tf.Tensor(
+[[-2.1408696 -2.126488  -2.1374657]
+ [-0.8217425 -0.7830093 -0.8213873]
+ [-0.7709334 -0.7279486 -0.7767698]
+ ...
+ [-1.631316  -1.6915997 -1.6630572]
+ [-1.7139522 -1.8388771 -1.6385626]
+ [-1.4541832 -1.7259526 -1.596299 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0018676432>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00030010327>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009074715>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00938387>]
+Good Loss
+tf.Tensor(
+[[-3.4126816  -3.403615   -3.4152327 ]
+ [-1.4921323  -1.4887302  -1.4886415 ]
+ [-1.0018066  -1.0430837  -1.0019349 ]
+ ...
+ [-0.4111625  -0.50213146 -0.32964683]
+ [-0.8165525  -1.1862625  -0.81474274]
+ [-1.3126183  -0.97691905 -1.2974648 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.000533603>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00042511884>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00079372973>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008125123>]
+Good Loss
+tf.Tensor(
+[[ 1.3374133  1.3481684  1.3453882]
+ [ 1.2635503  1.2636647  1.2634937]
+ [ 1.4677782  1.4727641  1.4733965]
+ ...
+ [-1.0478848 -1.0517241 -1.0488678]
+ [-1.0438328 -1.070506  -1.041199 ]
+ [-1.0585833 -1.063046  -1.0515105]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=1.6811377e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005756815>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009760149>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007223315>]
+Good Loss
+tf.Tensor(
+[[ 0.4177176   0.42788863  0.4168504 ]
+ [ 0.3907513   0.39250132  0.39079246]
+ [ 0.3560986   0.3539177   0.35602608]
+ ...
+ [-1.4200537  -1.4268105  -1.4196603 ]
+ [-1.4921062  -1.5017229  -1.4975985 ]
+ [-1.5403551  -1.5135823  -1.5490913 ]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00038293406>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0003533182>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00095325056>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00049825135>]
+Good Loss
+tf.Tensor(
+[[1.1229702 1.1280248 1.1351038]
+ [1.1359633 1.1455574 1.1429522]
+ [1.0887513 1.0864149 1.0923828]
+ ...
+ [2.7654688 2.7627625 2.7725017]
+ [2.7884488 2.7913303 2.7890317]
+ [2.737126  2.7569602 2.7276487]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00047422978>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00010103053>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00142397>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00022298994>]
+Good Loss
+tf.Tensor(
+[[0.1670624  0.16669075 0.1644156 ]
+ [0.2120221  0.21418646 0.21502475]
+ [0.2842155  0.2888341  0.29274434]
+ ...
+ [0.52450556 0.5586759  0.52831376]
+ [0.36493146 0.33286977 0.3698855 ]
+ [0.16259687 0.13697435 0.14741497]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00029607594>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0011216558>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0014615617>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0001060114>]
+Good Loss
+tf.Tensor(
+[[-3.0240972  -3.0185652  -3.0047204 ]
+ [-1.0379957  -1.0531548  -1.0460259 ]
+ [-0.95686513 -0.9631217  -0.95153165]
+ ...
+ [-1.7594218  -1.8650149  -1.7792586 ]
+ [-1.6270912  -1.6273755  -1.604194  ]
+ [-1.4949114  -1.4440734  -1.4947035 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0009518573>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005502973>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00072418456>, <tf.Tensor: shape=(), dtype=float32, numpy=0.007388753>]
+Good Loss
+tf.Tensor(
+[[0.7262253  0.71137536 0.733988  ]
+ [1.0206342  1.0281355  1.0229307 ]
+ [1.0062532  1.0086775  1.0114738 ]
+ ...
+ [0.77008164 0.703034   0.765976  ]
+ [0.7383778  0.7307164  0.7380717 ]
+ [0.60449964 0.71998024 0.6013241 ]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0011488385>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00043949584>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006424865>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008885144>]
+Good Loss
+tf.Tensor(
+[[-3.2403774  -3.2182524  -3.2432835 ]
+ [-1.5596168  -1.5727627  -1.5714537 ]
+ [-0.80164236 -0.8095552  -0.7977448 ]
+ ...
+ [ 0.46521106  0.38584745  0.4694767 ]
+ [ 0.2600797   0.38677436  0.27107987]
+ [-0.52766883 -0.5027794  -0.5012685 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0014349972>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00044189597>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004064698>, <tf.Tensor: shape=(), dtype=float32, numpy=0.007372639>]
+Good Loss
+tf.Tensor(
+[[-0.68592256 -0.67985946 -0.7002323 ]
+ [ 0.0014135  -0.03912729  0.00418202]
+ [ 0.24321711  0.22980489  0.24551825]
+ ...
+ [ 0.03036265 -0.03316448 -0.01724955]
+ [-0.01683994  0.07094217 -0.01258972]
+ [-0.10808177 -0.11807343 -0.0802216 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0015628341>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00028483773>, <tf.Tensor: shape=(), dtype=float32, numpy=0.000613106>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008295488>]
+Good Loss
+tf.Tensor(
+[[-1.8875949  -1.8729812  -1.8749697 ]
+ [ 0.6257832   0.6754655   0.6145157 ]
+ [ 0.6817693   0.6888968   0.6787046 ]
+ ...
+ [ 0.81809133  0.8244713   0.8206249 ]
+ [ 1.2297518   1.1093773   1.2293389 ]
+ [ 2.4388092   2.3583589   2.433051  ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0013437596>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00051126734>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006085566>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008566581>]
+Good Loss
+tf.Tensor(
+[[ 0.42100182  0.4402517   0.42644006]
+ [ 0.33207023  0.31327266  0.335287  ]
+ [ 0.2619856   0.25797486  0.26288217]
+ ...
+ [-0.03608006 -0.03013568 -0.04882092]
+ [-0.12948753 -0.08492389 -0.09913609]
+ [-0.2544146  -0.24022534 -0.25918797]], shape=(10042, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=-0.0001705373>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00018518852>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0018120145>, <tf.Tensor: shape=(), dtype=float32, numpy=1.656171e-05>]
+Good Loss
+tf.Tensor(
+[[0.8689294  0.8726979  0.86491424]
+ [0.96418434 0.9692843  0.9697601 ]
+ [0.940483   0.9430908  0.9467646 ]
+ ...
+ [1.0785427  1.0889865  1.082341  ]
+ [1.5536942  1.5493292  1.5528519 ]
+ [1.5649792  1.5562983  1.5539745 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.000889339>, <tf.Tensor: shape=(), dtype=float32, numpy=6.030535e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00039990852>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008111122>]
+Good Loss
+tf.Tensor(
+[[0.31944835 0.3167054  0.32892787]
+ [0.48256525 0.48532873 0.48511606]
+ [0.46420044 0.46366444 0.47139728]
+ ...
+ [0.8953502  0.9011504  0.89615446]
+ [0.9402553  0.9296087  0.9368697 ]
+ [1.386576   1.3899908  1.3863049 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00069802563>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00010251309>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0019292359>, <tf.Tensor: shape=(), dtype=float32, numpy=-6.2480103e-07>]
+Good Loss
+tf.Tensor(
+[[ 0.6425796   0.641793    0.64031035]
+ [ 0.7440466   0.74176925  0.74437344]
+ [ 0.73536384  0.7365969   0.73868865]
+ ...
+ [-0.38893142 -0.3939455  -0.39598754]
+ [-1.         -1.         -1.        ]
+ [ 1.          1.          1.        ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00042491246>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00097019406>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0017863502>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0001340271>]
+Good Loss
+tf.Tensor(
+[[-1.6452388  -1.6796451  -1.6408963 ]
+ [-0.9252039  -0.91113496 -0.91705143]
+ [-0.9048558  -0.911589   -0.89749485]
+ ...
+ [-1.427536   -1.4250342  -1.4585445 ]
+ [-1.7229824  -1.7332033  -1.7516707 ]
+ [-1.2603923  -1.2752427  -1.2623004 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001883418>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00038287492>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005303587>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008981222>]
+Good Loss
+tf.Tensor(
+[[-1.6887981  -1.6883445  -1.6838892 ]
+ [-0.4951799  -0.48284036 -0.49343026]
+ [-0.00730087  0.01527477 -0.00283902]
+ ...
+ [-0.24971288 -0.30616584 -0.26595467]
+ [ 0.04212005  0.01837136  0.018295  ]
+ [ 0.15052813  0.15515523  0.15549614]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0020094325>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00035381105>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004207>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00931865>]
+Good Loss
+tf.Tensor(
+[[-2.7115436 -2.7183895 -2.7068172]
+ [-1.270283  -1.2946863 -1.2828562]
+ [-1.256612  -1.2637808 -1.2559983]
+ ...
+ [-2.7179914 -2.686113  -2.7302868]
+ [-2.8760812 -2.8911595 -2.8911607]
+ [-2.8855731 -2.831398  -2.8652306]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0015200478>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00030628018>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0001639247>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00850565>]
+Good Loss
+tf.Tensor(
+[[-1.9646186  -1.9593757  -1.9803745 ]
+ [-0.06477415 -0.06662131 -0.07440356]
+ [-0.05249471 -0.0797856  -0.05533753]
+ ...
+ [ 1.7816305   1.7666676   1.777228  ]
+ [ 1.267845    1.2733753   1.2628281 ]
+ [ 1.0169412   0.92669797  0.97650015]], shape=(10042, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002630254>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005300744>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0003473694>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009748424>]
+Good Loss
+tf.Tensor(
+[[0.15262584 0.13752589 0.15288039]
+ [0.7741557  0.80775464 0.7742225 ]
+ [0.8157421  0.7911526  0.82011086]
+ ...
+ [1.7686275  1.8168808  1.7697366 ]
+ [1.9476889  1.8678478  1.947987  ]
+ [2.2297628  2.277167   2.2287626 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0019930014>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.000529285>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0001183229>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0088368375>]
+Good Loss
+tf.Tensor(
+[[0.61853445 0.6113424  0.6179024 ]
+ [0.81585246 0.820496   0.82260567]
+ [0.7906154  0.78894305 0.7887154 ]
+ ...
+ [1.4136801  1.3842618  1.4499904 ]
+ [1.4189898  1.3737643  1.393955  ]
+ [1.2004536  1.1840657  1.1597999 ]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00014748062>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0008163143>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0015284946>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00017112668>]
+Good Loss
+tf.Tensor(
+[[1.2399095 1.2394949 1.2407875]
+ [1.382614  1.3756541 1.3818996]
+ [1.3191693 1.3034765 1.3473101]
+ ...
+ [2.5507486 2.538401  2.5496902]
+ [2.5353787 2.540918  2.55028  ]
+ [1.979593  1.955983  1.9572043]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00012601326>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0008023662>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0021587103>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00024020311>]
+Good Loss
+tf.Tensor(
+[[0.23744617 0.230198   0.23436885]
+ [0.40445983 0.40696526 0.40822774]
+ [0.38101104 0.38223112 0.38288102]
+ ...
+ [0.14405103 0.1420407  0.15072924]
+ [1.0051779  1.0047206  1.0081636 ]
+ [1.0381641  1.034847   1.0313578 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0003423717>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00030027592>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0033140508>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009628165>]
+Good Loss
+tf.Tensor(
+[[ 1.3970393   1.4107662   1.3929818 ]
+ [ 1.3960572   1.386333    1.3885214 ]
+ [ 1.351324    1.3579088   1.3319197 ]
+ ...
+ [-0.8922124  -0.9028486  -0.88444406]
+ [ 0.7897349   0.78894657  0.75826645]
+ [ 1.372725    1.3769696   1.3743196 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0009163606>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00022471564>, <tf.Tensor: shape=(), dtype=float32, numpy=0.002454793>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005500609>]
+Good Loss
+tf.Tensor(
+[[-1.236192   -1.2040083  -1.2392378 ]
+ [-0.47364667 -0.49853167 -0.49134284]
+ [-0.4283218  -0.41058105 -0.43044576]
+ ...
+ [ 0.70167965  0.6894324   0.7018525 ]
+ [-1.         -1.         -1.        ]
+ [ 1.          1.          1.        ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00092815526>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00058849074>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00052437786>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008046434>]
+Good Loss
+tf.Tensor(
+[[-1.4466633  -1.431403   -1.4450985 ]
+ [-0.05487899 -0.01433771 -0.04948312]
+ [-0.07664555 -0.05050856 -0.07917886]
+ ...
+ [-1.5269046  -1.547547   -1.510401  ]
+ [-1.5405549  -1.5188476  -1.524248  ]
+ [-1.6419262  -1.5680037  -1.62651   ]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0011293879>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00041520534>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0006525284>, <tf.Tensor: shape=(), dtype=float32, numpy=0.007392566>]
+Good Loss
+tf.Tensor(
+[[-0.72928023 -0.70634514 -0.7279895 ]
+ [-0.11081485 -0.11844947 -0.10911921]
+ [ 0.12635547  0.15281986  0.13201466]
+ ...
+ [ 0.81194115  0.8552574   0.81376106]
+ [ 0.78642     0.6023356   0.788534  ]
+ [ 1.0610838   1.1047039   1.0611392 ]], shape=(10042, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0014660903>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005888314>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007129069>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00882107>]
+Good Loss
+tf.Tensor(
+[[0.23470885 0.24750108 0.23980236]
+ [1.0297369  1.0689576  1.0112603 ]
+ [1.0404952  1.010408   1.0411421 ]
+ ...
+ [1.3825032  1.3735217  1.3793136 ]
+ [1.3767462  1.3487529  1.3735654 ]
+ [0.449916   0.49444553 0.4500547 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002962357>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00045492564>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007529201>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009144263>]
+Good Loss
+tf.Tensor(
+[[ 0.27867272  0.2821025   0.2801046 ]
+ [ 0.434059    0.42739135  0.437173  ]
+ [ 0.41943362  0.4250651   0.41907793]
+ ...
+ [-1.4171116  -1.429763   -1.4215238 ]
+ [-0.45561674 -0.4657567  -0.45200858]
+ [ 0.21605287  0.22626516  0.21139877]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0011418043>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00023879479>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0029778266>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0008572098>]
+Good Loss
+tf.Tensor(
+[[-0.7891608  -0.7900418  -0.7726206 ]
+ [-0.7044306  -0.69260365 -0.7022218 ]
+ [-0.7247563  -0.7248139  -0.72446793]
+ ...
+ [-0.26036125 -0.25974265 -0.2632974 ]
+ [-0.11918917 -0.10023077 -0.12768249]
+ [-0.10668421 -0.08683    -0.11876512]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0010193781>, <tf.Tensor: shape=(), dtype=float32, numpy=7.872215e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0019564307>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00057581696>]
+Good Loss
+tf.Tensor(
+[[1.3929685 1.4128195 1.366812 ]
+ [1.4627016 1.4566374 1.4727696]
+ [1.4102695 1.4154236 1.4059403]
+ ...
+ [1.3752378 1.363599  1.3687507]
+ [1.9469333 1.957624  1.9473686]
+ [2.4134996 2.4237905 2.4110541]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0017903752>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00062667666>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0031091836>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0012582794>]
+Good Loss
+tf.Tensor(
+[[0.7044999  0.68590975 0.72781366]
+ [0.71919405 0.70897186 0.7331279 ]
+ [0.7388712  0.74822414 0.7283885 ]
+ ...
+ [0.5267768  0.5345164  0.5292774 ]
+ [1.0426763  1.0350153  1.0419728 ]
+ [1.0644749  1.0835962  1.0585573 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0017937789>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0010045451>, <tf.Tensor: shape=(), dtype=float32, numpy=0.004253974>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0017944836>]
+Good Loss
+tf.Tensor(
+[[0.03226842 0.03670621 0.03333561]
+ [0.20279157 0.2051357  0.20784406]
+ [0.1950556  0.1955621  0.2020996 ]
+ ...
+ [0.9531471  0.95403844 0.94949645]
+ [0.85967284 0.8732351  0.8653356 ]
+ [0.82258946 0.8145487  0.8200423 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001281643>, <tf.Tensor: shape=(), dtype=float32, numpy=3.274336e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0034807539>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0014623897>]
+Good Loss
+tf.Tensor(
+[[-2.516479   -2.53601    -2.5115006 ]
+ [-0.74250156 -0.70565754 -0.73837   ]
+ [-0.7687828  -0.74214303 -0.76455647]
+ ...
+ [ 0.17288767  0.17383677  0.18146543]
+ [ 1.2377596   1.1881773   1.2327049 ]
+ [ 1.2012407   1.2089756   1.1963277 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00077674905>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005312242>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012710541>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008214578>]
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+5
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+tf.Tensor(
+[[-1.1495804  -1.1105611  -1.1430091 ]
+ [-0.14269632 -0.11484829 -0.13731782]
+ [ 0.11336217  0.12156851  0.11658204]
+ ...
+ [-0.7182454  -0.7601638  -0.69704574]
+ [ 0.9930021   1.104125    0.98696446]
+ [ 1.0572724   1.2158669   1.0471406 ]], shape=(10046, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002026287>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005729748>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005984163>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008179779>]
+Good Loss
+tf.Tensor(
+[[-2.8224037  -2.8417249  -2.8100889 ]
+ [-1.398402   -1.3883234  -1.386802  ]
+ [-1.3137629  -1.3348806  -1.2983954 ]
+ ...
+ [ 0.29718783  0.32360703  0.30176884]
+ [ 0.52547526  0.47944015  0.5277835 ]
+ [ 0.9843673   0.9977304   0.98203945]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.00159865>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007639416>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012351128>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009086452>]
+Good Loss
+tf.Tensor(
+[[-3.104007  -3.1032767 -3.1483538]
+ [-1.6185625 -1.5776228 -1.6440395]
+ [-1.120681  -1.1502175 -1.121389 ]
+ ...
+ [-2.019748  -2.0924497 -2.012236 ]
+ [-2.0245938 -2.0614312 -2.0578003]
+ [-1.50958   -1.5463945 -1.5188305]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0027166817>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007412703>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010533276>, <tf.Tensor: shape=(), dtype=float32, numpy=0.010142295>]
+Good Loss
+tf.Tensor(
+[[-3.1124873  -3.0451033  -3.1123857 ]
+ [-0.912901   -0.98920774 -0.91878766]
+ [-0.83276993 -0.8052368  -0.83617723]
+ ...
+ [ 2.378268    2.3537478   2.3654191 ]
+ [ 2.0909524   2.0726085   2.0807698 ]
+ [ 2.6239736   2.6318166   2.6088514 ]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0013132788>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0005493582>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012993091>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008931385>]
+Good Loss
+tf.Tensor(
+[[-0.6443452  -0.6322314  -0.64830774]
+ [-0.5351959  -0.5316988  -0.5202867 ]
+ [-0.5776525  -0.5919278  -0.57755816]
+ ...
+ [-0.58287024 -0.5845585  -0.6048846 ]
+ [-1.1315883  -1.105082   -1.1453738 ]
+ [-1.5744531  -1.6487168  -1.6068178 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0007909277>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00028210165>, <tf.Tensor: shape=(), dtype=float32, numpy=0.003371059>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0017170872>]
+Good Loss
+tf.Tensor(
+[[-0.22838418 -0.22558503 -0.22744496]
+ [-0.11483049 -0.11004449 -0.11389333]
+ [-0.12822506 -0.12722185 -0.12550941]
+ ...
+ [ 1.3726343   1.3694001   1.374397  ]
+ [ 1.3641398   1.3631835   1.3599983 ]
+ [ 1.5605627   1.5686352   1.5603986 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.000639055>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00020495869>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0026281446>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0012458246>]
+Good Loss
+tf.Tensor(
+[[-0.3365699  -0.34080583 -0.33429974]
+ [-0.11860974 -0.11708726 -0.11195531]
+ [-0.11256265 -0.11755564 -0.11187692]
+ ...
+ [ 0.83753544  0.8479063   0.8352148 ]
+ [ 1.1277295   1.1276201   1.1267012 ]
+ [ 1.0585015   1.0376185   1.059499  ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0010186471>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00062689587>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0037922345>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0016677451>]
+Good Loss
+tf.Tensor(
+[[-0.8042525  -0.79394513 -0.7922937 ]
+ [-0.67754424 -0.6748985  -0.67409116]
+ [-0.70154095 -0.7044507  -0.6974815 ]
+ ...
+ [ 1.1958759   1.2028273   1.1952963 ]
+ [ 1.1346623   1.1254524   1.1412535 ]
+ [ 1.0603812   1.0600668   1.0615596 ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0020987033>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00035287213>, <tf.Tensor: shape=(), dtype=float32, numpy=0.005059741>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0028216583>]
+Good Loss
+tf.Tensor(
+[[0.12316931 0.11468309 0.13405024]
+ [0.23550493 0.24062727 0.24233662]
+ [0.22405902 0.21891412 0.22390914]
+ ...
+ [0.43473947 0.43494916 0.43455267]
+ [1.1143743  1.1303928  1.1044353 ]
+ [1.0806016  1.0965823  1.0703758 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0025367308>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00087449106>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0054613217>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00251807>]
+Good Loss
+tf.Tensor(
+[[-1.1736974  -1.1759981  -1.1814724 ]
+ [-0.29582763 -0.36091453 -0.3155564 ]
+ [-0.3126811  -0.30613455 -0.3227143 ]
+ ...
+ [-0.09899754 -0.11172449 -0.09606014]
+ [-0.1815746  -0.20453437 -0.1783196 ]
+ [-0.4404359  -0.4207885  -0.4365469 ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0018489205>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007033453>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014205098>, <tf.Tensor: shape=(), dtype=float32, numpy=0.01129549>]
+Good Loss
+tf.Tensor(
+[[-0.6762831  -0.6169499  -0.69099873]
+ [ 0.43757647  0.44753626  0.41485202]
+ [ 0.44006675  0.4525394   0.44510946]
+ ...
+ [-0.17996906 -0.22074828 -0.17470098]
+ [ 0.32249826  0.30588093  0.342019  ]
+ [ 0.10738274  0.13161784  0.12369458]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0012997498>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0008637322>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0016550221>, <tf.Tensor: shape=(), dtype=float32, numpy=0.008094727>]
+Good Loss
+tf.Tensor(
+[[-2.4724605  -2.4233499  -2.490585  ]
+ [-1.1642468  -1.1355487  -1.1795211 ]
+ [-1.1528529  -1.2000366  -1.1557422 ]
+ ...
+ [ 0.37912008  0.49490872  0.37864023]
+ [-0.6533152  -0.56511676 -0.6914497 ]
+ [-0.89426005 -1.1177516  -0.9237244 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001852596>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00095042714>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0019013673>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009427579>]
+Good Loss
+tf.Tensor(
+[[-2.7999327 -2.741968  -2.7929063]
+ [-1.3261791 -1.3535365 -1.3497423]
+ [-1.3060368 -1.30573   -1.3057384]
+ ...
+ [ 1.6445476  1.6474454  1.6378247]
+ [-1.        -1.        -1.       ]
+ [ 1.         1.         1.       ]], shape=(10047, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0026897169>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007692432>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0017333955>, <tf.Tensor: shape=(), dtype=float32, numpy=0.010910101>]
+Good Loss
+tf.Tensor(
+[[ 0.33069402  0.33059648  0.356735  ]
+ [ 0.628741    0.6297757   0.63813275]
+ [ 0.6061291   0.61063826  0.609896  ]
+ ...
+ [-1.1562746  -1.1743231  -1.1511059 ]
+ [-1.183923   -1.1832229  -1.1949313 ]
+ [-1.1695722  -1.1580646  -1.1751304 ]], shape=(10069, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0018785362>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005704304>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0049149534>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0020931924>]
+Good Loss
+tf.Tensor(
+[[-0.15216921 -0.14268327 -0.14922304]
+ [ 0.02284574  0.0215035   0.02872721]
+ [ 0.0046303  -0.00288849  0.00689959]
+ ...
+ [ 0.5529104   0.5182775   0.55996364]
+ [ 0.22908565  0.2451516   0.23596492]
+ [ 0.9025475   0.9056272   0.9011341 ]], shape=(10055, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0020022814>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00095144>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0059495773>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0025958465>]
+Good Loss
+tf.Tensor(
+[[-0.27951738 -0.2629084  -0.29570013]
+ [-0.05110212 -0.04968114 -0.04851213]
+ [-0.11680351 -0.11971084 -0.11801019]
+ ...
+ [ 1.5336492   1.5234491   1.5370444 ]
+ [ 1.3365101   1.3251147   1.332935  ]
+ [ 0.985367    0.9917261   0.9904153 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0027642234>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005530217>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0059399507>, <tf.Tensor: shape=(), dtype=float32, numpy=0.002736213>]
+Good Loss
+tf.Tensor(
+[[-0.4411125  -0.43815646 -0.4415063 ]
+ [-0.29275686 -0.29068932 -0.2896847 ]
+ [-0.3132765  -0.31533778 -0.31021687]
+ ...
+ [ 0.35476133  0.33871022  0.3505333 ]
+ [ 1.2172413   1.2344912   1.2122529 ]
+ [ 1.1554317   1.1617566   1.1547692 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0025871191>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0010977994>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0049047936>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0020239013>]
+Good Loss
+tf.Tensor(
+[[-0.06450161 -0.06017702 -0.07207786]
+ [ 0.14906311  0.15117258  0.15213296]
+ [ 0.1262669   0.12671766  0.12836358]
+ ...
+ [ 0.31573743  0.30077     0.3312242 ]
+ [ 0.07543296  0.03622598  0.07863061]
+ [-0.22225691 -0.23565407 -0.19807823]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0024525544>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0009624879>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0058321976>, <tf.Tensor: shape=(), dtype=float32, numpy=0.002713729>]
+Good Loss
+tf.Tensor(
+[[-0.6857395  -0.6766232  -0.6740821 ]
+ [ 0.00853718  0.01017143  0.02108452]
+ [ 0.30633688  0.32931086  0.31275058]
+ ...
+ [-0.38144547 -0.37495562 -0.37820727]
+ [-0.38563418 -0.4016379  -0.38145545]
+ [-0.37717023 -0.3946929  -0.37403986]], shape=(10043, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0033021928>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00093632913>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014409559>, <tf.Tensor: shape=(), dtype=float32, numpy=0.013404954>]
+Good Loss
+tf.Tensor(
+[[-2.4746375 -2.4425962 -2.4720309]
+ [-1.2155915 -1.2017354 -1.2171987]
+ [-1.2268056 -1.2543315 -1.2342603]
+ ...
+ [-1.1950228 -1.1751839 -1.2004571]
+ [-1.504302  -1.5988163 -1.5044245]
+ [-1.10512   -1.0993218 -1.1232094]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0023323004>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007000121>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0016649049>, <tf.Tensor: shape=(), dtype=float32, numpy=0.013501277>]
+Good Loss
+tf.Tensor(
+[[-1.1148158  -1.114959   -1.116578  ]
+ [-0.45172933 -0.43664935 -0.44489443]
+ [-0.24585986 -0.26830396 -0.2569429 ]
+ ...
+ [-1.7088287  -1.6534907  -1.674816  ]
+ [-0.6458221  -0.6612734  -0.6257111 ]
+ [ 0.6011051   0.6144319   0.6034566 ]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0020557933>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00092145556>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002149288>, <tf.Tensor: shape=(), dtype=float32, numpy=0.014576598>]
+Good Loss
+tf.Tensor(
+[[-2.0721924  -2.0896904  -2.0446296 ]
+ [-0.59129107 -0.7044112  -0.59800684]
+ [-0.5431871  -0.5124353  -0.5268368 ]
+ ...
+ [ 0.6958239   0.7487494   0.69853026]
+ [ 0.67342114  0.5972101   0.6763834 ]
+ [ 0.28707185  0.34448448  0.28980345]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0020750302>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009779008>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0022056797>, <tf.Tensor: shape=(), dtype=float32, numpy=0.012601452>]
+Good Loss
+tf.Tensor(
+[[-1.7068222 -1.7014157 -1.7193106]
+ [-1.4526094 -1.4589006 -1.4503216]
+ [-1.1612147 -1.1452272 -1.1634556]
+ ...
+ [ 1.2671689  1.2755187  1.2689232]
+ [ 1.4418081  1.4499569  1.4369446]
+ [ 1.2721229  1.2650735  1.2719294]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0032996815>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00033386203>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0070166946>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0034839064>]
+Good Loss
+tf.Tensor(
+[[-0.76281714 -0.7479419  -0.7690189 ]
+ [-0.5515982  -0.54220337 -0.54407984]
+ [-0.55823517 -0.5651747  -0.561126  ]
+ ...
+ [ 0.9070361   0.90609497  0.91165024]
+ [ 0.89169425  0.8839313   0.88743055]
+ [ 1.1120499   1.1029787   1.11461   ]], shape=(10045, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0029991765>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0012549158>, <tf.Tensor: shape=(), dtype=float32, numpy=0.004304562>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0017109571>]
+Good Loss
+tf.Tensor(
+[[0.32777512 0.30922607 0.32696104]
+ [0.7036513  0.69657624 0.70864844]
+ [0.67679834 0.6902071  0.67175156]
+ ...
+ [0.99145985 0.9938339  0.98661417]
+ [0.9001597  0.92062074 0.892578  ]
+ [0.84769535 0.8467961  0.8424028 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0023681405>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0008505706>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0051721837>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0014701346>]
+Good Loss
+tf.Tensor(
+[[-0.0819153  -0.07959716 -0.07781959]
+ [ 0.13944906  0.1393932   0.14390299]
+ [ 0.13588913  0.13765478  0.13990992]
+ ...
+ [-0.25338158 -0.24226315 -0.26554373]
+ [-0.24964848 -0.22630478 -0.24751522]
+ [-1.0246136  -1.0304611  -1.0332779 ]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0038741084>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00043940142>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0051774574>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0020430088>]
+Good Loss
+tf.Tensor(
+[[-1.1930279  -1.1851223  -1.1932563 ]
+ [-0.53514    -0.5365366  -0.534155  ]
+ [-0.5165817  -0.510875   -0.51999927]
+ ...
+ [-1.4498721  -1.4005977  -1.4369385 ]
+ [-1.2197928  -1.1998769  -1.217478  ]
+ [-1.0325351  -1.0698231  -1.0230201 ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0042966334>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010577992>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002124065>, <tf.Tensor: shape=(), dtype=float32, numpy=0.017560547>]
+Good Loss
+tf.Tensor(
+[[-2.292615   -2.3008876  -2.3034246 ]
+ [-1.3620961  -1.3416972  -1.3763249 ]
+ [-1.3315324  -1.3288627  -1.3215436 ]
+ ...
+ [ 0.45695016  0.52703756  0.44901016]
+ [ 0.91035616  0.78130966  0.9056986 ]
+ [-0.04184562 -0.1267401  -0.06046485]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0014422602>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0012641554>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.003007879>, <tf.Tensor: shape=(), dtype=float32, numpy=0.011032624>]
+Good Loss
+tf.Tensor(
+[[-1.9397308  -1.9256222  -1.9563422 ]
+ [-0.70374256 -0.72881114 -0.75204366]
+ [-0.64931655 -0.6405121  -0.6340724 ]
+ ...
+ [-0.18403722 -0.23533456 -0.16194955]
+ [-0.6418112  -0.63521844 -0.63865495]
+ [-1.1057072  -1.176305   -1.0818584 ]], shape=(10037, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0028699064>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009992762>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0026016287>, <tf.Tensor: shape=(), dtype=float32, numpy=0.011715461>]
+Good Loss
+tf.Tensor(
+[[-3.3726974 -3.3862329 -3.3493757]
+ [-1.5886691 -1.6200241 -1.6152127]
+ [-0.8319038 -0.8831969 -0.8525555]
+ ...
+ [ 1.0967531  1.0809544  1.0951333]
+ [ 0.7537911  0.6675497  0.7566924]
+ [ 0.4678004  0.5133919  0.4751665]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0026124148>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013956111>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0027729536>, <tf.Tensor: shape=(), dtype=float32, numpy=0.012271613>]
+Good Loss
+tf.Tensor(
+[[-2.4837816 -2.469167  -2.488736 ]
+ [-1.251972  -1.2435852 -1.2588896]
+ [-1.216955  -1.2232414 -1.2362202]
+ ...
+ [-1.9919666 -1.9532881 -1.9633943]
+ [-1.6839405 -1.6467426 -1.7407879]
+ [-2.0259485 -1.9154156 -1.9971571]], shape=(10054, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002747191>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0011905538>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0025710543>, <tf.Tensor: shape=(), dtype=float32, numpy=0.009682306>]
+Good Loss
+tf.Tensor(
+[[-0.72226256 -0.7296074  -0.7200337 ]
+ [-0.48346856 -0.4932395  -0.48542723]
+ [-0.47895423 -0.47656247 -0.47290036]
+ ...
+ [-0.03229785 -0.01798214 -0.02921884]
+ [ 0.8152444   0.80837315  0.8138986 ]
+ [ 1.4835824   1.4909277   1.483255  ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0020561311>, <tf.Tensor: shape=(), dtype=float32, numpy=-1.42052395e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0042000883>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00052705803>]
+Good Loss
+tf.Tensor(
+[[-0.9404208  -0.9400109  -0.9378074 ]
+ [-0.83766043 -0.83392626 -0.83871204]
+ [-0.8468759  -0.84728897 -0.84450364]
+ ...
+ [ 0.8138352   0.8258759   0.80365425]
+ [ 0.9956312   0.98573816  0.9928516 ]
+ [ 0.9834141   0.9833098   0.98305684]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.004203668>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00048136245>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0052081333>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0016695452>]
+Good Loss
+tf.Tensor(
+[[-0.36111757 -0.35530302 -0.36456168]
+ [-0.15575184 -0.15118097 -0.15367484]
+ [-0.05104028 -0.04628021 -0.04912636]
+ ...
+ [ 1.5350821   1.5268327   1.5360123 ]
+ [ 1.5076548   1.5079879   1.5070152 ]
+ [ 1.5189011   1.518113    1.5189134 ]], shape=(10034, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002370696>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0002819771>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0025738229>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.00022522337>]
+Good Loss
+tf.Tensor(
+[[-0.6002427  -0.5958251  -0.59571296]
+ [-0.26141545 -0.2568831  -0.25571302]
+ [-0.25862384 -0.26354927 -0.25315014]
+ ...
+ [-0.2857152  -0.29561332 -0.2852296 ]
+ [-0.46202725 -0.45010537 -0.46120533]
+ [-0.874694   -0.879507   -0.87565655]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0022703512>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00023721342>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0054292306>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00055530807>]
+Good Loss
+tf.Tensor(
+[[-1.4386098  -1.4206686  -1.4260421 ]
+ [-0.88198775 -0.90421903 -0.91197854]
+ [-0.5447914  -0.54561454 -0.55129933]
+ ...
+ [ 1.6214731   1.6174722   1.6168447 ]
+ [ 1.6117187   1.6314673   1.6071334 ]
+ [ 1.5953224   1.5774671   1.590887  ]], shape=(10040, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002622764>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013028004>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0026136816>, <tf.Tensor: shape=(), dtype=float32, numpy=0.01337965>]
+Good Loss
+tf.Tensor(
+[[-2.553499  -2.5806699 -2.5490742]
+ [-1.6108721 -1.6419533 -1.6127876]
+ [-1.5966568 -1.571196  -1.5857203]
+ ...
+ [-1.6251258 -1.6108916 -1.6291428]
+ [-1.6585721 -1.7403729 -1.6627442]
+ [-1.5193397 -1.4791687 -1.5110426]], shape=(10048, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.004714917>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014338666>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002618343>, <tf.Tensor: shape=(), dtype=float32, numpy=0.016361713>]
+Good Loss
+tf.Tensor(
+[[-1.0680549  -1.0872436  -1.0505104 ]
+ [-0.11981272 -0.10232971 -0.12294105]
+ [-0.09734475 -0.11727048 -0.11906724]
+ ...
+ [-0.36644924 -0.38014477 -0.37506476]
+ [-1.0169066  -1.0464073  -1.0390851 ]
+ [-1.5059038  -1.5187328  -1.4973696 ]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0042762095>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014837421>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0030722234>, <tf.Tensor: shape=(), dtype=float32, numpy=0.014000315>]
+Good Loss
+tf.Tensor(
+[[-4.182977   -4.183339   -4.1996803 ]
+ [-2.044861   -2.0122952  -2.0189228 ]
+ [-1.2001643  -1.2231646  -1.2148483 ]
+ ...
+ [ 0.60914195  0.6168844   0.6339974 ]
+ [ 0.51949733  0.5703146   0.5395654 ]
+ [ 1.0718915   1.1061064   1.0943956 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0017833007>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015220189>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0037542926>, <tf.Tensor: shape=(), dtype=float32, numpy=0.015274341>]
+Good Loss
+tf.Tensor(
+[[-0.6094688  -0.6192001  -0.6082402 ]
+ [-0.2874296  -0.28991756 -0.28600478]
+ [ 0.07267743  0.06476952  0.07513896]
+ ...
+ [-0.34250268 -0.32832664 -0.34369978]
+ [ 1.0656089   1.081538    1.0627569 ]
+ [ 1.8570626   1.8421471   1.8573874 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0016563669>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00033789332>, <tf.Tensor: shape=(), dtype=float32, numpy=0.003700416>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0003319186>]
+Good Loss
+tf.Tensor(
+[[-0.1587467  -0.1517112  -0.157244  ]
+ [ 0.02272723  0.02507322  0.02568134]
+ [ 0.01226029  0.00760895  0.01130931]
+ ...
+ [ 0.5491078   0.5412242   0.54966754]
+ [ 0.46000195  0.46556166  0.45786002]
+ [ 0.37104833  0.36263144  0.37841448]], shape=(10060, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001349544>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0002463528>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0038874128>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0009055438>]
+Good Loss
+tf.Tensor(
+[[-0.8403112  -0.8350897  -0.8401993 ]
+ [-0.55975115 -0.5585449  -0.55500555]
+ [-0.5624716  -0.5559218  -0.5598471 ]
+ ...
+ [-1.7201774  -1.7233107  -1.720756  ]
+ [-1.5190098  -1.5040431  -1.5138806 ]
+ [-1.1825639  -1.1683036  -1.1831441 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0021857235>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004146782>, <tf.Tensor: shape=(), dtype=float32, numpy=0.004298486>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005028944>]
+Good Loss
+tf.Tensor(
+[[-0.6796044  -0.680748   -0.6766551 ]
+ [-0.4713841  -0.47689068 -0.47038528]
+ [-0.47733542 -0.47888324 -0.4781817 ]
+ ...
+ [-0.8791654  -0.8917335  -0.8844745 ]
+ [-1.427716   -1.4119655  -1.4227406 ]
+ [-1.7216609  -1.7128083  -1.7282504 ]], shape=(10044, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002486562>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00018768717>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0048197936>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0001491406>]
+Good Loss
+tf.Tensor(
+[[-2.3868203  -2.376362   -2.3858523 ]
+ [-1.1484007  -1.1735684  -1.1349007 ]
+ [-1.1226747  -1.1136049  -1.1093531 ]
+ ...
+ [-1.7657881  -1.6728523  -1.7197189 ]
+ [-1.0021366  -1.051406   -0.9851751 ]
+ [-0.13755839 -0.06826165 -0.1660758 ]], shape=(10061, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0024814187>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0016765534>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.003865776>, <tf.Tensor: shape=(), dtype=float32, numpy=0.011416579>]
+Good Loss
+tf.Tensor(
+[[-1.7525524  -1.707504   -1.7321911 ]
+ [-0.9609809  -0.9440034  -0.9871017 ]
+ [-0.95715153 -0.9256801  -0.9420054 ]
+ ...
+ [ 0.6763979   0.9509174   0.69640535]
+ [ 0.5136255   0.49950716  0.50554013]
+ [ 0.2328116  -0.1810943   0.23357792]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0029673837>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0017172815>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.003747514>, <tf.Tensor: shape=(), dtype=float32, numpy=0.01477683>]
+Good Loss
+tf.Tensor(
+[[-2.356921   -2.3323598  -2.336412  ]
+ [-1.1726418  -1.1723355  -1.2315276 ]
+ [-1.1405133  -1.1492511  -1.1309171 ]
+ ...
+ [-0.9874545  -1.0272384  -0.97844553]
+ [-0.99911195 -0.95595783 -0.9997867 ]
+ [-0.8137721  -0.8335222  -0.8291783 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0035326509>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0015923334>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0036580027>, <tf.Tensor: shape=(), dtype=float32, numpy=0.014468508>]
+Good Loss
+tf.Tensor(
+[[-2.576121   -2.554699   -2.5783112 ]
+ [-1.649582   -1.626838   -1.6643581 ]
+ [-1.6439239  -1.6356643  -1.6374396 ]
+ ...
+ [-0.4524351  -0.4282265  -0.44891965]
+ [-0.01200958  0.01740789 -0.00947469]
+ [-0.0529447  -0.03639162 -0.05052757]], shape=(10041, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0048064156>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014064556>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0025697385>, <tf.Tensor: shape=(), dtype=float32, numpy=0.01783453>]
+Good Loss
+tf.Tensor(
+[[-1.4824164  -1.4426755  -1.4638332 ]
+ [-0.510968   -0.543542   -0.53618425]
+ [-0.483007   -0.58425    -0.52355653]
+ ...
+ [ 0.47562844  0.43643105  0.48329753]
+ [ 0.8174904   0.83763754  0.82049406]
+ [ 1.6388646   1.5776532   1.6306733 ]], shape=(10051, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.003303768>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0017653684>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.003397212>, <tf.Tensor: shape=(), dtype=float32, numpy=0.014686722>]
+Good Loss
+tf.Tensor(
+[[-1.027642   -1.025743   -1.0233855 ]
+ [-0.8207826  -0.8161157  -0.81866646]
+ [-0.7171932  -0.7176694  -0.7168502 ]
+ ...
+ [ 0.41497317  0.41959107  0.41361326]
+ [ 0.6605288   0.66349286  0.66074806]
+ [ 0.32394913  0.32514623  0.32341108]], shape=(10049, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0012987237>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00020022775>, <tf.Tensor: shape=(), dtype=float32, numpy=0.002428759>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0013526587>]
+Good Loss
+tf.Tensor(
+[[-1.586723   -1.5832963  -1.5981404 ]
+ [-1.1976603  -1.1995581  -1.1979054 ]
+ [-1.2231886  -1.197854   -1.2224053 ]
+ ...
+ [ 0.36267275  0.3697319   0.36032203]
+ [ 0.07871365  0.09700819  0.07567499]
+ [-0.27887878 -0.31633183 -0.2783975 ]], shape=(10050, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0034388716>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0017756576>, <tf.Tensor: shape=(), dtype=float32, numpy=0.004217246>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0001462046>]
+Good Loss
+tf.Tensor(
+[[-0.4841768  -0.4820732  -0.48488748]
+ [-0.32716268 -0.3281494  -0.3251016 ]
+ [-0.3347962  -0.3400311  -0.33066753]
+ ...
+ [ 1.317787    1.3064972   1.3084313 ]
+ [ 1.9680958   1.95456     1.960176  ]
+ [ 1.7221265   1.7198573   1.719005  ]], shape=(10062, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001726214>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005857888>, <tf.Tensor: shape=(), dtype=float32, numpy=0.005147557>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0010527956>]
+Good Loss
+tf.Tensor(
+[[-1.9980798  -1.9844412  -1.9970707 ]
+ [-1.5898178  -1.599441   -1.5888448 ]
+ [-1.1255151  -1.119081   -1.1304317 ]
+ ...
+ [ 1.80981     1.8052505   1.8080475 ]
+ [ 1.2073778   1.2084996   1.2054275 ]
+ [ 0.835526    0.84582996  0.8318717 ]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002944595>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0005845949>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0072095655>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0006746163>]
+Good Loss
+tf.Tensor(
+[[-2.408456   -2.4045718  -2.3996036 ]
+ [-1.6236392  -1.5936216  -1.6207699 ]
+ [-1.3765048  -1.4523048  -1.3814386 ]
+ ...
+ [-1.4141805  -1.4034765  -1.4112774 ]
+ [ 0.6987105   0.85237163  0.6267587 ]
+ [ 0.71546996  0.5511048   0.7845187 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0041352767>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0019568645>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0037574293>, <tf.Tensor: shape=(), dtype=float32, numpy=0.019628204>]
+Good Loss
+tf.Tensor(
+[[-3.126037   -3.1165085  -3.103923  ]
+ [-1.9685332  -1.9582499  -2.012051  ]
+ [-1.9287897  -1.9144502  -1.917975  ]
+ ...
+ [-0.8309466  -0.8096198  -0.82080835]
+ [-0.8359485  -0.8802575  -0.8515646 ]
+ [-0.88973546 -0.84709054 -0.8735457 ]], shape=(10057, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0031690588>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0014208802>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0031595472>, <tf.Tensor: shape=(), dtype=float32, numpy=0.017567739>]
+Good Loss
+tf.Tensor(
+[[-2.7748637  -2.7745938  -2.7653348 ]
+ [-1.7071946  -1.7733529  -1.7005647 ]
+ [-1.704276   -1.6853639  -1.697654  ]
+ ...
+ [ 0.5788529   0.49282274  0.5344457 ]
+ [ 0.45872995  0.44016257  0.44949836]
+ [ 1.6738467   1.6198037   1.6752632 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0053712474>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0020791893>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0036910586>, <tf.Tensor: shape=(), dtype=float32, numpy=0.017519474>]
+Good Loss
+tf.Tensor(
+[[-2.2998672  -2.269313   -2.2851608 ]
+ [-0.4452843  -0.4044158  -0.49088696]
+ [-0.37925017 -0.41175282 -0.41564006]
+ ...
+ [ 0.35663846  0.40171745  0.37110433]
+ [-0.93196166 -0.9342942  -0.89995927]
+ [-0.95611024 -0.8210646  -0.9386409 ]], shape=(10059, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.001382155>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0022754318>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.004574455>, <tf.Tensor: shape=(), dtype=float32, numpy=0.011460091>]
+Good Loss
+tf.Tensor(
+[[-0.8885126  -0.91802734 -0.88638496]
+ [-0.41800746 -0.42021257 -0.41586953]
+ [-0.4221371  -0.41989863 -0.42676398]
+ ...
+ [ 1.4904568   1.4883759   1.4864553 ]
+ [ 0.28458259  0.30091685  0.28536123]
+ [ 0.27142048  0.24211934  0.25659528]], shape=(10053, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0033011232>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00066148647>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0034545786>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0017558604>]
+Good Loss
+tf.Tensor(
+[[-1.6635451  -1.6675911  -1.6738119 ]
+ [-1.114711   -1.0868258  -1.1072279 ]
+ [-1.1390102  -1.1411418  -1.1387702 ]
+ ...
+ [ 0.70453066  0.7115224   0.7033754 ]
+ [ 0.11272722  0.1103275   0.11281054]
+ [ 0.34725583  0.35207713  0.3474473 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.002855966>, <tf.Tensor: shape=(), dtype=float32, numpy=-5.3362266e-05>, <tf.Tensor: shape=(), dtype=float32, numpy=0.002714616>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0023948469>]
+Good Loss
+tf.Tensor(
+[[-1.7644485  -1.7625157  -1.7596905 ]
+ [-1.3699508  -1.3807057  -1.3660415 ]
+ [-1.3673538  -1.3707961  -1.3614175 ]
+ ...
+ [-0.67328113 -0.6794387  -0.67600983]
+ [-0.93476707 -0.94015926 -0.93881744]
+ [-0.9737242  -0.97814184 -0.97592086]], shape=(10058, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0037644962>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0004570337>, <tf.Tensor: shape=(), dtype=float32, numpy=0.0041966764>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.002178456>]
+Good Loss
+tf.Tensor(
+[[-1.6651825  -1.6647675  -1.6614376 ]
+ [-1.3598833  -1.3662442  -1.3612039 ]
+ [-1.3659766  -1.3736678  -1.3687918 ]
+ ...
+ [-1.2500311  -1.2548627  -1.2496871 ]
+ [-1.0973933  -1.1127083  -1.0978104 ]
+ [-0.75412345 -0.7602969  -0.7559715 ]], shape=(10052, 3), dtype=float32)
+[<tf.Tensor: shape=(), dtype=float32, numpy=0.0014728641>, <tf.Tensor: shape=(), dtype=float32, numpy=0.00011345467>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0007636837>, <tf.Tensor: shape=(), dtype=float32, numpy=-0.0054867757>]
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+6
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
