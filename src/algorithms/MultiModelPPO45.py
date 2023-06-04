@@ -62,6 +62,10 @@ def compute_advantage_estimates(observations: npt.NDArray,
                                 rewards,
                                 discount_factor):
     '''Calculate the advantage estimates for a single game'''
+    remove_zeros = lambda vals: \
+        np.where(np.abs(vals) < 0.00001, vals + 0.00001, vals)
+    filter_small_vals = lambda vals: \
+        np.where(np.abs(vals) < 0.0001, vals + 0.0001 * np.sign(vals), vals)
     num_agents, num_actions = network_controller.num_actors, network_controller.action_dims
     # broadcast rewards to give reward for both each agent and each action agent combination
     rewards: npt.NDArray = np.array(rewards)
@@ -79,27 +83,38 @@ def compute_advantage_estimates(observations: npt.NDArray,
         discounted_rewards[i] = dcr
     # N by num_agents * 2
     critic_vals = network_controller.get_values(observations).numpy()
+    critic_vals = filter_small_vals(remove_zeros(critic_vals))
     critic_vals = np.where(
         np.abs(critic_vals) < 0.0001,
         critic_vals + 0.001,
         critic_vals)
     critic_vals = np.where(
         np.abs(critic_vals) < 0.001,
-        critic_vals + 0.001 * np.sign(critic_vals),
+        critic_vals + 0.0001 * np.sign(critic_vals),
         critic_vals)
     critic_vals_n, critic_vals_v = np.hsplit(critic_vals, 2)
     # N by (num_agents + num_actions * num_agents)
-    critic_vals = np.hstack([critic_vals_n] + [critic_vals_v] * (num_actions))
-    dcr_sum = np.sum(discounted_rewards, axis=1)
+    critic_vals = np.hstack([critic_vals_n] + [critic_vals_v / num_actions] * (num_actions))
+    # dcr_sum = np.sum(discounted_rewards, axis=1)
+    dcr_sums = np.array([
+        np.sum(discounted_rewards[:,index * num_agents: (index+1) * num_agents], axis=1)
+        for index in range(num_actions + 1)
+    ])
     # dcr_sum = np.where(np.abs(dcr_sum) < 0.001, dcr_sum + 0.001 * np.sign(dcr_sum), dcr_sum)
     # scale the dcr by the critic values
     proportional_dcr = discounted_rewards * critic_vals
-    p_dcr_sum = np.sum(proportional_dcr, axis=1)
-    filter_small_vals = lambda vals: \
-        np.where(np.abs(vals) < 0.001, vals + 0.001 * np.sign(vals), vals)
-    p_dcr_sum, dcr_sum = filter_small_vals(p_dcr_sum), filter_small_vals(dcr_sum)
+    # p_dcr_sum = np.sum(proportional_dcr, axis=1)
+    p_dcr_sums = np.array([
+        np.sum(proportional_dcr[:,index * num_agents : (index+1) * num_agents], axis=1)
+        for index in range(num_actions + 1)
+    ])
+    p_dcr_sums, dcr_sums = filter_small_vals(remove_zeros(p_dcr_sums)), \
+        filter_small_vals(remove_zeros(dcr_sums))
     # scale the dcr such that the row sums is not affected by the scaling by critic values
-    proportional_dcr = proportional_dcr / (p_dcr_sum[:, np.newaxis]) * (dcr_sum[:, np.newaxis])
+    for index in range(num_actions + 1):
+        proportional_dcr[:, index * num_agents: (index+1) * num_agents] = \
+            proportional_dcr[: ,index * num_agents: (index+1) * num_agents] \
+                / (p_dcr_sums[index][:, np.newaxis]) * (dcr_sums[index][:, np.newaxis])
     # compute the advantage estimates
     advantages = np.subtract(proportional_dcr, critic_vals)
     # normalise the advantage estimates in each column
@@ -107,13 +122,11 @@ def compute_advantage_estimates(observations: npt.NDArray,
         advantages - np.mean(advantages, axis=0)) / np.std(advantages, axis=0)
     # remove any erroneous nan values, should never occur
     normalised_advantages[np.isnan(normalised_advantages)] = 0
-
     # standard discount cumulative reward
     dcr_normal = discounted_rewards[: ,0]
     # discount cumulative reward with votes removed from rewards
-    dcr_vote = np.sum(discounted_rewards[:, num_agents:]) / (num_agents * num_actions)
-
-    dcr = np.hstack([dcr_normal, dcr_vote])
+    dcr_vote = np.sum(discounted_rewards[:, num_agents:], axis = 1) / (num_agents * num_actions)
+    dcr = np.hstack([np.expand_dims(dcr_normal, axis=1), np.expand_dims(dcr_vote, axis=1)])
     return normalised_advantages, dcr
 
 
@@ -229,7 +242,6 @@ def create_trajectories(args: WorkerArgs) -> Trajectories | None:
                 (advantages, new_advantages))
             dcr = new_dcr if dcr is None else np.concatenate(
                 (dcr, new_dcr))
-
         if advantages is not None:
             trajectories = Trajectories(
                 np.array(observations),
@@ -237,7 +249,7 @@ def create_trajectories(args: WorkerArgs) -> Trajectories | None:
                 np.array(rewards),
                 np.array(distributions),
                 np.array(votes),
-                np.array(discount_cumulative_rewards),
+                np.array(dcr),
                 scores,
                 advantages
             )
@@ -677,10 +689,12 @@ class MultiModelPPO4:
             '''
             if True:
             # try:
-                discount_cumulative_rewards = tf.reshape(
-                    trajectories.discount_cumulative_rewards,
-                    (len(trajectories.discount_cumulative_rewards),)
-                )
+                # discount_cumulative_rewards = tf.reshape(
+                #     trajectories.discount_cumulative_rewards,
+                #     (len(trajectories.discount_cumulative_rewards),)
+                # )
+                discount_cumulative_rewards = tf.convert_to_tensor(
+                    trajectories.discount_cumulative_rewards, dtype=tf.float32)
 
                 advantage_estimates: ttf.Tensor1 = tf.convert_to_tensor(
                     trajectories.advantages, dtype=tf.float32)  # type: ignore
@@ -715,14 +729,14 @@ class MultiModelPPO4:
                     # calculate the sum of the sub values
                     vals_n_summed=tf.math.reduce_sum(vals_n, axis=1)
                     vals_v_summed=tf.math.reduce_sum(vals_v, axis=1)
-                    vals_n_summed=tf.reshape(vals_n_summed, (len(vals_n_summed),))
-                    vals_v_summed=tf.reshape(vals_v_summed, (len(vals_v_summed),))
-                    # values =  tf.concat([vals_n_summed, vals_v_summed], axis=1)
-                    values = vals_n_summed
+                    vals_n_summed=tf.reshape(vals_n_summed, (len(vals_n_summed),1))
+                    vals_v_summed=tf.reshape(vals_v_summed, (len(vals_v_summed),1))
+                    values =  tf.concat([vals_n_summed, vals_v_summed], 1)
+                    # values = vals_n_summed
                     # calculate the critic loss with respect to the discsount cumulative rewards
-                    # squared_diff = tf.square(discount_cumulative_rewards - values)
-                    squared_diff = tf.square(tf.split(discount_cumulative_rewards, 2, axis=1) - values)
-                    critic_loss = tf.reduce_mean(squared_diff, axis=1)
+                    squared_diff = tf.square(discount_cumulative_rewards - values)
+                    # squared_diff = tf.square(tf.split(discount_cumulative_rewards, 2, axis=1) - values)
+                    critic_loss = tf.reduce_mean(squared_diff)
                     # critic_loss=kls.mean_squared_error(
                     #     discount_cumulative_rewards, values_summed)
 
@@ -757,8 +771,8 @@ class MultiModelPPO4:
                 if tf.math.is_nan(actor_loss).numpy() or tf.math.is_nan(critic_loss).numpy() or tf.math.is_nan(actor_vote_loss).numpy():
                     raise Exception
                 # calculate and apply gradients
-                # if random.randint(0,2) <= 1:
-                if True:
+                if random.randint(0,2) <= 1:
+                # if True:
                     actor_gradient=actor_tape.gradient(
                         actor_loss, actor.model.trainable_variables)
                     self.network_controller.actor_optimisers[index].apply_gradients(

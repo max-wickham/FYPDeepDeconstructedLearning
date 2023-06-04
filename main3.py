@@ -3,7 +3,7 @@ import multiprocessing
 
 from src.algorithms.MultiModelPPO2_2 import MultiModelPPO2
 from src.algorithms.MultiModelPPO3 import MultiModelPPO3
-from src.algorithms.MultiModelPPO44 import MultiModelPPO4
+from src.algorithms.MultiModelPPO45 import MultiModelPPO4
 from src.networks.ppo4_networks import PPO4ActorNetwork, PPO4CriticNetwork
 from src.networks.simple_network import SimpleCriticNetwork
 from src.util.configs import DataclassSaveMixin
