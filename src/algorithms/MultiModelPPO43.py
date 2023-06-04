@@ -254,7 +254,8 @@ class MultiModelPPO4:
 
             self.input_dims = input_dims
             self.action_dims = action_dims
-
+            self.actor_network = actor_network
+            self.critic_network = critic_network
             # For each action the agent should output mean and variance as well as probability of taking control
             self.actor_output_size = action_dims * 4
             self.actor_input_size = self.input_dims + self.actor_output_size * num_actors
@@ -282,7 +283,7 @@ class MultiModelPPO4:
                 lr=network_controller.LEARNING_RATE)
             return network_controller
 
-        def load(self, load_location: str):
+        def load(self, load_location: str, use_current_model = False):
             '''Load saved models'''
             with open(f'{load_location}/model_configs.json', 'r', encoding='utf8') as file:
                 model_configs = json.loads(file.read())
@@ -292,15 +293,22 @@ class MultiModelPPO4:
             self.input_dims = model_configs['input_dims']
             self.action_dims = model_configs['action_dims']
             self.actor_output_size = self.action_dims * 4
-            self._actors = [Network(
-                self.actor_input_size, self.actor_output_size)
-                 for i in range(self.num_actors)]
+            if use_current_model:
+                self._actors = [self.actor_network(self.actor_input_size, self.actor_output_size) for _ in range(self.num_actors)]
+                self._critic = self.critic_network(
+                    self.input_dims,
+                    self.num_actors
+                )
+            else:
+                self._actors = [Network(
+                    self.actor_input_size, self.actor_output_size)
+                    for i in range(self.num_actors)]
+                self._critic = Network(
+                    self.input_dims,
+                    self.num_actors
+                )
             for i, actor in enumerate(self._actors):
                 actor.load(f'{load_location}/actor_{i}')
-            self._critic = Network(
-                self.input_dims,
-                self.num_actors
-            )
             self._critic.load(f'{load_location}/critic')
 
         def save(self, save_location: str):
@@ -343,7 +351,7 @@ class MultiModelPPO4:
             # actor_vote = np.array([0.0 for _ in range(self.num_actors)])
             for action_index in range(self.action_dims):
                 votes = [
-                    np.random.normal(actor_output[4*action_index] / 10, actor_output[4*action_index + 1] / 10)
+                    np.random.normal(actor_output[4*action_index] / 2, actor_output[4*action_index + 1] / 2)
                     for actor_output in actor_outputs
                 ]
                 actor_vote.append(votes)
@@ -448,8 +456,19 @@ class MultiModelPPO4:
                     f'{self.save_location}/training_configs.json')
                 self.training_state = self.TrainingState.load(
                     f'{self.save_location}/training_state.json')
-                self.network_controller = MultiModelPPO4.NetworkController.load_saved_model(
-                    self.save_location)
+                # self.network_controller = MultiModelPPO4.NetworkController.load_saved_model(
+                #     self.save_location)
+
+                self.network_controller = MultiModelPPO4.NetworkController(
+                    actor_network,
+                    critic_network,
+                    self.observation_dims,
+                    self.action_dims,
+                    self.configs.NUM_AGENTS,
+                    load=True
+                )
+                # load the saved network
+                self.network_controller.load(self.save_location, use_current_model=True)
                 # reset time steps
                 self.training_state.time_steps = 0
 
@@ -517,7 +536,6 @@ class MultiModelPPO4:
             '''Calculate the actor loss'''
             # the entropy of the probabilities is the log of a probability times the probability
             losses = []
-            print(advantages)
             for action_index in range(self.action_dims):
                 action_new_dists = new_distributions[:,action_index*4+2:action_index*4+4]
                 action_cur_dists = current_distributions[:,action_index*4+2:action_index*4+4]
@@ -541,12 +559,20 @@ class MultiModelPPO4:
                 loss = tf.math.negative(tf.reduce_mean(
                     tf.math.minimum(surrogate_1, surrogate_2)) + self.configs.ENTROPY_SCALAR * entropy)
                 losses.append(loss)
+            return sum(losses)
 
+        def actor_voting_loss(self,
+                       new_distributions: ttf.Tensor1,
+                       current_distributions: npt.NDArray,
+                       votes: npt.NDArray,
+                       actions: npt.NDArray, # num observations by num actions
+                       advantages: ttf.Tensor1
+        ):
+            losses = []
             new_distributions = tf.convert_to_tensor(
                     new_distributions, dtype=tf.float32) # type: ignore
 
-            for action_index in []:
-            # for action_index in range(self.action_dims):
+            for action_index in range(self.action_dims):
                 action_vote_new_dists = new_distributions[:,action_index*4:action_index*4+2]
                 action_vote_cur_dists = current_distributions[:,action_index*4:action_index*4+2]
                 entropy = tf.math.negative(
@@ -557,9 +583,9 @@ class MultiModelPPO4:
                 surrogate_2 = []
 
                 new_mean, new_std_dev = tf.split(action_vote_new_dists, num_or_size_splits=2, axis=1)
-                new_mean, new_std_dev = tf.squeeze(new_mean, axis=-1) / tf.constant(10.0, dtype=tf.dtypes.float32), tf.squeeze(new_std_dev, axis=-1) / tf.constant(10.0, dtype=tf.dtypes.float32)
+                new_mean, new_std_dev = tf.squeeze(new_mean, axis=-1) / tf.constant(2.0, dtype=tf.dtypes.float32), tf.squeeze(new_std_dev, axis=-1) / tf.constant(2.0, dtype=tf.dtypes.float32)
                 curr_mean, curr_std_dev = tf.split(action_vote_cur_dists, num_or_size_splits=2, axis=1)
-                curr_mean, curr_std_dev = tf.squeeze(curr_mean, axis=-1) / tf.constant(10.0, dtype=tf.dtypes.float32), tf.squeeze(curr_std_dev, axis=-1) / tf.constant(10.0, dtype=tf.dtypes.float32)
+                curr_mean, curr_std_dev = tf.squeeze(curr_mean, axis=-1) / tf.constant(2.0, dtype=tf.dtypes.float32), tf.squeeze(curr_std_dev, axis=-1) / tf.constant(2.0, dtype=tf.dtypes.float32)
                 # new_normal_dist = tfp.distributions.Normal(loc=new_mean, scale=new_std_dev + 0.0001)
                 # curr_normal_dist = tfp.distributions.Normal(loc=curr_mean, scale=curr_std_dev + 0.0001)
                 # new_pdf_values = new_normal_dist.prob(np.array(votes[:,action_index]))
@@ -567,9 +593,9 @@ class MultiModelPPO4:
                 # log(π(a|s)) = -0.5 * ((a - μ)² / σ² + log(2πσ²))
                 const = tf.constant(2*np.pi)
                 vote = votes[:,action_index]
-                log_p_new = (tf.constant(-0.5)  * ((tf.math.square(vote - new_mean) / new_std_dev)
+                log_p_new = (-0.5 * ((tf.math.square(vote - new_mean) / new_std_dev)
                     + tf.math.log(const*tf.math.square(new_std_dev))))
-                log_p_old = (tf.constant(-0.5) * ((tf.math.square(vote - curr_mean) / curr_std_dev)
+                log_p_old = (-0.5 * ((tf.math.square(vote - curr_mean) / curr_std_dev)
                     + tf.math.log(const*tf.math.square(curr_std_dev))))
                 log_ratio = log_p_new - log_p_old
                 ratios = tf.math.exp(log_ratio)
@@ -584,8 +610,9 @@ class MultiModelPPO4:
                 loss = tf.math.negative(tf.reduce_mean(
                     tf.math.minimum(surrogate_1, surrogate_2)) + self.configs.VOTE_ENTROPY_SCALAR * entropy)
                 losses.append(loss)
-            print(losses)
+
             return sum(losses)
+
 
         def update_policy(self, trajectories: Trajectories):
             '''
@@ -606,9 +633,9 @@ class MultiModelPPO4:
                 critic_loss = 0
                 mod_games_played = self.training_state.games_played % self.configs.GAMES_TO_TRAIN_OVER
                 index = int(
-                    mod_games_played / (self.configs.GAMES_TO_TRAIN_OVER / self.configs.NUM_AGENTS))
+                    mod_games_played / (self.configs.GAMES_TO_TRAIN_OVER / (self.configs.NUM_AGENTS)))
                 actor = self.network_controller.actors[index]
-                with tf.GradientTape() as actor_tape, tf.GradientTape() as critic_tape:
+                with tf.GradientTape(persistent=True) as actor_tape, tf.GradientTape(persistent=True) as critic_tape:
                     actor_tape.watch(actor.model.trainable_variables)
                     # watch the trainable variables of each actor
                     for actor, actor_tape in zip(self.network_controller.actors, actor_tapes):
@@ -633,6 +660,7 @@ class MultiModelPPO4:
                     # calculate the critic loss with respect to the discount cumulative rewards
                     critic_loss=kls.mean_squared_error(
                         discount_cumulative_rewards, values_summed)
+
                     # here the sub probs will give the actual probs outputted by the switch at the last index
                     actor_loss=self.actor_loss(
                         sub_distributions,
@@ -648,6 +676,18 @@ class MultiModelPPO4:
                         # (index, index + self.configs.NUM_AGENTS)))
                         # tf.transpose(tf.gather(tf.transpose(advantage_estimates), (index, index + self.configs.NUM_AGENTS)))
                     )
+                    actor_vote_loss = self.actor_loss(
+                        sub_distributions,
+                        trajectories.distributions[:,index,:],
+                        trajectories.votes[:,:,index],
+                        trajectories.actions,
+                        tf.transpose(tf.gather(
+                            tf.transpose(advantage_estimates),
+                                [index] +
+                                [index + (action_index + 1) * self.configs.NUM_AGENTS for action_index in range(self.action_dims)]
+                            )
+                        ),
+                    )
                 if tf.math.is_nan(actor_loss).numpy() or tf.math.is_nan(critic_loss).numpy():
                     raise Exception
                 # calculate and apply gradients
@@ -658,9 +698,18 @@ class MultiModelPPO4:
                 self.network_controller.actor_optimisers[index].apply_gradients(
                     zip(actor_gradient, actor.model.trainable_variables)
                 )
+                actor.set_none_voting_freeze(True)
+                actor_vote_gradients=actor_tape.gradient(
+                    actor_vote_loss, actor.model.trainable_variables)
+                self.network_controller.actor_optimisers[index].apply_gradients(
+                    zip(actor_vote_gradients, actor.model.trainable_variables)
+                )
+                actor.set_none_voting_freeze(False)
                 self.network_controller.critic_optimiser.apply_gradients(
                     zip(critic_gradients, self.network_controller.critic.model.trainable_variables))
                 print('Good Loss')
+                del actor_tape
+                del critic_tape
                 return actor_losses, critic_loss
             # except:
             #     ...

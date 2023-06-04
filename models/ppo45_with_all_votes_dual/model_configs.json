@@ -1,0 +1,7 @@
+{
+    "num_actors": 2,
+    "input_dims": 18156,
+    "action_dims": 2,
+    "actor_output_size": 8,
+    "actor_input_size": 18172
+}

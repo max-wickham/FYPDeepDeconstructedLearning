@@ -1,0 +1,146 @@
+Running
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+actor_vote_loss tf.Tensor(-0.0013863113, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013952603, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013849516, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013962017, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014012866, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013993665, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014016186, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014013997, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014250427, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013951742, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014009101, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014095933, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014329671, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.001429908, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014292926, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014271569, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014404863, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014551593, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014643515, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014589154, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014666251, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014800734, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015010085, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015291936, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014866428, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014761098, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014846382, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015345565, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.001562062, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014977818, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014879424, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.001496642, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015076852, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014871715, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0016023518, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015340438, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015961495, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014837654, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.001554179, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015568878, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015127452, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015353832, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014357099, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014773698, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014984326, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0015486552, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014530083, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014245003, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013966702, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013708966, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.001446053, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0014136701, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0011867507, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013218198, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0012921543, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0011518874, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0013016681, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.00089449814, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.0005488996, shape=(), dtype=float32)
+Good Loss
+actor_vote_loss tf.Tensor(-0.00044006956, shape=(), dtype=float32)
+Good Loss
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+1
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
+Starting Training
+pygame 2.2.0 (SDL 2.0.22, Python 3.11.0)
+Hello from the pygame community. https://www.pygame.org/contribute.html
